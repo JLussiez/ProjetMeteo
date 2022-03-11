@@ -15,7 +15,7 @@
             <b></b>
             <a href="capteurs.php">
                 <span class="icon">
-                    <ion-icon name="bar-chart-outline"></ion-icon>
+                    <ion-icon name="apps-outline"></ion-icon>
                 </span>
                 <span class="title">Capteurs</span>
             </a>
@@ -23,9 +23,9 @@
         <li class="list">
             <b></b>
             <b></b>
-            <a href="#">
+            <a href="TempsRéel.php">
                 <span class="icon">
-                    <ion-icon name="help-outline"></ion-icon>
+                    <ion-icon name="play-outline"></ion-icon>
                 </span>
                 <span class="title">Météo en temps réel</span>
             </a>
@@ -33,9 +33,9 @@
         <li class="list">
             <b></b>
             <b></b>
-            <a href="#">
+            <a href="Previsions.php">
                 <span class="icon">
-                    <ion-icon name="settings-outline"></ion-icon>
+                    <ion-icon name="play-forward-outline"></ion-icon>
                 </span>
                 <span class="title">Prévisions</span>
             </a>
@@ -43,9 +43,9 @@
         <li class="list">
             <b></b>
             <b></b>
-            <a href="#">
+            <a href="Historique.php">
                 <span class="icon">
-                    <ion-icon name="lock-closed-outline"></ion-icon>
+                    <ion-icon name="play-back-outline"></ion-icon>
                 </span>
                 <span class="title">Historique des données</span>
             </a>
