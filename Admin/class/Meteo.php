@@ -1,4 +1,10 @@
+<?php
+
 class Meteo{
+
+
 
     
 }
+
+?>
