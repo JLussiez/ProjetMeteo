@@ -10,7 +10,11 @@
 </head>
 <body> 
 
-    <p>Historique</p>
+<div class="text-zone">
+        <h2 class="title">
+            <a href="#">Historique</a>
+        </h2>
+    </div>
     
     <?php
         include "menu.php";

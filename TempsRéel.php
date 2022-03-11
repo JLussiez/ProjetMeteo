@@ -10,7 +10,11 @@
 </head>
 <body> 
 
-    <p>Temps Réel</p>
+<div class="text-zone">
+        <h2 class="title">
+            <a href="#">Temps Réel</a>
+        </h2>
+    </div>
     
     <?php
         include "menu.php";

@@ -14,6 +14,12 @@
         include "menu.php";
     ?>
 
+<div class="text-zone">
+        <h2 class="title">
+            <a href="#">Capteurs</a>
+        </h2>
+    </div>
+
 <div id="icons">
     <span>Hygromètre</span>
         <ion-icon name="water-outline"></ion-icon>

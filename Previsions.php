@@ -10,7 +10,11 @@
 </head>
 <body> 
 
-    <p>Prévisions</p>
+<div class="text-zone">
+        <h2 class="title">
+            <a href="#">Prévisions</a>
+        </h2>
+    </div>
     
     <?php
         include "menu.php";
