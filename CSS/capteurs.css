@@ -1,0 +1,19 @@
+.forecast {
+    margin: 6%;
+    padding: 0.1rem;
+}
+
+.forecast > h1, .day-forecast {
+    margin: 1rem;
+    padding: .3rem;
+    font-size: 1.2rem;
+}
+
+.day-forecast {
+    background: right/contain content-box border-box no-repeat white;
+}
+
+.day-forecast > h2, .day-forecast > p {
+    margin: .2rem;
+    font-size: 1rem;
+}
