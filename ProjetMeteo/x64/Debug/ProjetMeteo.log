@@ -1,4 +1,0 @@
-﻿  Reading Qt configuration (C:/Qt/5.14.2/msvc2017_64/bin/qmake)
-  Capteur.cpp
-  moc_Capteur.cpp
-c:\users\vollet maxence\source\repos\projetmeteo\projetmeteo\x64\debug\moc\moc_capteur.cpp(74): error C2273: 'cast de style fonction' : non conforme à droite de l'opérateur '->'
