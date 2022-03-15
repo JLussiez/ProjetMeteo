@@ -60,11 +60,7 @@ html {
     color: rgb(0, 0, 0);
     text-decoration: none;
 }
-.text-zone .title a:hover
-{
-    color: rgb(197, 197, 197);
-    transform: 5.2s;
-}
+
 .text-zone .article
 {
     position: relative;

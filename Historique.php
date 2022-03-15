@@ -7,14 +7,20 @@
     <title>Station Météo</title>
     <link rel="stylesheet" type="text/css" href="CSS/style.css">
     <link rel="stylesheet" type="text/css" href="CSS/menu.css">
+    <link rel="stylesheet" type="text/css" href="CSS/graphique.css">
 </head>
 <body> 
 
-<div class="text-zone">
-        <h2 class="title">
-            <a href="#">Historique</a>
-        </h2>
-    </div>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+<script src="https://code.highcharts.com/modules/accessibility.js"></script>
+
+<figure class="highcharts-figure">
+  <div id="container"></div>
+</figure>
+
+<script src="JS/graphique.js"></script>
     
     <?php
         include "menu.php";
