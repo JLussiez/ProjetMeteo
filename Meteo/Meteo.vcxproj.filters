@@ -32,9 +32,6 @@
     <QtMoc Include="Meteo.h">
       <Filter>Header Files</Filter>
     </QtMoc>
-    <ClCompile Include="Meteo.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -47,6 +44,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Barometre.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Meteo.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

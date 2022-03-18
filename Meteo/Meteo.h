@@ -22,6 +22,9 @@
 #include <QFile>
 #include <QTextStream>
 
+#include "ui_Meteo.h"
+#include "Barometre.h"
+
 class Meteo;
 
 class Meteo : public QMainWindow
@@ -29,15 +32,17 @@ class Meteo : public QMainWindow
     Q_OBJECT
 
 	public:
-		Meteo();
-		Meteo(quint16 port);
+		Meteo(QWidget *parent = Q_NULLPTR);
 
 	private:
 		Ui::MeteoClass ui;
 
-	private:
-
 		QSqlDatabase db;
 
 		QTimer *timer;
+
+		Barometre *barometre;
+
+	private slots:
+		void TestTension();
 };

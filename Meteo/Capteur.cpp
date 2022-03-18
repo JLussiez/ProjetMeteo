@@ -2,7 +2,7 @@
 
 void Capteur::ConnectCarte()
 {
-	card = Register_Card(PCI_9111DG, 0);
+	//card = Register_Card(PCI_9111DG, 0);
 	/*
 	this->webSocketServer = new QWebSocketServer(QStringLiteral("Server WebSocket"), QWebSocketServer::NonSecureMode);
 
