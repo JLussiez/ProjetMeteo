@@ -18,10 +18,10 @@ void Meteo::TestTension()
 	//Convertion float QString
 	QString QPression = QString::number(Pression);
 
-	ui.Pression->setText(QPression);
+	ui.Pression->setText(QPression +" mBar");
 
 	float Tension = (*barometre).getTension();
 	QString QTension = QString::number(Tension);
 
-	ui.Tension->setText(QTension);
+	ui.Tension->setText(QTension +" V");
 }
