@@ -5,7 +5,11 @@ class Barometre :
 {
 
 public :
-	//Convertion tension en donnée utilisable : 
-	int convertionTensionPression();
+	//Convertion tension en donnée utilisable :
+	float convertionTensionPression();
+	float getPression();
+
+	private : 
+		float Pression;
 };
 

@@ -18,12 +18,12 @@
 class Capteur : 
 	public QObject
 {
-	Q_OBJECT
+protected :
 	float Tension;
 
 private :
 	void ConnectCarte();
 
-
+	I16 card;
 };
 

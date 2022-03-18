@@ -32,7 +32,7 @@
   </ImportGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|Win32'" Label="QtSettings">
     <QtInstall>5.14.2_msvc2017_32</QtInstall>
-    <QtModules>core;gui;widgets</QtModules>
+    <QtModules>core;gui;widgets;websockets;network;sql</QtModules>
     <QtBuildConfig>debug</QtBuildConfig>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'" Label="QtSettings">
@@ -85,14 +85,20 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Barometre.cpp" />
+    <ClCompile Include="PrevisionMeteo.cpp" />
     <QtRcc Include="Meteo.qrc" />
     <QtUic Include="Meteo.ui" />
     <QtMoc Include="Meteo.h" />
+    <ClCompile Include="Capteur.cpp" />
     <ClCompile Include="Meteo.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Barometre.h" />
+    <ClInclude Include="Capteur.h" />
     <ClInclude Include="Dask.h" />
+    <QtMoc Include="PrevisionMeteo.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">
