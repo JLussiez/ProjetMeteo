@@ -87,6 +87,7 @@
   <ItemGroup>
     <ClCompile Include="Barometre.cpp" />
     <ClCompile Include="PrevisionMeteo.cpp" />
+    <ClCompile Include="TCP_Serveur.cpp" />
     <QtRcc Include="Meteo.qrc" />
     <QtUic Include="Meteo.ui" />
     <QtMoc Include="Meteo.h" />
@@ -103,6 +104,7 @@
     <ClInclude Include="Barometre.h" />
     <ClInclude Include="Capteur.h" />
     <ClInclude Include="Dask.h" />
+    <QtMoc Include="TCP_Serveur.h" />
     <QtMoc Include="PrevisionMeteo.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

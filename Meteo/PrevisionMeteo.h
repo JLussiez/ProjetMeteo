@@ -13,4 +13,3 @@ public :
 	PrevisionMeteo();
 	void CatherineLaborde(Barometre& Barometre);
 };
-
