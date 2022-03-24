@@ -24,6 +24,7 @@
 
 #include "ui_Meteo.h"
 #include "Barometre.h"
+#include "PrevisionMeteo.h"
 
 class Meteo;
 
@@ -39,9 +40,9 @@ class Meteo : public QMainWindow
 
 		QSqlDatabase db;
 
-		QTimer *timer;
-
 		Barometre *barometre;
+
+		PrevisionMeteo *previsionmeteo;
 
 	private slots:
 		void TestTension();

@@ -3,22 +3,21 @@
 #include <QtWidgets/QMainWindow>
 
 class Barometre :
-	public Capteur
+	public Capteur,
+	public QMainWindow
 {
 
 	public :
+		Barometre();
 		//Convertion tension en donnée utilisable :
-		float convertionTensionPression();
+		void convertionTensionPression();
 		//Obtenir Pression
 		float getPression();
 		//Générer un pression
 		void addTensionTest();
 		//Obtenir Tension
 		float getTension();
-
-		private : 
-			float Pression;
-			float Tension;
+		float Pression;
 
 	private slots : 
 		void TestConvertionBarometre();

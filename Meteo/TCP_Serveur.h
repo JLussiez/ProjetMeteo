@@ -7,6 +7,7 @@
 #include <qtwidgets>
 #include <QtSql/QtSql>
 #include <QSqlQuery>
+#include <QDebug>
 
 class TCP_Serveur : public QMainWindow
 {

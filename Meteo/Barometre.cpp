@@ -1,16 +1,17 @@
 #include "Barometre.h"
 
-float Barometre::convertionTensionPression()
+Barometre::Barometre()
+{
+}
+
+void Barometre::convertionTensionPression()
 {
 	//this->Tension = 0.134;
 
 
-	this->Pression = this->Tension * 7686.215303;
+	Pression = Tension * 7686.215303;
 
 	//Envoyer en BDD : 
-
-
-	return 0;
 }
 
 float Barometre::getPression()
@@ -20,13 +21,16 @@ float Barometre::getPression()
 
 void Barometre::addTensionTest()
 {
-	float TensionRandom = QRandomGenerator::global()->bounded(130, 140);
-	this->Tension = TensionRandom / 1000;
+	float TensionTest = QRandomGenerator::global()->bounded(130, 140);
+ 	Tension = TensionTest / 1000;
+	qDebug() << TensionTest;
+	qDebug() << Tension;
+
 }
 
 float Barometre::getTension()
 {
-	return this->Tension;
+	return Tension;
 }
 
 void Barometre::TestConvertionBarometre()

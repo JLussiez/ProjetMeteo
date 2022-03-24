@@ -1,5 +1,10 @@
 #include "Capteur.h"
 
+Capteur::Capteur()
+{
+
+}
+
 void Capteur::ConnectCarte()
 {
 	//card = Register_Card(PCI_9111DG, 0);

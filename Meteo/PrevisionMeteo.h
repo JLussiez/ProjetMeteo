@@ -1,6 +1,7 @@
 #pragma once
 #include <QObject>
 #include "Barometre.h"
+#include <QDebug>
 
 class PrevisionMeteo :
 	public QObject

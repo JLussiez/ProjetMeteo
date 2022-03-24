@@ -1,11 +1,13 @@
 #include "Meteo.h"
 #include "Dask.h"
+#include "PrevisionMeteo.h"
 
 Meteo::Meteo(QWidget *parent)
 	: QMainWindow(parent)
 {
 	ui.setupUi(this);
-	Barometre barometre;
+	barometre = new Barometre;
+	previsionmeteo = new PrevisionMeteo;
 }
 
 void Meteo::TestTension()
@@ -27,4 +29,6 @@ void Meteo::TestTension()
 	QString QTension = QString::number(Tension);
 
 	ui.Tension->setText(QTension +" V");
+
+	previsionmeteo->CatherineLaborde( *barometre );
 }

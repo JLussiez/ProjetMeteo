@@ -18,8 +18,9 @@
 class Capteur : 
 	public QObject
 {
-protected :
-	float Tension;
+	protected :
+		float Tension;
+		Capteur();
 
 private :
 	void ConnectCarte();
