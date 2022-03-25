@@ -35,6 +35,7 @@ class Meteo : public QMainWindow
 	public:
 		Meteo(QWidget *parent = Q_NULLPTR);
 
+
 	private:
 		Ui::MeteoClass ui;
 

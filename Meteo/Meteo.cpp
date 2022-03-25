@@ -6,18 +6,28 @@ Meteo::Meteo(QWidget *parent)
 	: QMainWindow(parent)
 {
 	ui.setupUi(this);
-	barometre = new Barometre;
 	previsionmeteo = new PrevisionMeteo;
+
+	/*
+	anemometre = new Anemometre;
+	girouette = new Girouette;
+	*/
+	barometre = new Barometre;
+	/*
+	hygrometre = new Hygrometre;
+	thermometre = new Thermometre;
+	solarimetre = new Solarimetre;
+	pluviometre = new Pluviometre;
+	detecteurpluie = new DetecteurPluie;
+	detecteurjournuit = new DetecteurJourNuit;
+	*/
 }
 
 void Meteo::TestTension()
 {
-	//(*barometre).addTensionTest();
 	barometre->addTensionTest();
-	//(*barometre).convertionTensionPression();
 	barometre->convertionTensionPression();
 
-	//float Pression = (*barometre).getPression();
 	float Pression = barometre->getPression();
 	//Convertion float QString
 	QString QPression = QString::number(Pression);

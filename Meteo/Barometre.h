@@ -6,20 +6,18 @@ class Barometre :
 	public Capteur,
 	public QMainWindow
 {
-
 	public :
 		Barometre();
 		//Convertion tension en donnée utilisable :
 		void convertionTensionPression();
 		//Obtenir Pression
 		float getPression();
-		//Générer un pression
+		//Générer une Tension une Test
 		void addTensionTest();
-		//Obtenir Tension
-		float getTension();
 		float Pression;
 
 	private slots : 
+		//Test avec QT : 
 		void TestConvertionBarometre();
 };
 

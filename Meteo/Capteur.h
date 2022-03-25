@@ -21,10 +21,10 @@ class Capteur :
 	protected :
 		float Tension;
 		Capteur();
+		float getTension();
 
 private :
 	void ConnectCarte();
-
 	I16 card;
 };
 

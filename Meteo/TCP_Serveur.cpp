@@ -54,9 +54,9 @@ void TCP_Serveur::onClientReadyRead()
 		{
 			QSqlDatabase db = QSqlDatabase::addDatabase("QMYSQL");
 			db.setHostName("192.168.65.201");
-			db.setDatabaseName("QT");
-			db.setUserName("superuser");
-			db.setPassword("superuser");
+			db.setDatabaseName("Meteo");
+			db.setUserName("root");
+			db.setPassword("root");
 			QSqlQuery query(db);
 
 			if (!db.open())
@@ -103,9 +103,9 @@ void TCP_Serveur::onClientReadyRead()
 
 					QSqlDatabase db = QSqlDatabase::addDatabase("QMYSQL");
 					db.setHostName("192.168.65.201");
-					db.setDatabaseName("QT");
-					db.setUserName("superuser");
-					db.setPassword("superuser");
+					db.setDatabaseName("Meteo");
+					db.setUserName("root");
+					db.setPassword("root");
 					QSqlQuery query(db);
 
 					if (!db.open()) {
@@ -137,9 +137,9 @@ void TCP_Serveur::onClientReadyRead()
 
 					QSqlDatabase db = QSqlDatabase::addDatabase("QMYSQL");
 					db.setHostName("192.168.65.201");
-					db.setDatabaseName("QT");
-					db.setUserName("superuser");
-					db.setPassword("superuser");
+					db.setDatabaseName("Meteo");
+					db.setUserName("root");
+					db.setPassword("root");
 					QSqlQuery query(db);
 
 					if (!db.open()) {
@@ -178,9 +178,9 @@ void TCP_Serveur::onClientReadyRead()
 					//Connexion à BDD
 					QSqlDatabase db = QSqlDatabase::addDatabase("QMYSQL");
 					db.setHostName("192.168.65.201");
-					db.setDatabaseName("QT");
-					db.setUserName("superuser");
-					db.setPassword("superuser");
+					db.setDatabaseName("Meteo");
+					db.setUserName("root");
+					db.setPassword("root");
 					QSqlQuery query(db);
 
 
