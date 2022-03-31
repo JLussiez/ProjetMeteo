@@ -1,7 +1,10 @@
 #pragma once
 #include "Capteur.h"
+#include <QtWidgets/QMainWindow>
+
 class Solarimetre :
-	public Capteur
+	public Capteur,
+	public QMainWindow
 {
 public:
 	Solarimetre();

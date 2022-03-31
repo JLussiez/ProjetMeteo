@@ -3,6 +3,8 @@
 Hygrometre::Hygrometre()
 {
 	Tension = 0;
+	NumeroChannel = 4;
+	this->ConnectCarte();
 }
 
 void Hygrometre::convertionTensionHumidite()

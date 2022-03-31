@@ -3,6 +3,8 @@
 DetecteurJourNuit::DetecteurJourNuit()
 {
 	Tension = 0;
+	NumeroChannel = 8;
+	this->ConnectCarte();
 }
 
 void DetecteurJourNuit::convertionTensionJourNuit()

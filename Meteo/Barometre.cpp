@@ -3,6 +3,8 @@
 Barometre::Barometre()
 {
 	Tension = 0;
+	NumeroChannel = 2;
+	this->ConnectCarte();
 }
 
 void Barometre::convertionTensionPression()

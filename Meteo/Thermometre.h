@@ -1,7 +1,10 @@
 #pragma once
 #include "Capteur.h"
+#include <QtWidgets/QMainWindow>
+
 class Thermometre :
-	public Capteur
+	public Capteur,
+	public QMainWindow
 {
 public:
 	Thermometre();
@@ -13,4 +16,3 @@ public:
 	void addTemperatureTest();
 	float Temperature;
 };
-

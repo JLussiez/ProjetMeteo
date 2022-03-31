@@ -23,7 +23,16 @@
 #include <QTextStream>
 
 #include "ui_Meteo.h"
+#include "Anemometre.h"
+#include "Girouette.h"
 #include "Barometre.h"
+#include "Thermometre.h"
+#include "Hygrometre.h"
+#include "Solarimetre.h"
+#include "Pluviometre.h"
+#include "DetecteurJourNuit.h"
+#include "DetecteurPluie.h"
+
 #include "PrevisionMeteo.h"
 
 class Meteo;
@@ -41,7 +50,15 @@ class Meteo : public QMainWindow
 
 		QSqlDatabase db;
 
+		Anemometre *anemometre;
+		Girouette *girouette;
 		Barometre *barometre;
+		Thermometre *thermometre;
+		Hygrometre *hygrometre;
+		Solarimetre *solarimetre;
+		Pluviometre *pluviometre;
+		DetecteurJourNuit *detecteurjournuit;
+		DetecteurPluie *detecteurpluie;
 
 		PrevisionMeteo *previsionmeteo;
 

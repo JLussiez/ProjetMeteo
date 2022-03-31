@@ -3,6 +3,8 @@
 DetecteurPluie::DetecteurPluie()
 {
 	Tension = 0;
+	NumeroChannel = 7;
+	this->ConnectCarte();
 }
 
 void DetecteurPluie::convertionTensionPluie()

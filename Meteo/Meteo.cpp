@@ -8,19 +8,18 @@ Meteo::Meteo(QWidget *parent)
 	ui.setupUi(this);
 	previsionmeteo = new PrevisionMeteo;
 
-	/*
+
 	anemometre = new Anemometre;
 	girouette = new Girouette;
-	*/
+
 	barometre = new Barometre;
-	/*
+
 	hygrometre = new Hygrometre;
 	thermometre = new Thermometre;
 	solarimetre = new Solarimetre;
 	pluviometre = new Pluviometre;
 	detecteurpluie = new DetecteurPluie;
-	detecteurjournuit = new DetecteurJourNuit;
-	*/
+
 }
 
 void Meteo::TestTension()

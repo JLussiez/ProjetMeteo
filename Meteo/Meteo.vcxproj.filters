@@ -52,6 +52,30 @@
     <ClCompile Include="TCP_Serveur.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Anemometre.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DetecteurJourNuit.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DetecteurPluie.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Girouette.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Hygrometre.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Pluviometre.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Solarimetre.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Thermometre.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Dask.h">
@@ -61,6 +85,30 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Capteur.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Anemometre.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DetecteurJourNuit.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DetecteurPluie.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Girouette.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Hygrometre.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Pluviometre.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Solarimetre.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Thermometre.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

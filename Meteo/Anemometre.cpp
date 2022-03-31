@@ -3,7 +3,8 @@
 Anemometre::Anemometre()
 {
 	Tension = 0;
-
+	NumeroChannel = 0;
+	this->ConnectCarte();
 }
 
 void Anemometre::convertionTensionVitesseVent()

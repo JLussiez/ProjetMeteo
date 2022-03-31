@@ -59,7 +59,7 @@ void PrevisionMeteo::Future()
 
 }
 
-/*
+
 void PrevisionMeteo::EnvoieDonnee(Anemometre& Anemometre, Girouette& Girouette, Barometre& Barometre, Hygrometre& Hygrometre, Thermometre& Thermometre, Solarimetre& Solarimetre, Pluviometre& Pluviometre, DetecteurPluie& DetecteurPluie, DetecteurJourNuit& DetecteurJourNuit)
 {
 	//Connexion à BDD
@@ -70,32 +70,24 @@ void PrevisionMeteo::EnvoieDonnee(Anemometre& Anemometre, Girouette& Girouette, 
 	db.setPassword("root");
 	QSqlQuery query(db);
 
-	Vitesse_Vent = Anemometre.getVitesseVent();
-	Position_Vent = Girouette.getCardinalite();
-	Pression = Barometre.getPression();
-	Humidite = Hygrometre.getHumidite();
-	Temperature = Thermometre.getTemperature();
-	Luminositee = Solarimetre.getLuminosite();
-	QuantitePluie = Pluviometre.getQuantitePluie();
-	Pluie = CapteurPluie.getPluie();
-	JourNuit = DetecteurJourNuit.getJourNuit();
+	float Vitesse_Vent = Anemometre.getVitesseVent();
+	char Position_Vent = Girouette.getCardinalite();
+	float Pression = Barometre.getPression();
+	float Humidite = Hygrometre.getHumidite();
+	float Temperature = Thermometre.getTemperature();
+	float Luminosite = Solarimetre.getLuminosite();
+	float QuantitePluie = Pluviometre.getQuantitePluie();
+	bool Pluie = DetecteurPluie.getPluie();
+	bool JourNuit = DetecteurJourNuit.getJourNuit();
 
-	//query.prepare("INSERT INTO `Capteur`(`Vitesse_Vent`, `Position_Vent`, `Pression`, `Humidite`, `Temperature`, `Solarimètre`, `Pluviomètre`, `Pluie`, `Jour/Nuit`) VALUES('" + VitesseVent +"', '" + PosVent +"', '" + Pression +"', '" + Humidite +"', '" + Temperature +"', '" + Luminosite +"', '" + QuantitePluie +"', '" + Pluie +"', '" + JourNuit +"'");
+	//Requet envoie météo dans BDD, bonne chance Louis :)
+	//query.prepare("INSERT INTO `Capteur`(`Vitesse_Vent`, `Position_Vent`, `Pression`, `Humidite`, `Temperature`, `Solarimètre`, `Pluviomètre`, `Pluie`, `Jour/Nuit`) VALUES('"+ Vitesse_Vent +"', '" + Position_Vent +"', '" + Pression +"', '" + Humidite +"', '" + Temperature +"', '" + Luminosite +"', '" + QuantitePluie +"', '" + Pluie +"', '" + JourNuit +"'");
 
 	if (query.exec())
 	{
 		qDebug() << "Insert Effectué";
-
-		/*
 		//Récupère le résultat de la requête
 		query.next();
 		QString IDUser = query.value(0).toString();
-
-		query.prepare("INSERT INTO `Message`(`IDUser`, `Content`) VALUES ('" + IDUser + "' , '" + MSG + "')");
-		query.exec();
-
-		//On récupère le MSG100
-		obj->write("MSG100");
 	}
 }
-*/

@@ -3,6 +3,8 @@
 Solarimetre::Solarimetre()
 {
 	Tension = 0;
+	NumeroChannel = 6;
+	this->ConnectCarte();
 }
 
 void Solarimetre::convertionTensionLuminosite()

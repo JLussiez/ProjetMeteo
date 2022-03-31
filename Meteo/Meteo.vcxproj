@@ -85,9 +85,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Anemometre.cpp" />
     <ClCompile Include="Barometre.cpp" />
+    <ClCompile Include="DetecteurJourNuit.cpp" />
+    <ClCompile Include="DetecteurPluie.cpp" />
+    <ClCompile Include="Girouette.cpp" />
+    <ClCompile Include="Hygrometre.cpp" />
+    <ClCompile Include="Pluviometre.cpp" />
     <ClCompile Include="PrevisionMeteo.cpp" />
+    <ClCompile Include="Solarimetre.cpp" />
     <ClCompile Include="TCP_Serveur.cpp" />
+    <ClCompile Include="Thermometre.cpp" />
     <QtRcc Include="Meteo.qrc" />
     <QtUic Include="Meteo.ui" />
     <QtMoc Include="Meteo.h" />
@@ -101,9 +109,17 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Anemometre.h" />
     <ClInclude Include="Barometre.h" />
     <ClInclude Include="Capteur.h" />
     <ClInclude Include="Dask.h" />
+    <ClInclude Include="DetecteurJourNuit.h" />
+    <ClInclude Include="DetecteurPluie.h" />
+    <ClInclude Include="Girouette.h" />
+    <ClInclude Include="Hygrometre.h" />
+    <ClInclude Include="Pluviometre.h" />
+    <ClInclude Include="Solarimetre.h" />
+    <ClInclude Include="Thermometre.h" />
     <QtMoc Include="TCP_Serveur.h" />
     <QtMoc Include="PrevisionMeteo.h" />
   </ItemGroup>

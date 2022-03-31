@@ -3,6 +3,8 @@
 Pluviometre::Pluviometre()
 {
 	Tension = 0;
+	NumeroChannel = 9;
+	this->ConnectCarte();
 }
 
 void Pluviometre::convertionTensionQuantitePluie()

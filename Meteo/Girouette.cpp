@@ -3,6 +3,8 @@
 Girouette::Girouette()
 {
 	Tension = 0;
+	NumeroChannel = 1;
+	this->ConnectCarte();
 }
 
 void Girouette::convertionTensionCardinalite()

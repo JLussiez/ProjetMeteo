@@ -3,6 +3,8 @@
 Thermometre::Thermometre()
 {
 	Tension = 0;
+	NumeroChannel = 3;
+	this->ConnectCarte();
 }
 
 void Thermometre::convertionTensionTemperature()
