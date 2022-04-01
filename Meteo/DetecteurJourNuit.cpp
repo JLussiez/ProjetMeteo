@@ -18,4 +18,5 @@ float DetecteurJourNuit::getJourNuit()
 
 void DetecteurJourNuit::addJourNuitTest()
 {
+
 }

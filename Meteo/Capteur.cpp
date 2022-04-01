@@ -33,7 +33,6 @@ float Capteur::getTension()
 int Capteur::ConnectCarte()
 {
 	card = Register_Card(PCI_9111DG, 0);
-	
 
 	return 0;
 }

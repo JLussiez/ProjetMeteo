@@ -4,61 +4,79 @@ PrevisionMeteo::PrevisionMeteo()
 {
 }
 
-void PrevisionMeteo::CatherineLaborde(Barometre& Barometre)
+void PrevisionMeteo::CatherineLaborde(Barometre& Barometre, Thermometre& Thermometre, DetecteurPluie& DetecteurPluie)
 {
 	float Pression = Barometre.getPression();
+	float Temperature = Thermometre.getTemperature();
+	int Pluie = DetecteurPluie.getPluie();
 
 	qDebug() << Pression;
 
 	if (Pression < 960 || Pression > 1060)
 	{
 		//erreur : impossible
-
-		//query.prepare("INSERT INTO `Prevision`(`IDUser`, `Content`) VALUES ('" + IDUser + "' , '" + MSG + "')");
-		//query.exec();
-		qDebug() <<  "Impossible : Erreur";
-		PrevisionMeteo::Future();
-
+		QString Temps = "ERREUR";
 	} else if (Pression >= 1015 && Pression < 1060)
 	{
 		//Temps ensolleillé
-
-		//query.prepare("INSERT INTO `Prevision`(`IDUser`, `Content`) VALUES ('" + IDUser + "' , '" + MSG + "')");
-		//query.exec();
-		qDebug() << "Ensolleillé";
-		PrevisionMeteo::Future();
-
+		QString Temps = "Ensoleille";
 	} else if ( Pression <= 1015 && Pression > 1000)
 	{
-		//Pluie
-
-		//query.prepare("INSERT INTO `Prevision`(`IDUser`, `Content`) VALUES ('" + IDUser + "' , '" + MSG + "')");
-		//query.exec();
-		qDebug() <<  "Pluvieux";
-		PrevisionMeteo::Future();
-
+		if (Pluie = 1)
+		{
+			//Formation de neige vers -5 et 1 °C
+			if (Temperature > -5 && Temperature < 1)
+			{
+				//Neige
+				QString Temps = "Neige";
+			}
+			else if (Temperature < -10)
+			{
+				//Grèle
+				QString Temps = "Grele";
+			}
+			else
+			{
+				//Pluvieux
+				QString Temps = "Pluvieux";
+			}
+		}
+		else
+		{
+			QString Temps = "Ensoleillé";
+		}
+		
 	} else if ( Pression <= 1000 && Pression > 960)
 	{
 		//Tempête
+		//génère des vents dépassent 89 km / h
 
-		//query.prepare("INSERT INTO `Prevision`(`IDUser`, `Content`) VALUES ('" + IDUser + "' , '" + MSG + "')");
-		//query.exec();
-		qDebug() << "Tempête";
-		PrevisionMeteo::Future();
+		QString Temps = "Tempete";
 	}
-
+	//query.prepare("INSERT INTO `Prevision Meteo`(`Prevision`) VALUES ('" + Temps + "')");
+	//query.exec();
+	PrevisionMeteo::Future();
 }
 
 void PrevisionMeteo::Future()
 {
+	//Si on connait exactement l'état initial
+	// + Si on connait exactement les lois d'évolution
+	// -> Prévision = parfaite (ca arrivera pas mdr)
+
+
 	//Reprendre les anciennes prévision météo : 
 
 	//Comparer les différentes Pression
 
+		//Toute les heures : 
+		// Monté de 0,25 à 0,5 : Venue d'une haute préssion (sur long terme) = 1015 hPa = beau temps
+		// Monté de 1 à 2 : Venue d'une moyenne pression (sur court terme) = 
+		// Descente 0,25 à 0,5 : Venue d'une basse pression (sur long terme) = 1010 hPa = risque de pluie, ciel nuageux
+		// Descente 1 à 2 : tempête (été = orage)
+
 	//Compare les différentes Prévision
-
 }
-
 
 void PrevisionMeteo::EnvoieDonnee(Anemometre& Anemometre, Girouette& Girouette, Barometre& Barometre, Hygrometre& Hygrometre, Thermometre& Thermometre, Solarimetre& Solarimetre, Pluviometre& Pluviometre, DetecteurPluie& DetecteurPluie, DetecteurJourNuit& DetecteurJourNuit)
 {
