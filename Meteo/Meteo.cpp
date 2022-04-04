@@ -96,6 +96,7 @@ void Meteo::Projet()
 	detecteurjournuit->convertionTensionJourNuit();
 
 	//Récuperer et stocker les valeur avec get*valeur*()
+	/*
 	float VitesseVent = anemometre->getVitesseVent();
 	char Cardinalite = girouette->getCardinalite();
 	float Pression = barometre->getPression();
@@ -107,7 +108,9 @@ void Meteo::Projet()
 	float QuantitePluie = pluviometre->getQuantitePluie();
 	float Pluie = detecteurpluie->getPluie();
 	float JourNuit = detecteurjournuit->getJourNuit();
+	*/
 
 	//Envoie en base + temps
+	previsionmeteo->EnvoieDonnee(*anemometre, *girouette, *barometre, *hygrometre, *thermometre, *solarimetre, *pluviometre, *detecteurpluie, *detecteurjournuit);
 
 }

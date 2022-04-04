@@ -197,8 +197,8 @@ void PrevisionMeteo::EnvoieDonnee(Anemometre& Anemometre, Girouette& Girouette, 
 	bool Pluie = DetecteurPluie.getPluie();
 	bool JourNuit = DetecteurJourNuit.getJourNuit();
 
-	//Requet envoie météo dans BDD, bonne chance Louis :)
-	query.prepare("INSERT INTO `Capteur`(`Vitesse_Vent`, `Position_Vent`, `Pression`, `Humidite`, `Temperature`, `Solarimètre`, `Pluviomètre`, `Pluie`, `Jour/Nuit`) VALUES('"+ Vitesse_Vent +"', '" + Position_Vent +"', '" + Pression +"', '" + Humidite +"', '" + Temperature +"', '" + Luminosite +"', '" + QuantitePluie +"', '" + Pluie +"', '" + JourNuit +"')");
+	//Requet envoie météo dans BDD.		Si ca bug encore, ajouter 'QString::number()' autour des autres float / bool
+	query.prepare("INSERT INTO `Capteur`(`Vitesse_Vent`, `Position_Vent`, `Pression`, `Humidite`, `Temperature`, `Solarimètre`, `Pluviomètre`, `Pluie`, `Jour/Nuit`) VALUES('"+ QString::number(Vitesse_Vent) +"', '" + Position_Vent +"', '" + Pression +"', '" + Humidite +"', '" + Temperature +"', '" + Luminosite +"', '" + QuantitePluie +"', '" + Pluie +"', '" + JourNuit +"')");
 
 	if (query.exec())
 	{
