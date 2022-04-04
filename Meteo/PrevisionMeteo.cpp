@@ -80,11 +80,6 @@ void PrevisionMeteo::Future()
 	QSqlQuery queryInfoCapteur;
 	QSqlQuery queryPrevision;
 
-
-	//Comparer les différentes Pression
-
-
-
 	//Compare les différentes Prévision
 
 	//Execute les commande SQL
@@ -165,7 +160,7 @@ void PrevisionMeteo::Future()
 				//été
 				Prevision = "Orage";
 			}
-		} else if (mois == "Sep")
+		} else if (mois == "SEP")
 		{
 			//Vérifier date
 			if (jour < 23)
@@ -203,7 +198,7 @@ void PrevisionMeteo::EnvoieDonnee(Anemometre& Anemometre, Girouette& Girouette, 
 	bool JourNuit = DetecteurJourNuit.getJourNuit();
 
 	//Requet envoie météo dans BDD, bonne chance Louis :)
-	query.prepare("INSERT INTO `Capteur`(`Vitesse_Vent`, `Position_Vent`, `Pression`, `Humidite`, `Temperature`, `Solarimètre`, `Pluviomètre`, `Pluie`, `Jour/Nuit`) VALUES('"+ Vitesse_Vent +"', '" + Position_Vent +"', '" + Pression +"', '" + Humidite +"', '" + Temperature +"', '" + Luminosite +"', '" + QuantitePluie +"', '" + Pluie +"', '" + JourNuit +"'");
+	query.prepare("INSERT INTO `Capteur`(`Vitesse_Vent`, `Position_Vent`, `Pression`, `Humidite`, `Temperature`, `Solarimètre`, `Pluviomètre`, `Pluie`, `Jour/Nuit`) VALUES('"+ Vitesse_Vent +"', '" + Position_Vent +"', '" + Pression +"', '" + Humidite +"', '" + Temperature +"', '" + Luminosite +"', '" + QuantitePluie +"', '" + Pluie +"', '" + JourNuit +"')");
 
 	if (query.exec())
 	{
