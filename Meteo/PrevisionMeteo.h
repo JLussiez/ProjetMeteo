@@ -10,14 +10,21 @@
 #include "DetecteurJourNuit.h"
 #include "DetecteurPluie.h"
 #include <QDebug>
+#include <QRegExp>
+#include <qregularexpression.h>
+#include <QByteArray.h> 
+#include <QSqlQuery>
+#include <string>
 
 class PrevisionMeteo :
 	public QObject
 {
 	Q_OBJECT
 
-		char Prevision;
-
+		QString Prevision;
+		QString Duree;
+		QString DernierePression;
+		QString PressionHmoinsUn;
 public :
 	PrevisionMeteo();
 	void CatherineLaborde(Barometre& Barometre, Thermometre& Thermometre, DetecteurPluie& DetecteurPluie);

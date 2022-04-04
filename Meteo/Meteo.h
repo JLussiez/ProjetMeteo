@@ -32,7 +32,6 @@
 #include "Pluviometre.h"
 #include "DetecteurJourNuit.h"
 #include "DetecteurPluie.h"
-
 #include "PrevisionMeteo.h"
 
 class Meteo;
@@ -62,6 +61,9 @@ class Meteo : public QMainWindow
 
 		PrevisionMeteo *previsionmeteo;
 
+		void Projet();
+
 	private slots:
 		void TestTension();
+
 };
