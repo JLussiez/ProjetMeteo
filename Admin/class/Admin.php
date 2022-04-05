@@ -1,4 +1,5 @@
 <?php
+
  class Admin{
 
     private $_IDAdmin;
