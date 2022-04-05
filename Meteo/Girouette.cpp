@@ -11,7 +11,7 @@ void Girouette::convertionTensionCardinalite()
 {
 }
 
-float Girouette::getCardinalite()
+QString Girouette::getCardinalite()
 {
 	return Cardinalite;
 }

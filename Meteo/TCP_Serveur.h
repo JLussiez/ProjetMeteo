@@ -1,13 +1,13 @@
 #pragma once
 
 #include <QtWidgets/QMainWindow>
-//#include "ui_TCP_Serveur.h"
 #include <qtcpserver.h>
 #include <qtcpsocket.h>
 #include <qtwidgets>
 #include <QtSql/QtSql>
 #include <QSqlQuery>
 #include <QDebug>
+#include "Meteo.h"
 
 class TCP_Serveur : public QMainWindow
 {
@@ -19,12 +19,14 @@ public:
 	char requete;
 	int TailleTableau = 0;
 	QTcpSocket * ListClient[1000];
+	Meteo *meteo;
 
 private:
 
 	//Ui::TCP_ServeurClass ui;
 	QTcpServer * server;
 	QTcpSocket * socket;
+	QTcpSocket * client;
 	QString username;
 	QString password;
 	QSqlQuery db;

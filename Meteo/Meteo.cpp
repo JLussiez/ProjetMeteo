@@ -68,7 +68,15 @@ void Meteo::TestTension()
 void Meteo::Projet()
 {
 	//Choper chaque valeur de chaque capteur
-	
+	GererTension();
+
+	//Envoie en base + temps
+	previsionmeteo->EnvoieDonnee(*anemometre, *girouette, *barometre, *hygrometre, *thermometre, *solarimetre, *pluviometre, *detecteurpluie, *detecteurjournuit);
+
+}
+
+void Meteo::GererTension()
+{
 	//getTension() de chaque capteur
 	anemometre->getTension();
 	girouette->getTension();
@@ -94,23 +102,4 @@ void Meteo::Projet()
 	pluviometre->convertionTensionQuantitePluie();
 	detecteurpluie->convertionTensionPluie();
 	detecteurjournuit->convertionTensionJourNuit();
-
-	//Récuperer et stocker les valeur avec get*valeur*()
-	/*
-	float VitesseVent = anemometre->getVitesseVent();
-	char Cardinalite = girouette->getCardinalite();
-	float Pression = barometre->getPression();
-	//
-	float Humidité = hygrometre->getHumidite();
-	float Temperature = thermometre->getTemperature();
-	float Luminosite = solarimetre->getLuminosite();
-	//
-	float QuantitePluie = pluviometre->getQuantitePluie();
-	float Pluie = detecteurpluie->getPluie();
-	float JourNuit = detecteurjournuit->getJourNuit();
-	*/
-
-	//Envoie en base + temps
-	previsionmeteo->EnvoieDonnee(*anemometre, *girouette, *barometre, *hygrometre, *thermometre, *solarimetre, *pluviometre, *detecteurpluie, *detecteurjournuit);
-
 }

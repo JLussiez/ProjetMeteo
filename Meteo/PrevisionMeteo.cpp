@@ -188,7 +188,7 @@ void PrevisionMeteo::EnvoieDonnee(Anemometre& Anemometre, Girouette& Girouette, 
 	QSqlQuery query(db);
 
 	float Vitesse_Vent = Anemometre.getVitesseVent();
-	char Position_Vent = Girouette.getCardinalite();
+	QString Position_Vent = Girouette.getCardinalite();
 	float Pression = Barometre.getPression();
 	float Humidite = Hygrometre.getHumidite();
 	float Temperature = Thermometre.getTemperature();

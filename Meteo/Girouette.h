@@ -11,9 +11,9 @@ public:
 	//Convertion tension en donnée utilisable :
 	void convertionTensionCardinalite();
 	//Obtenir Pression
-	float getCardinalite();
+	QString getCardinalite();
 	//Générer une Tension une Test
 	void addCardinaliteTest();
-	float Cardinalite;
+	QString Cardinalite;
 };
 

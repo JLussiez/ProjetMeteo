@@ -7,6 +7,7 @@ Capteur::Capteur()
 
 float Capteur::getTension()
 {
+	/*
 	if (card >= 0)
 	{
 		qDebug() << "Ouverture carte OK";
@@ -26,13 +27,13 @@ float Capteur::getTension()
 	}
 
 	_getch();
-	
+	*/
 	return Tension;
 }
 
 int Capteur::ConnectCarte()
 {
-	card = Register_Card(PCI_9111DG, 0);
+	//card = Register_Card(PCI_9111DG, 0);
 
 	return 0;
 }

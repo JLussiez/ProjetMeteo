@@ -42,13 +42,9 @@ class Meteo : public QMainWindow
 
 	public:
 		Meteo(QWidget *parent = Q_NULLPTR);
+		void GererTension();
 
-
-	private:
-		Ui::MeteoClass ui;
-
-		QSqlDatabase db;
-
+		//Les classes sont en public pour pouvoir les 
 		Anemometre *anemometre;
 		Girouette *girouette;
 		Barometre *barometre;
@@ -58,6 +54,12 @@ class Meteo : public QMainWindow
 		Pluviometre *pluviometre;
 		DetecteurJourNuit *detecteurjournuit;
 		DetecteurPluie *detecteurpluie;
+	private:
+		Ui::MeteoClass ui;
+
+		QSqlDatabase db;
+
+		
 
 		PrevisionMeteo *previsionmeteo;
 
