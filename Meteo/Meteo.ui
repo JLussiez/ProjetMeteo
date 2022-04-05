@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MeteoClass</class>
+ <widget class="QMainWindow" name="MeteoClass">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>684</width>
+    <height>470</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Meteo</string>
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <widget class="QPushButton" name="BouttonTest">
+    <property name="geometry">
+     <rect>
+      <x>270</x>
+      <y>290</y>
+      <width>151</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Obtenir une tension aléatoire</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>150</x>
+      <y>90</y>
+      <width>101</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Tension Générer : </string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_2">
+    <property name="geometry">
+     <rect>
+      <x>430</x>
+      <y>90</y>
+      <width>101</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Pression obtenue : </string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="Tension">
+    <property name="geometry">
+     <rect>
+      <x>150</x>
+      <y>130</y>
+      <width>101</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="Pression">
+    <property name="geometry">
+     <rect>
+      <x>430</x>
+      <y>130</y>
+      <width>101</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>684</width>
+     <height>21</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QToolBar" name="mainToolBar">
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+  </widget>
+  <widget class="QStatusBar" name="statusBar"/>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources>
+  <include location="Meteo.qrc"/>
+ </resources>
+ <connections>
+  <connection>
+   <sender>BouttonTest</sender>
+   <signal>clicked()</signal>
+   <receiver>MeteoClass</receiver>
+   <slot>TestTension()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>345</x>
+     <y>338</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>341</x>
+     <y>234</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>TestTension()</slot>
+ </slots>
+</ui>
