@@ -24,7 +24,7 @@ Meteo::Meteo(QWidget *parent)
 
 	//ui.setupUi(this);
 	socket = new QTcpSocket(this);
-	QObject::connect(socket, SIGNAL(readyRead()), this, SLOT(MonClienttReadyRead()));
+	QObject::connect(socket, SIGNAL(readyRead()), this, SLOT(onClientReadyRead()));
 	server = new QTcpServer(this);
 	QObject::connect(server, SIGNAL(newConnection()), this, SLOT(onServerNewConnection()));
 	server->listen(QHostAddress::AnyIPv4, 4321);
@@ -37,7 +37,7 @@ Meteo::Meteo(QWidget *parent)
 void Meteo::TestTension()
 {
 	barometre->addTensionTest();
-	barometre->convertionTensionPression();
+	barometre->convertionTensionPression(); 
 
 	float Pression = barometre->getPression();
 	//Convertion float QString
@@ -189,11 +189,10 @@ void Meteo::onClientReadyRead()
 		{
 			socket->write("Demande nouvel valeur actuel");
 		}
-
-
 	}
 	else if (str == "10min")
 	{
 		ValeurActuelEtPrevision();
+		socket->write("Routine");
 	}
 }
