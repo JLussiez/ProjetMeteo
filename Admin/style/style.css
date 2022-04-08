@@ -1,3 +1,16 @@
+body{
+    background-color: whitesmoke;
+    margin: 0;
+    height: 100vh;
+}
+
+h3{
+    font-size: 30px;
+    margin-bottom: 10%;
+}
+
+
+/*----Arrière Plan----*/
 .background{
     background-image: url(../img/bg-01.jpg);
     width: 100%;
@@ -10,7 +23,7 @@
 }
 
 .filtre{
-    background-color: rgba(255,255,255,.9);
+    background-color: rgba(255,255,255,.7);
     z-index: -1;
     width: 100%;
     height: 100%;
@@ -21,6 +34,7 @@
 }
 
 
+/*----Formulaire----*/
 .LeForm{
     text-align: center;
     background-color: #282a35d3;
@@ -31,21 +45,7 @@
     width: 400px;
     height: 500px;
     display:flex;
-    flex-direction: column;
-    /*justify-content: center;*/
-    align-items: center;
     box-shadow: 3px 3px 3px 3px rgba(0, 0, 0, 0.705);
-}
-
-body{
-    background-color: whitesmoke;
-    margin: 0;
-    height: 100vh;
-}
-
-h3{
-    font-size: 30px;
-    margin-bottom: 10%;
 }
 
 form{
@@ -64,14 +64,10 @@ input.champ{
     color: white;
     font-size: 16px;
 }
+
 ::placeholder{
     color: white;
     font-size: 16px;
-}
-
-img{
-    width: 100px;
-    height: 100px;
 }
 
 .icone{
@@ -90,8 +86,19 @@ img{
 input.boutton{
     border-radius: 20px;
     width: 30%;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    transition: all .5s ease; 
+    font-size: 16px;
 }
 
+
+input.boutton:hover {
+    color: white;
+    background-color: rgb(43, 43, 43);
+   
+}
 .divbtn{
     display: flex;
     justify-content: space-around;
