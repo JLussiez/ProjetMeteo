@@ -49,9 +49,6 @@
     <ClCompile Include="Meteo.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="TCP_Serveur.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Anemometre.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -114,9 +111,6 @@
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="PrevisionMeteo.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
-    <QtMoc Include="TCP_Serveur.h">
       <Filter>Header Files</Filter>
     </QtMoc>
   </ItemGroup>

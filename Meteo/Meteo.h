@@ -13,9 +13,6 @@
 
 #include "Dask.h"
 
-#include <QWebSocket>
-#include <QWebSocketServer>
-
 #include <qtcpsocket.h>			//Bibliothèque Socket
 #include <qtcpserver.h>			//Bibliothèque de création Serveur TCP
 
@@ -34,17 +31,18 @@
 #include "DetecteurPluie.h"
 #include "PrevisionMeteo.h"
 
-class Meteo;
-
-class Meteo : public QMainWindow
+class Meteo : 
+	public QMainWindow
 {
     Q_OBJECT
 
 	public:
 		Meteo(QWidget *parent = Q_NULLPTR);
 		void GererTension();
+		void Projet();
+		int j = 0;
 
-		//Les classes sont en public pour pouvoir les 
+		//Les classes sont en public pour pouvoir les utiliser
 		Anemometre *anemometre;
 		Girouette *girouette;
 		Barometre *barometre;
@@ -54,18 +52,24 @@ class Meteo : public QMainWindow
 		Pluviometre *pluviometre;
 		DetecteurJourNuit *detecteurjournuit;
 		DetecteurPluie *detecteurpluie;
+
+		//TCP_Serveur *tcp_serveur;
+		int TailleTableau = 0;
+		QTcpSocket * ListClient[1000];
+
 	private:
 		Ui::MeteoClass ui;
-
 		QSqlDatabase db;
-
-		
-
+		void ValeurActuelEtPrevision();
 		PrevisionMeteo *previsionmeteo;
 
-		void Projet();
+		QTcpServer * server;
+		QTcpSocket * socket;
+		QTcpSocket * client;
 
 	private slots:
 		void TestTension();
-
+		void onServerNewConnection();
+		void onClientDisconnected();
+		void onClientReadyRead();
 };
