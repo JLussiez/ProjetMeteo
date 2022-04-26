@@ -10,7 +10,7 @@ class MyThread : public QThread
 	Q_OBJECT
 
 public:
-	explicit MyThread(int iID, QObject *parent = 0);
+	explicit MyThread(/*int iID, */QObject *parent = 0);
 	void run();
 
 signals:

@@ -20,8 +20,12 @@ public:
 signals:
 
 public slots:
-	void incomingConnection(int socketDescriptior);
+	void incomingConnection();
+	void rreadyRead();
 
 private:
 	QTcpServer *serveur;
+	MyThread *thread;
+	QTcpSocket * socket;
+	//QTcpSocket * client;
 };
