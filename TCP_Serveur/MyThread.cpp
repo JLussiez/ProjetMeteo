@@ -41,7 +41,16 @@ void MyThread::readyRead()
 	QString str(data);
 
 	QByteArray Data = socket->readAll();
-	qDebug() << socketDescriptor << "Data recu : " << str;
+	qDebug() << /*socketDescriptor <<*/ "Data recu : " << str;
+	qDebug() << "Fin envoie";
 
-	//socket->write(str);
+	//ENVOYER A TOUS
+	for (int i = 0; i < TailleTableau; i++)
+	{
+		qDebug() << "Envoie à tous n°" << i;
+
+		QByteArray MessageEncode = str.toUtf8();
+		ListClient[i]->write(MessageEncode + "\n");
+
+	}
 }

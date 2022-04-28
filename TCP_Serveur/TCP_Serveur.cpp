@@ -29,7 +29,7 @@ void TCP_Serveur::incomingConnection()
 	if (serveur)
 	{
 		QTcpSocket * client = serveur->nextPendingConnection();
-		connect(thread, SIGNAL(finished()), thread, SLOT(deleteLater()));
+		//nnect(thread, SIGNAL(finished()), thread, SLOT(deleteLater()));
 
 
 		QObject::connect(client, SIGNAL(readyRead()), this, SLOT(rreadyRead()));
@@ -40,7 +40,12 @@ void TCP_Serveur::incomingConnection()
 
 		if (client)
 		{
-			//connect(client, SIGNAL(readyRead()), this, SLOT(readyRead()));
+			qDebug() << "TailleTableau = " << TailleTableau;
+
+			ListClient[TailleTableau] = client;
+			TailleTableau++;
+
+			qDebug() << "TailleTableau = " << TailleTableau;
 
 			thread->start();
 			thread->run();
@@ -54,10 +59,6 @@ void TCP_Serveur::incomingConnection()
 	{
 		qDebug() << "serveur est pas défini";
 	}
-
-	
-
-	
 }
 
 //Lancé le serveur
@@ -78,13 +79,25 @@ void TCP_Serveur::StartServeur()
 void TCP_Serveur::rreadyRead()
 {
 	qDebug() << "TCP_Serveur::rreadyRead()";
-
 	QTcpSocket * obj = qobject_cast<QTcpSocket*>(sender());
 	QByteArray data = obj->read(obj->bytesAvailable());
 	QString str(data);
 
 	QByteArray Data = socket->readAll();
-	qDebug() << "Data recu : " << str;
+	qDebug() << /*socketDescriptor <<*/ "Data recu : " << str;
+
+	//ENVOYER A TOUS
+	for (int i = 0; i < TailleTableau; i++)
+	{
+		qDebug() << "Envoie à tous n°" << i;
+
+		QByteArray MessageEncode = str.toUtf8();
+		ListClient[i]->write(MessageEncode + "\n");
+	}
+
+	QByteArray MessageEncode = str.toUtf8();
+
+	qDebug() << "Fin envoie";
 
 	//thread->readyRead();
 }
