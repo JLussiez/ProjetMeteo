@@ -18,20 +18,19 @@ void BDD::Connexionbdd()
 
 }
 
-void BDD::requete(bool JN)
+void BDD::requete(float VitesseVent, QString PositionVent, float Pression, float Humidite, float Temperature, float Solarimetre, float Pluviometre, bool Pluie, bool JourNuit)
 {
 	QSqlQuery req;
-	req.prepare("INSERT INTO Capteur (Date, Vitesse_Vent, Position_Vent, Pression, Humidite, Temperature, Solarimetre, Pluviometre, Pluie, JourNuit) VALUES(?,?,?,?,?,?,?,?,?,?) ");
-	req.addBindValue("2022-04-01");
-	req.addBindValue(0);
-	req.addBindValue("N");
-	req.addBindValue(0);
-	req.addBindValue(0);
-	req.addBindValue(20);
-	req.addBindValue(0);
-	req.addBindValue(0);
-	req.addBindValue(0);
-	req.addBindValue(JN);
+	req.prepare("INSERT INTO Capteur (Vitesse_Vent, Position_Vent, Pression, Humidite, Temperature, Solarimetre, Pluviometre, Pluie, JourNuit) VALUES(?,?,?,?,?,?,?,?,?) ");
+	req.addBindValue(VitesseVent);
+	req.addBindValue(PositionVent);
+	req.addBindValue(Pression);
+	req.addBindValue(Humidite);
+	req.addBindValue(Temperature);
+	req.addBindValue(Solarimetre);
+	req.addBindValue(Pluviometre);
+	req.addBindValue(Pluie);
+	req.addBindValue(JourNuit);
 
 	if (req.exec()) {
 		qDebug() << "requete envoyer";

@@ -19,7 +19,7 @@ public:
 	void Connexionbdd();
 	
 
-	void requete(bool JN);
+	void requete(float VitesseVent,QString PositionVent,float Pression, float Humidite,float Temperature,float Solarimetre, float Pluviometre,bool Pluie,bool JourNuit);
 
 private:
 	QSqlDatabase db;
