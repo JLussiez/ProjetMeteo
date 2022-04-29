@@ -8,6 +8,10 @@
 #include <qabstractsocket.h>
 #include <QObject>
 #include "MyThread.h"
+#include <QByteArray.h> 
+#include <stdio.h>
+#include <stdlib.h>
+#include <iostream>
 
 class TCP_Serveur : public QTcpServer
 {
@@ -16,6 +20,8 @@ class TCP_Serveur : public QTcpServer
 public:
 	explicit TCP_Serveur(QObject *parent = 0);
 	void StartServeur();
+	QTcpSocket * ListClient[1000];
+	int TailleTableau = 0;
 
 signals:
 

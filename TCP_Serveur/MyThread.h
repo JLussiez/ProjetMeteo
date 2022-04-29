@@ -12,6 +12,8 @@ class MyThread : public QThread
 public:
 	explicit MyThread(/*int iID, */QObject *parent = 0);
 	void run();
+	QTcpSocket * ListClient[1000];
+	int TailleTableau = 0;
 
 signals:
 	void error(QTcpSocket::SocketError socketerror);
