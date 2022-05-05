@@ -46,21 +46,49 @@ class Meteo{
         
         $req = "SELECT * FROM `Capteur`";
         $Result = $this->_BDD->query($req);
+        ?>
+        <table class="wsh">
+            <thead>
+                <tr class="tr1">
+                    <th>ID</th>
+                    <th>Date</th>
+                    <th>Vitesse Vent</th>
+                    <th>Position Vent</th>
+                    <th>Pression</th>
+                    <th>Humidite</th>
+                    <th>Temperature</th>
+                    <th>Solarimetre</th>
+                    <th>Pluviometre</th>
+                    <th>Pluie</th>
+                    <th>JourNuit</th>
+                </tr>
+            </thead>
+        </table>
+        <table class="wsh2">
+            <tbody>
+        <?php 
         while($tab = $Result->fetch()){
-            echo $tab["ID"];?>
-            <p><?php echo $tab["Date"];?></p>
+            ?>
+            <tr class="tr2">
+            <td><?php echo $tab['ID'] ?></td>
+            <td><?php echo $tab["Date"];?></td>
+            <td><?php echo $tab["Vitesse_Vent"];?></td>
+            <td><?php echo $tab["Position_Vent"];?></td>
+            <td><?php echo $tab["Pression"];?></td>
+            <td><?php echo $tab["Humidite"];?></td>
+            <td><?php echo $tab["Temperature"];?></td>
+            <td><?php echo $tab["Solarimetre"];?></td>
+            <td><?php echo $tab["Pluviometre"];?></td>
+            <td><?php echo $tab["Pluie"];?></td>
+            <td><?php echo $tab["JourNuit"];?></td>
             <?php
-            echo $tab["Vitesse_Vent"];
-            echo $tab["Position_Vent"];
-            echo $tab["Pression"];
-            echo $tab["Humidite"];
-            echo $tab["Temperature"];
-            echo $tab["Solarimetre"];
-            echo $tab["Pluviometre"];
-            echo $tab["Pluie"];
-            echo $tab["JourNuit"];
         }
-    
+    ?>
+    </tr>
+    </tbody>
+</div>
+</table>
+    <?php
 }
 }
 ?>
