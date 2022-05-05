@@ -12,7 +12,7 @@ h3{
 
 /*----Arrière Plan----*/
 .background{
-    background-image: url(../img/bg-01.jpg);
+    background-image: url(../img/mmmm.jpg);
     width: 100%;
     min-height: 100vh;
     background-repeat: no-repeat;
@@ -23,7 +23,7 @@ h3{
 }
 
 .filtre{
-    background-color: rgba(255,255,255,.7);
+    background-color: rgba(255, 255, 255, 0.329);
     z-index: -1;
     width: 100%;
     height: 100%;
@@ -104,3 +104,8 @@ input.boutton:hover {
     justify-content: space-around;
 }
 
+.erreur{
+    display: flex;
+    flex-direction: column-reverse;
+    color: red;
+}
