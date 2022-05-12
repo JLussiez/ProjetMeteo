@@ -71,6 +71,28 @@ thead{
   .htabl{
       margin-top: 5%;
   }
-    h2{
-    color:#7093d4;
-    }
+
+/*table prevision*/
+  .Prevision{
+    overflow-y: scroll;
+    max-height: 585px;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px 0 rgb(0 0 0 / 10%);
+    margin-top: 5%;
+}
+
+.Prevision::-webkit-scrollbar {
+    width: 20px;
+  }
+  
+  .Prevision::-webkit-scrollbar-track {
+    background-color: #a0a0a030;
+    border-radius: 100px;
+  }
+  
+  .Prevision::-webkit-scrollbar-thumb {
+    border-radius: 100px;
+    border: 5px solid transparent;
+    background-clip: content-box;
+    background-color: #7093d4;
+  }

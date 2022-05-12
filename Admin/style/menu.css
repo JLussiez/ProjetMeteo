@@ -1,0 +1,42 @@
+.menu{
+    background-color: #333;
+    width: 100%;
+    height: 5%;
+    display: flex;
+    justify-content: space-between;
+    box-shadow: 10px 10px 10px 10px rgba(0, 0, 0, 0.089);
+}
+
+a{
+    text-decoration:none;
+    color: white;
+    text-align: center;
+    font-size: 18px;
+    width: 5%;
+    background-color:#7093d4;
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: center;
+}
+a:hover{
+    background-color: white;
+    color: #333;
+}
+h2{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+    color: white;
+    letter-spacing: 3px;
+}
+.deco{
+    background-color:rgb(255, 74, 74);
+    color:white;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    height:100%;
+}
+.deco:hover{
+    background-color: red;
+}
