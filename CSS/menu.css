@@ -23,7 +23,7 @@ body
     border-top-right-radius: 10px;
     box-sizing: initial;
     border-left: 5px solid #1de7dd;
-    background: #101010c9;
+    background: #727272c9;
     transition: width 0.5s;
     overflow-x: hidden;
 }
@@ -70,6 +70,7 @@ body
     height: 100%;
     width: 100%;
     border-bottom-right-radius: 20px;
+    
     /*background: #4d5bf9;*/
 }
 .navigation ul li b:nth-child(2)
@@ -90,6 +91,9 @@ body
     height: 100%;
     width: 100%;
     border-top-right-radius: 20px;
+    border-bottom-left-radius: 10px;
+    border-top-left-radius: 10px;
+    
     /*background: #4d5bf9;*/
 }
 .navigation ul li.active b:nth-child(1),
@@ -108,7 +112,7 @@ body
 }
 .navigation ul li.active a
 {
-    color: #4dbeff;
+    color: #1de7dd;
 }
 .navigation ul li a .icon
 {
@@ -152,7 +156,7 @@ body
 {
     width: 305px;
     transition: width 0.5s;
-    background: #4dbeff;
+    background: #1de7dd;
 }
 .toggle ion-icon
 {
