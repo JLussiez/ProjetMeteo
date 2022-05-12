@@ -93,6 +93,12 @@
 
     }
 
+    public function deconnexion(){
+        session_unset();
+        session_destroy();
+        unset($_POST);
+        header("location: index.php");
+    }
         
 }
 
