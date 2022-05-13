@@ -42,12 +42,69 @@ class Meteo{
         }
     }
 
+    public function getID(){
+        return $this->_ID;
+    }
+
+    public function delete($ID){
+        $req = "DELETE FROM `Capteur` WHERE `ID`='".$ID."'";
+        $this->_BDD->query($req);
+        unset($_POST);
+    }
+
+    public function AffichePrevision(){
+        $req3 = "SELECT * FROM `Prevision_Meteo`";
+        $Result3 = $this->_BDD->query($req3);
+        ?>
+        <div class="Prevision">
+        <table class="tableau1">
+            
+            <thead>
+                <tr class="tr1">
+                    <th>ID</th>
+                    <th>Date</th>
+                    <th>Prevision</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                
+        <?php 
+        While($tab = $Result3->fetch()){
+            ?>
+            
+            <tr class="tr2">
+                <td>
+                    <?= $tab['ID'] ?>
+                </td>
+                <td>
+                    <?= $tab["Date"];?>
+                </td>
+                <td>
+                    <?= $tab["Prevision"];?>
+                </td>         
+            <?php
+
+        }
+    ?>
+    </tr>
+    </tbody>
+
+</table>
+</div>
+    <?php
+    }
+
+
+
     public function affiche(){
         
         $req = "SELECT * FROM `Capteur`";
         $Result = $this->_BDD->query($req);
         ?>
-        <table class="wsh">
+        <div class="bar">
+        <table class="tableau1">
+            
             <thead>
                 <tr class="tr1">
                     <th>ID</th>
@@ -61,34 +118,71 @@ class Meteo{
                     <th>Pluviometre</th>
                     <th>Pluie</th>
                     <th>JourNuit</th>
+                    <th></th>
                 </tr>
             </thead>
-        </table>
-        <table class="wsh2">
+
             <tbody>
+                
         <?php 
-        while($tab = $Result->fetch()){
+        While($tab = $Result->fetch()){
             ?>
+            
             <tr class="tr2">
-            <td><?php echo $tab['ID'] ?></td>
-            <td><?php echo $tab["Date"];?></td>
-            <td><?php echo $tab["Vitesse_Vent"];?></td>
-            <td><?php echo $tab["Position_Vent"];?></td>
-            <td><?php echo $tab["Pression"];?></td>
-            <td><?php echo $tab["Humidite"];?></td>
-            <td><?php echo $tab["Temperature"];?></td>
-            <td><?php echo $tab["Solarimetre"];?></td>
-            <td><?php echo $tab["Pluviometre"];?></td>
-            <td><?php echo $tab["Pluie"];?></td>
-            <td><?php echo $tab["JourNuit"];?></td>
+                <td>
+                    <?=$tab['ID'] ?>
+                </td>
+                <td>
+                    <?= $tab["Date"];?>
+                </td>
+                <td>
+                    <?= $tab["Vitesse_Vent"];?>
+                </td>
+                <td>
+                    <?= $tab["Position_Vent"];?>
+                </td>
+                <td>
+                    <?= $tab["Pression"];?>
+                </td>
+                <td>
+                    <?= $tab["Humidite"];?>
+                </td>
+                <td>
+                    <?= $tab["Temperature"];?>
+                </td>
+                <td>
+                    <?= $tab["Solarimetre"];?>
+                </td>
+                <td>
+                    <?= $tab["Pluviometre"];?>
+                </td>
+                <td>
+                    <?= $tab["Pluie"];?>
+                </td>
+                <td>
+                    <?= $tab["JourNuit"];?>
+                </td>
+            <form method="post" action="">
+                <td>
+                    <input type="submit" name="supp" value="✘">
+                </td>
+            </form>
+            
             <?php
+
         }
     ?>
     </tr>
     </tbody>
-</div>
+
 </table>
+</div>
     <?php
 }
+
+    public function DateSupp(){
+        $req2 = "DELETE FROM `Capteur` WHERE Date < DATE_SUB(NOW(), INTERVAL 2 DAY)";
+        $this->_BDD->exec($req2);
+    }
 }
 ?>
