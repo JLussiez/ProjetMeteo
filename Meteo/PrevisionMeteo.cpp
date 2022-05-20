@@ -3,6 +3,7 @@
 
 PrevisionMeteo::PrevisionMeteo()
 {
+	ConnectionBDD();
 }
 
 void PrevisionMeteo::CatherineLaborde(Barometre& Barometre, Thermometre& Thermometre, DetecteurPluie& DetecteurPluie)
@@ -49,9 +50,9 @@ void PrevisionMeteo::CatherineLaborde(Barometre& Barometre, Thermometre& Thermom
 	{
 		//Tempête
 		//génère des vents dépassent 89 km / h
-
 		QString Temps = "Tempete";
 	}
+
 	//query.prepare("INSERT INTO `Prevision Meteo`(`Prevision`) VALUES ('" + Temps + "')");
 	//query.exec();
 	PrevisionMeteo::Future();
@@ -60,11 +61,6 @@ void PrevisionMeteo::CatherineLaborde(Barometre& Barometre, Thermometre& Thermom
 void PrevisionMeteo::Future()
 {
 	//connexion à la base : 
-	QSqlDatabase db = QSqlDatabase::addDatabase("QMYSQL");
-	db.setHostName("192.168.65.201");
-	db.setDatabaseName("Meteo");
-	db.setUserName("root");
-	db.setPassword("root");
 	QSqlQuery query(db);
 
 	//Si on connait exactement l'état initial
@@ -117,7 +113,7 @@ void PrevisionMeteo::Future()
 
 	//Toute les heures : 
 	// Monté de 0,25 à 0,5 : Venue d'une haute préssion (sur long terme) = 1015 hPa = beau temps
-	// Monté de 1 à 2 : Venue d'une moyenne pression (sur court terme) = 
+	// Monté de 1 à 2 : Venue d'une moyenne pression (sur court terme) = Beau Temps
 	// Descente 0,25 à 0,5 : Venue d'une basse pression (sur long terme) = 1010 hPa = risque de pluie, ciel nuageux
 	// Descente 1 à 2 : tempête (été = orage)
 
@@ -180,11 +176,6 @@ void PrevisionMeteo::Future()
 void PrevisionMeteo::EnvoieDonnee(Anemometre& Anemometre, Girouette& Girouette, Barometre& Barometre, Hygrometre& Hygrometre, Thermometre& Thermometre, Solarimetre& Solarimetre, Pluviometre& Pluviometre, DetecteurPluie& DetecteurPluie, DetecteurJourNuit& DetecteurJourNuit)
 {
 	//Connexion à BDD
-	QSqlDatabase db = QSqlDatabase::addDatabase("QMYSQL");
-	db.setHostName("192.168.65.201");
-	db.setDatabaseName("Meteo");
-	db.setUserName("root");
-	db.setPassword("root");
 	QSqlQuery query(db);
 
 	float Vitesse_Vent = Anemometre.getVitesseVent();
@@ -207,4 +198,13 @@ void PrevisionMeteo::EnvoieDonnee(Anemometre& Anemometre, Girouette& Girouette, 
 		query.next();
 		QString IDUser = query.value(0).toString();
 	}
+}
+
+void PrevisionMeteo::ConnectionBDD()
+{
+	db = QSqlDatabase::addDatabase("QMYSQL");
+	db.setHostName("192.168.65.201");
+	db.setDatabaseName("Meteo");
+	db.setUserName("root");
+	db.setPassword("root");
 }

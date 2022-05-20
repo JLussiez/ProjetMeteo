@@ -33,7 +33,5 @@ class Capteur :
 
 	private slots :
 		void onServerNewConnection();
-		void onClientDisconnected();
-		void onClientReadyRead();
 };
 

@@ -16,6 +16,7 @@
 #include <qtcpsocket.h>			//Bibliothèque Socket
 #include <qtcpserver.h>			//Bibliothèque de création Serveur TCP
 
+#include <QHostAddress>
 #include <QFile>
 #include <QTextStream>
 
@@ -39,7 +40,7 @@ class Meteo :
 	public:
 		Meteo(QWidget *parent = Q_NULLPTR);
 		void GererTension();
-		void Projet();
+		void Prevision();
 		int j = 0;
 
 		//Les classes sont en public pour pouvoir les utiliser
@@ -63,13 +64,9 @@ class Meteo :
 		void ValeurActuelEtPrevision();
 		PrevisionMeteo *previsionmeteo;
 
-		QTcpServer * server;
-		QTcpSocket * socket;
-		QTcpSocket * client;
+		QTcpSocket socket;
 
 	private slots:
 		void TestTension();
-		void onServerNewConnection();
-		void onClientDisconnected();
 		void onClientReadyRead();
 };

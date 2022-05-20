@@ -25,9 +25,13 @@ class PrevisionMeteo :
 		QString Duree;
 		QString DernierePression;
 		QString PressionHmoinsUn;
+		QSqlQuery query;
+		QSqlDatabase db;
+
 public :
 	PrevisionMeteo();
 	void CatherineLaborde(Barometre& Barometre, Thermometre& Thermometre, DetecteurPluie& DetecteurPluie);
 	void Future();
 	void EnvoieDonnee(Anemometre & Anemometre, Girouette & Girouette, Barometre & Barometre, Hygrometre & Hygrometre, Thermometre & Thermometre, Solarimetre & Solarimetre, Pluviometre & Pluviometre, DetecteurPluie & DetecteurPluie, DetecteurJourNuit & DetecteurJourNuit);
+	void ConnectionBDD();
 };

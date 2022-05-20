@@ -20,15 +20,16 @@ float Capteur::getTension()
 		} else
 		{
 			qDebug() << "Tension : ";
+			//Vérifier tension
 		}
 
 		//Supprimer la carte 
 		//Release_Card(cardId);
 	}
-
 	_getch();
 	*/
 	return Tension;
+	
 }
 
 int Capteur::ConnectCarte()
