@@ -33,5 +33,5 @@ private:
 	QTcpServer *serveur;
 	MyThread *thread;
 	QTcpSocket * socket;
-	//QTcpSocket * client;
+	QTcpSocket * client;
 };
