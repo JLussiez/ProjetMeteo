@@ -31,6 +31,7 @@
 #include "DetecteurJourNuit.h"
 #include "DetecteurPluie.h"
 #include "PrevisionMeteo.h"
+#include "BDD.h"
 
 class Meteo : 
 	public QMainWindow
@@ -53,6 +54,7 @@ class Meteo :
 		Pluviometre *pluviometre;
 		DetecteurJourNuit *detecteurjournuit;
 		DetecteurPluie *detecteurpluie;
+		BDD *bdd;
 
 		//TCP_Serveur *tcp_serveur;
 		int TailleTableau = 0;

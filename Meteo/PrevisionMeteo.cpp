@@ -173,6 +173,7 @@ void PrevisionMeteo::Future()
 	}
 }
 
+/*
 void PrevisionMeteo::EnvoieDonnee(Anemometre& Anemometre, Girouette& Girouette, Barometre& Barometre, Hygrometre& Hygrometre, Thermometre& Thermometre, Solarimetre& Solarimetre, Pluviometre& Pluviometre, DetecteurPluie& DetecteurPluie, DetecteurJourNuit& DetecteurJourNuit)
 {
 	//Connexion à BDD
@@ -199,12 +200,4 @@ void PrevisionMeteo::EnvoieDonnee(Anemometre& Anemometre, Girouette& Girouette, 
 		QString IDUser = query.value(0).toString();
 	}
 }
-
-void PrevisionMeteo::ConnectionBDD()
-{
-	db = QSqlDatabase::addDatabase("QMYSQL");
-	db.setHostName("192.168.65.201");
-	db.setDatabaseName("Meteo");
-	db.setUserName("root");
-	db.setPassword("root");
-}
+*/

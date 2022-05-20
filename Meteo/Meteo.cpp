@@ -24,6 +24,8 @@ Meteo::Meteo(QWidget *parent)
 	detecteurpluie = new DetecteurPluie;
 	detecteurjournuit = new DetecteurJourNuit;	
 
+	bdd = new BDD;
+
 	ui.setupUi(this);
 	socket.connectToHost(QHostAddress("127.0.0.1"), 4321);
 	connect(&socket, SIGNAL(readyRead()), this, SLOT(onClientReadyRead()));
@@ -42,13 +44,13 @@ void Meteo::TestTension()
 	//Convertion float QString
 	QString QPression = QString::number(Pression);
 
-	ui.Pression->setText(QPression +" mBar");
+	//ui.Pression->setText(QPression +" mBar");
 
 	//float Tension = (*barometre).getTension();
 	float Tension = barometre->getTension();
 	QString QTension = QString::number(Tension);
 
-	ui.Tension->setText(QTension +" V");
+	//ui.Tension->setText(QTension +" V");
 
 	previsionmeteo->CatherineLaborde( *barometre, *thermometre, *detecteurpluie);
 }
@@ -58,9 +60,18 @@ void Meteo::Prevision()
 	//Choper chaque valeur de chaque capteur
 	GererTension();
 
-	//Envoie en base + temps
-	previsionmeteo->EnvoieDonnee(*anemometre, *girouette, *barometre, *hygrometre, *thermometre, *solarimetre, *pluviometre, *detecteurpluie, *detecteurjournuit);
+	float Vitesse_Vent = anemometre->getVitesseVent();
+	QString Position_Vent = girouette->getCardinalite();
+	float Pression = barometre->getPression();
+	float Humidite = hygrometre->getHumidite();
+	float Temperature = thermometre->getTemperature();
+	float Luminosite = solarimetre->getLuminosite();
+	float QuantitePluie = pluviometre->getQuantitePluie();
+	bool Pluie = detecteurpluie->getPluie();
+	bool JourNuit = detecteurjournuit->getJourNuit();
 
+	//Envoie en base + temps
+	bdd->requete(Vitesse_Vent, Position_Vent, Pression, Humidite, Temperature, Luminosite, QuantitePluie, Pluie, JourNuit);
 }
 
 void Meteo::GererTension()

@@ -1,6 +1,6 @@
 #include "BDD.h"
 
-void BDD::Connexionbdd()
+BDD::BDD()
 {		
 	this->db = QSqlDatabase::addDatabase("QMYSQL");
 	db.setHostName("192.168.65.201");
