@@ -21,7 +21,7 @@ public:
 
 	void requete(float VitesseVent,QString PositionVent,float Pression, float Humidite,float Temperature,float Solarimetre, float Pluviometre,bool Pluie,bool JourNuit);
 
-	void requetePrevision(QString Prevision,QString Duree);
+	void requetePrevision(QString Prevision, QString Duree);
 
 private:
 	QSqlDatabase db;

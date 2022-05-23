@@ -77,17 +77,17 @@ void Meteo::Prevision()
 void Meteo::GererTension()
 {
 	//getTension() de chaque capteur
-	anemometre->getTension();
-	girouette->getTension();
-	barometre->getTension();
+	anemometre->priseTension();
+	girouette->priseTension();
+	barometre->priseTension();
 	//
-	hygrometre->getTension();
-	thermometre->getTension();
-	solarimetre->getTension();
+	hygrometre->priseTension();
+	thermometre->priseTension();
+	solarimetre->priseTension();
 	//
-	pluviometre->getTension();
-	detecteurpluie->getTension();
-	detecteurjournuit->getTension();
+	pluviometre->priseTension();
+	detecteurpluie->priseTension();
+	detecteurjournuit->priseTension();
 
 	//Convertion des données :
 	anemometre->convertionTensionVitesseVent();
@@ -105,7 +105,11 @@ void Meteo::GererTension()
 
 void Meteo::ValeurActuelEtPrevision()
 {
-	Prevision();
+	previsionmeteo->CatherineLaborde(*barometre, *thermometre, *detecteurpluie);
+
+	QString temps = previsionmeteo->getTemps();
+	bdd->requeteMeteo(temps);
+
 	//Attente 10 minutes
 	j++;
 	//Si ca fait 1h
@@ -115,6 +119,11 @@ void Meteo::ValeurActuelEtPrevision()
 		previsionmeteo->Future();
 		//Reset compteur
 		j = 0;
+
+		QString prevision = previsionmeteo->getPrevision();
+		QString duree = previsionmeteo->getDuree();
+		//Envoie en base + temps
+		bdd->requetePrevision(prevision, duree);
 	}
 }
 
@@ -225,5 +234,8 @@ void Meteo::onClientReadyRead()
 		QByteArray MessageEncode_Pluie = QS_Pluie.toUtf8();
 
 		socket.write("Routine");
+
+		//Envoie en BDD
+
 	}
 }

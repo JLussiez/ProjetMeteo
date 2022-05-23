@@ -30,6 +30,7 @@ class Capteur :
 	public :
 		double Tension;
 		float getTension();
+		void priseTension();
 
 	private slots :
 		void onServerNewConnection();

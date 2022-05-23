@@ -61,4 +61,3 @@ void BDD::requetePrevision(QString Prevision, QString Duree)
 
 	}
 }
-

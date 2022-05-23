@@ -2,17 +2,16 @@
 
 Capteur::Capteur()
 {
-
+	AI_9111_Config(card, TRIG_INT_PACER, P9111_TRGMOD_SOFT, 0);
 }
 
-float Capteur::getTension()
+void Capteur::priseTension()
 {
 	/*
 	if (card >= 0)
 	{
 		qDebug() << "Ouverture carte OK";
 
-		AI_9111_Config(card, TRIG_INT_PACER, P9111_TRGMOD_SOFT, 0);
 
 		if (AI_VReadChannel(card, NumeroChannel, AD_B_10_V, &Tension) < 0)
 		{
@@ -24,11 +23,10 @@ float Capteur::getTension()
 		}
 
 		//Supprimer la carte 
-		//Release_Card(cardId);
+		//Release_Card(card);
 	}
 	_getch();
 	*/
-	return Tension;
 	
 }
 
@@ -37,4 +35,9 @@ int Capteur::ConnectCarte()
 	//card = Register_Card(PCI_9111DG, 0);
 
 	return 0;
+}
+
+float Capteur::getTension()
+{
+	return Tension;
 }
