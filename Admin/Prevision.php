@@ -17,7 +17,7 @@
 
         <div class="menu">
         <a class="ok" href="Gestion.php">Capteur</a>
-        <h2>Table Capteur</h2>
+        <h2>Table Prevision</h2>
         <form method="post">
         <input  class="deco" name="logout" type="submit" value="Se Déconnecter">
         <?php

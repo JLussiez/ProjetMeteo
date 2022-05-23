@@ -13,15 +13,14 @@
 <body>
 
     <div class="text-zone">
-        <h2 class="title">
-            <a href="#">Temps Réel</a>
-        </h2>
+    <div id="message"></div>
     </div>
 
     <?php
         include "menu.php";
     ?>
 
+    <script src="./JS/websocket.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </body>
