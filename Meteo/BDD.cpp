@@ -44,3 +44,21 @@ void BDD::requete(float VitesseVent, QString PositionVent, float Pression, float
 
 }
 
+void BDD::requetePrevision(QString Prevision, QString Duree)
+{
+	QSqlQuery reqPrevision;
+	reqPrevision.prepare("INSERT INTO Prevision_Meteo (Prevision, Duree) VALUES(?,?) ");
+	reqPrevision.addBindValue(Prevision);
+	reqPrevision.addBindValue(Duree);
+
+	if (reqPrevision.exec()) {
+		qDebug() << "Requete Prevision envoyer";
+	}
+	else
+	{
+		qDebug() << "Requete Prevision n'as pas était envoyer";
+		qDebug() << reqPrevision.lastError();
+
+	}
+}
+
