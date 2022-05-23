@@ -20,14 +20,21 @@ class PrevisionMeteo :
 	public QObject
 {
 	Q_OBJECT
-
+private:
 		QString Prevision;
 		QString Duree;
 		QString DernierePression;
 		QString PressionHmoinsUn;
+		QSqlQuery query;
+		QSqlDatabase db;
+		QString Temps;
+
 public :
 	PrevisionMeteo();
 	void CatherineLaborde(Barometre& Barometre, Thermometre& Thermometre, DetecteurPluie& DetecteurPluie);
 	void Future();
-	void EnvoieDonnee(Anemometre & Anemometre, Girouette & Girouette, Barometre & Barometre, Hygrometre & Hygrometre, Thermometre & Thermometre, Solarimetre & Solarimetre, Pluviometre & Pluviometre, DetecteurPluie & DetecteurPluie, DetecteurJourNuit & DetecteurJourNuit);
+	QString getPrevision();
+	QString getDuree();
+	QString getTemps();
+	//void EnvoieDonnee(Anemometre & Anemometre, Girouette & Girouette, Barometre & Barometre, Hygrometre & Hygrometre, Thermometre & Thermometre, Solarimetre & Solarimetre, Pluviometre & Pluviometre, DetecteurPluie & DetecteurPluie, DetecteurJourNuit & DetecteurJourNuit);
 };

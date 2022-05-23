@@ -16,9 +16,6 @@ TCP_Serveur::TCP_Serveur(QObject *parent):
 	QObject::connect(serveur, SIGNAL(newConnection()), this, SLOT(incomingConnection()));
 
 	StartServeur();
-
-	//socket = new QTcpSocket(this);
-
 }
 
 //Detecter quand un nouveau client se connecte
@@ -29,7 +26,7 @@ void TCP_Serveur::incomingConnection()
 	if (serveur)
 	{
 		QTcpSocket * client = serveur->nextPendingConnection();
-		//nnect(thread, SIGNAL(finished()), thread, SLOT(deleteLater()));
+		//connect(thread, SIGNAL(finished()), thread, SLOT(deleteLater()));
 
 
 		QObject::connect(client, SIGNAL(readyRead()), this, SLOT(rreadyRead()));
@@ -71,8 +68,6 @@ void TCP_Serveur::StartServeur()
 	else
 	{
 		qDebug() << "Serveur Lancé";
-		//thread->run();
-
 	}
 }
 
@@ -86,18 +81,31 @@ void TCP_Serveur::rreadyRead()
 	QByteArray Data = socket->readAll();
 	qDebug() << /*socketDescriptor <<*/ "Data recu : " << str;
 
-	//ENVOYER A TOUS
-	for (int i = 0; i < TailleTableau; i++)
+	//Timer dans une autre classe en C++
+	if (str == "10min")
 	{
-		qDebug() << "Envoie à tous n°" << i;
+		//ENVOYER A TOUS
+		for (int i = 0; i < TailleTableau; i++)
+		{
+			qDebug() << "Envoie à tous n°" << i;
 
-		QByteArray MessageEncode = str.toUtf8();
-		ListClient[i]->write(MessageEncode + "\n");
+			QByteArray MessageEncode = str.toUtf8();
+			ListClient[i]->write("10min");
+		}
+		qDebug() << "Fin envoie";
 	}
+	else
+	{
+		//ENVOYER A TOUS
+		for (int i = 0; i < TailleTableau; i++)
+		{
+			qDebug() << "Envoie à tous n°" << i;
 
-	QByteArray MessageEncode = str.toUtf8();
+			QByteArray MessageEncode = str.toUtf8();
+			ListClient[i]->write(MessageEncode + "\n");
+		}
+		QByteArray MessageEncode = str.toUtf8();
 
-	qDebug() << "Fin envoie";
-
-	//thread->readyRead();
+		qDebug() << "Fin envoie";
+	}
 }

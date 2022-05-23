@@ -1,6 +1,6 @@
 #include "BDD.h"
 
-void BDD::Connexionbdd()
+BDD::BDD()
 {		
 	this->db = QSqlDatabase::addDatabase("QMYSQL");
 	db.setHostName("192.168.65.201");
@@ -42,5 +42,40 @@ void BDD::requete(float VitesseVent, QString PositionVent, float Pression, float
 
 	}
 
+}
+
+void BDD::requetePrevision(QString Prevision, QString Duree)
+{
+	QSqlQuery reqPrevision;
+	reqPrevision.prepare("INSERT INTO Prevision_Meteo (Prevision, Duree) VALUES(?,?) ");
+	reqPrevision.addBindValue(Prevision);
+	reqPrevision.addBindValue(Duree);
+
+	if (reqPrevision.exec()) {
+		qDebug() << "Requete Prevision envoyer";
+	}
+	else
+	{
+		qDebug() << "Requete Prevision n'as pas était envoyer";
+		qDebug() << reqPrevision.lastError();
+
+	}
+}
+
+void BDD::requeteMeteo(QString Temps)
+{
+	QSqlQuery reqMeteo;
+	reqMeteo.prepare("INSERT INTO Meteo (Temps) VALUES(?) ");
+	reqMeteo.addBindValue(Temps);
+
+	if (reqMeteo.exec()) {
+		qDebug() << "Requete Meteo envoyer";
+	}
+	else
+	{
+		qDebug() << "Requete Meteo n'as pas était envoyer";
+		qDebug() << reqMeteo.lastError();
+
+	}
 }
 

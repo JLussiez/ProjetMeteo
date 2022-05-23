@@ -3,6 +3,7 @@
 
 PrevisionMeteo::PrevisionMeteo()
 {
+
 }
 
 void PrevisionMeteo::CatherineLaborde(Barometre& Barometre, Thermometre& Thermometre, DetecteurPluie& DetecteurPluie)
@@ -16,11 +17,11 @@ void PrevisionMeteo::CatherineLaborde(Barometre& Barometre, Thermometre& Thermom
 	if (Pression < 960 || Pression > 1060)
 	{
 		//erreur : impossible
-		QString Temps = "ERREUR";
+		Temps = "ERREUR";
 	} else if (Pression >= 1015 && Pression < 1060)
 	{
 		//Temps ensolleillé
-		QString Temps = "Ensoleille";
+		Temps = "Ensoleille";
 	} else if ( Pression <= 1015 && Pression > 1000)
 	{
 		if (Pluie = 1)
@@ -29,42 +30,33 @@ void PrevisionMeteo::CatherineLaborde(Barometre& Barometre, Thermometre& Thermom
 			if (Temperature > -5 && Temperature < 1)
 			{
 				//Neige
-				QString Temps = "Neige";
+				Temps = "Neige";
 			}else if (Temperature < -10)
 			{
 				//Grèle
-				QString Temps = "Grele";
+				Temps = "Grele";
 			}else
 			{
 				//Pluvieux
-				QString Temps = "Pluvieux";
+				Temps = "Pluvieux";
 			}
 		}
 		else
 		{
-			QString Temps = "Ensoleillé";
+			Temps = "Ensoleillé";
 		}
 		
 	} else if ( Pression <= 1000 && Pression > 960)
 	{
 		//Tempête
 		//génère des vents dépassent 89 km / h
-
-		QString Temps = "Tempete";
+		Temps = "Tempete";
 	}
-	//query.prepare("INSERT INTO `Prevision Meteo`(`Prevision`) VALUES ('" + Temps + "')");
-	//query.exec();
-	PrevisionMeteo::Future();
 }
 
 void PrevisionMeteo::Future()
 {
 	//connexion à la base : 
-	QSqlDatabase db = QSqlDatabase::addDatabase("QMYSQL");
-	db.setHostName("192.168.65.201");
-	db.setDatabaseName("Meteo");
-	db.setUserName("root");
-	db.setPassword("root");
 	QSqlQuery query(db);
 
 	//Si on connait exactement l'état initial
@@ -75,11 +67,12 @@ void PrevisionMeteo::Future()
 	//Reprendre les anciennes prévision météo : 
 	//SQL pour prendre depuis BDD
 
-	QString SQLInfoCapteur = "SELECT `Vitesse_Vent`, `Position_Vent`, `Pression`, `Humidite`, `Temperature`, `Solarimetre`, `Pluviometre`, `Pluie`, `JourNuit` FROM `Capteur` ORDER BY `Date` DESC";
+	QString SQLInfoCapteur = "SELECT `Vitesse_Vent`, `Position_Vent`, `Pression`, `Humidite`, `Temperature`, `Solarimetre`,\
+ `Pluviometre`, `Pluie`, `JourNuit` FROM `Capteur` ORDER BY `Date` DESC";
 	QString SQLPrevision = "SELECT `Prévision` FROM `Prévision Météo` ORDER BY `Date` DESC";
 	QSqlQuery queryInfoCapteur;
 	QSqlQuery queryPrevision;
-
+	
 	//Compare les différentes Prévision
 
 	//Execute les commande SQL
@@ -117,7 +110,7 @@ void PrevisionMeteo::Future()
 
 	//Toute les heures : 
 	// Monté de 0,25 à 0,5 : Venue d'une haute préssion (sur long terme) = 1015 hPa = beau temps
-	// Monté de 1 à 2 : Venue d'une moyenne pression (sur court terme) = 
+	// Monté de 1 à 2 : Venue d'une moyenne pression (sur court terme) = Beau Temps
 	// Descente 0,25 à 0,5 : Venue d'une basse pression (sur long terme) = 1010 hPa = risque de pluie, ciel nuageux
 	// Descente 1 à 2 : tempête (été = orage)
 
@@ -172,39 +165,22 @@ void PrevisionMeteo::Future()
 		{
 			Prevision = "Tempête";
 		}
-
-		//Envoie prévision en base
 	}
+	//Envoie prévision en base
+
 }
 
-void PrevisionMeteo::EnvoieDonnee(Anemometre& Anemometre, Girouette& Girouette, Barometre& Barometre, Hygrometre& Hygrometre, Thermometre& Thermometre, Solarimetre& Solarimetre, Pluviometre& Pluviometre, DetecteurPluie& DetecteurPluie, DetecteurJourNuit& DetecteurJourNuit)
+QString PrevisionMeteo::getPrevision()
 {
-	//Connexion à BDD
-	QSqlDatabase db = QSqlDatabase::addDatabase("QMYSQL");
-	db.setHostName("192.168.65.201");
-	db.setDatabaseName("Meteo");
-	db.setUserName("root");
-	db.setPassword("root");
-	QSqlQuery query(db);
+	return Prevision;
+}
 
-	float Vitesse_Vent = Anemometre.getVitesseVent();
-	QString Position_Vent = Girouette.getCardinalite();
-	float Pression = Barometre.getPression();
-	float Humidite = Hygrometre.getHumidite();
-	float Temperature = Thermometre.getTemperature();
-	float Luminosite = Solarimetre.getLuminosite();
-	float QuantitePluie = Pluviometre.getQuantitePluie();
-	bool Pluie = DetecteurPluie.getPluie();
-	bool JourNuit = DetecteurJourNuit.getJourNuit();
+QString PrevisionMeteo::getDuree()
+{
+	return Duree;
+}
 
-	//Requet envoie météo dans BDD.		Si ca bug encore, ajouter 'QString::number()' autour des autres float / bool
-	query.prepare("INSERT INTO `Capteur`(`Vitesse_Vent`, `Position_Vent`, `Pression`, `Humidite`, `Temperature`, `Solarimètre`, `Pluviomètre`, `Pluie`, `Jour/Nuit`) VALUES('"+ QString::number(Vitesse_Vent) +"', '" + Position_Vent +"', '" + Pression +"', '" + Humidite +"', '" + Temperature +"', '" + Luminosite +"', '" + QuantitePluie +"', '" + Pluie +"', '" + JourNuit +"')");
-
-	if (query.exec())
-	{
-		qDebug() << "Insert Effectué";
-		//Récupère le résultat de la requête
-		query.next();
-		QString IDUser = query.value(0).toString();
-	}
+QString PrevisionMeteo::getTemps()
+{
+	return Temps;
 }

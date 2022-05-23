@@ -87,6 +87,7 @@
   <ItemGroup>
     <ClCompile Include="Anemometre.cpp" />
     <ClCompile Include="Barometre.cpp" />
+    <ClCompile Include="BDD.cpp" />
     <ClCompile Include="DetecteurJourNuit.cpp" />
     <ClCompile Include="DetecteurPluie.cpp" />
     <ClCompile Include="Girouette.cpp" />
@@ -110,6 +111,7 @@
   <ItemGroup>
     <ClInclude Include="Anemometre.h" />
     <ClInclude Include="Barometre.h" />
+    <ClInclude Include="BDD.h" />
     <ClInclude Include="Capteur.h" />
     <ClInclude Include="Dask.h" />
     <ClInclude Include="DetecteurJourNuit.h" />

@@ -3,7 +3,9 @@
 //#include "PrevisionMeteo.h"
 
 Meteo::Meteo(QWidget *parent)
-	: QMainWindow(parent)
+	: QMainWindow(parent),
+	//ui(new Ui::MainWindow),
+	socket(this)
 {
 	ui.setupUi(this);
 	//Class Prévision météo
@@ -22,16 +24,15 @@ Meteo::Meteo(QWidget *parent)
 	detecteurpluie = new DetecteurPluie;
 	detecteurjournuit = new DetecteurJourNuit;	
 
-	//ui.setupUi(this);
-	socket = new QTcpSocket(this);
-	QObject::connect(socket, SIGNAL(readyRead()), this, SLOT(onClientReadyRead()));
-	server = new QTcpServer(this);
-	QObject::connect(server, SIGNAL(newConnection()), this, SLOT(onServerNewConnection()));
-	server->listen(QHostAddress::AnyIPv4, 4321);
-	//
+	bdd = new BDD;
 
-	socket->connectToHost("127.0.0.1", 4321);
-	socket->write("Connect");
+	ui.setupUi(this);
+	socket.connectToHost(QHostAddress("127.0.0.1"), 4321);
+	connect(&socket, SIGNAL(readyRead()), this, SLOT(onClientReadyRead()));
+	//server = new QTcpServer(this);
+	//QObject::connect(server, SIGNAL(newConnection()), this, SLOT(onServerNewConnection()));
+	//server->listen(QHostAddress::AnyIPv4, 4321);
+	//
 }
 
 void Meteo::TestTension()
@@ -43,41 +44,50 @@ void Meteo::TestTension()
 	//Convertion float QString
 	QString QPression = QString::number(Pression);
 
-	ui.Pression->setText(QPression +" mBar");
+	//ui.Pression->setText(QPression +" mBar");
 
 	//float Tension = (*barometre).getTension();
 	float Tension = barometre->getTension();
 	QString QTension = QString::number(Tension);
 
-	ui.Tension->setText(QTension +" V");
+	//ui.Tension->setText(QTension +" V");
 
 	previsionmeteo->CatherineLaborde( *barometre, *thermometre, *detecteurpluie);
 }
 
-void Meteo::Projet()
+void Meteo::Prevision()
 {
 	//Choper chaque valeur de chaque capteur
 	GererTension();
 
-	//Envoie en base + temps
-	previsionmeteo->EnvoieDonnee(*anemometre, *girouette, *barometre, *hygrometre, *thermometre, *solarimetre, *pluviometre, *detecteurpluie, *detecteurjournuit);
+	float Vitesse_Vent = anemometre->getVitesseVent();
+	QString Position_Vent = girouette->getCardinalite();
+	float Pression = barometre->getPression();
+	float Humidite = hygrometre->getHumidite();
+	float Temperature = thermometre->getTemperature();
+	float Luminosite = solarimetre->getLuminosite();
+	float QuantitePluie = pluviometre->getQuantitePluie();
+	bool Pluie = detecteurpluie->getPluie();
+	bool JourNuit = detecteurjournuit->getJourNuit();
 
+	//Envoie en base + temps
+	bdd->requete(Vitesse_Vent, Position_Vent, Pression, Humidite, Temperature, Luminosite, QuantitePluie, Pluie, JourNuit);
 }
 
 void Meteo::GererTension()
 {
 	//getTension() de chaque capteur
-	anemometre->getTension();
-	girouette->getTension();
-	barometre->getTension();
+	anemometre->priseTension();
+	girouette->priseTension();
+	barometre->priseTension();
 	//
-	hygrometre->getTension();
-	thermometre->getTension();
-	solarimetre->getTension();
+	hygrometre->priseTension();
+	thermometre->priseTension();
+	solarimetre->priseTension();
 	//
-	pluviometre->getTension();
-	detecteurpluie->getTension();
-	detecteurjournuit->getTension();
+	pluviometre->priseTension();
+	detecteurpluie->priseTension();
+	detecteurjournuit->priseTension();
 
 	//Convertion des données :
 	anemometre->convertionTensionVitesseVent();
@@ -95,7 +105,11 @@ void Meteo::GererTension()
 
 void Meteo::ValeurActuelEtPrevision()
 {
-	Projet();
+	previsionmeteo->CatherineLaborde(*barometre, *thermometre, *detecteurpluie);
+
+	QString temps = previsionmeteo->getTemps();
+	bdd->requeteMeteo(temps);
+
 	//Attente 10 minutes
 	j++;
 	//Si ca fait 1h
@@ -105,35 +119,19 @@ void Meteo::ValeurActuelEtPrevision()
 		previsionmeteo->Future();
 		//Reset compteur
 		j = 0;
+
+		QString prevision = previsionmeteo->getPrevision();
+		QString duree = previsionmeteo->getDuree();
+		//Envoie en base + temps
+		bdd->requetePrevision(prevision, duree);
 	}
-}
-
-void Meteo::onServerNewConnection()
-{
-	//ui.connectionStatusLabel->setText("Un client c'est connecté");
-	client = server->nextPendingConnection();
-	QObject::connect(client, SIGNAL(readyRead()), this, SLOT(onClientReadyRead()));
-	QObject::connect(client, SIGNAL(disconnect()), this, SLOT(onClientDisconnected()));
-
-	//Sauvegarde Client dans tableau pour update à tout le monde
-	ListClient[TailleTableau] = client;
-	TailleTableau++;
-}
-
-void Meteo::onClientDisconnected()
-{
-	QTcpSocket * obj = qobject_cast<QTcpSocket*>(sender());
-	QObject::disconnect(obj, SIGNAL(readyRead()), this, SLOT(onClientReadyRead()));
-	QObject::disconnect(obj, SIGNAL(readyRead()), this, SLOT(onClientDisconnected()));
-	obj->deleteLater();
 }
 
 void Meteo::onClientReadyRead()
 {
 	//Besoin de savoir quand envoyer : Web doit envoyer message
-	QTcpSocket * obj = qobject_cast<QTcpSocket*>(sender());
-	QByteArray data = obj->read(obj->bytesAvailable());
-	QString str(data);
+	QByteArray str = socket.readAll();
+	qDebug() << str;
 
 	qDebug() << "Valeur envoyé : " << str;
 	//refaire mesure puisque client le demande : 
@@ -185,14 +183,59 @@ void Meteo::onClientReadyRead()
 
 		//ENVOYER A 1 Utilisateur
 		//Comment on ecrit le message ?
-		if (socket->state() == QTcpSocket::ConnectedState)
+		if (socket.state() == QTcpSocket::ConnectedState)
 		{
-			socket->write("Demande nouvel valeur actuel");
+			socket.write("Demande nouvel valeur actuel");
 		}
 	}
 	else if (str == "10min")
 	{
+		qDebug() << "Meteo 10 Minutes";
+
 		ValeurActuelEtPrevision();
-		socket->write("Routine");
+
+		//Récuperer valeurs
+		float VitesseVent = anemometre->getVitesseVent();
+		QString Cardinalite = girouette->getCardinalite();
+		float Pression = barometre->getPression();
+		//
+		float Temperature = thermometre->getTemperature();
+		float Humidite = hygrometre->getHumidite();
+		float Luminosite = solarimetre->getLuminosite();
+		//
+		float QuantitePluie = pluviometre->getQuantitePluie();
+		float JourNuit = detecteurjournuit->getJourNuit();
+		float Pluie = detecteurpluie->getPluie();
+
+		//Convertion float en QString
+		QString QS_VitesseVent = QString::number(VitesseVent);
+		//Cardinalité en QString de base
+		QString QS_Pression = QString::number(Pression);
+		//
+		QString QS_Temperature = QString::number(Temperature);
+		QString QS_Humidite = QString::number(Humidite);
+		QString QS_Luminosite = QString::number(Luminosite);
+		//
+		QString QS_QuantitePluie = QString::number(QuantitePluie);
+		QString QS_JourNuit = QString::number(JourNuit);
+		QString QS_Pluie = QString::number(Pluie);
+
+		//Convertion QString en QByteArray pour envoie via Serveur TCP
+		QByteArray MessageEncode_VitesseVent = QS_VitesseVent.toUtf8();
+		QByteArray MessageEncode_Cardinalite = Cardinalite.toUtf8();
+		QByteArray MessageEncode_Pression = QS_Luminosite.toUtf8();
+		//
+		QByteArray MessageEncode_Temperature = QS_Temperature.toUtf8();
+		QByteArray MessageEncode_Humidite = QS_Humidite.toUtf8();
+		QByteArray MessageEncode_Luminosite = QS_Luminosite.toUtf8();
+		//
+		QByteArray MessageEncode_QuantitePluie = QS_QuantitePluie.toUtf8();
+		QByteArray MessageEncode_JourNuit = QS_JourNuit.toUtf8();
+		QByteArray MessageEncode_Pluie = QS_Pluie.toUtf8();
+
+		socket.write("Routine");
+
+		//Envoie en BDD
+
 	}
 }
