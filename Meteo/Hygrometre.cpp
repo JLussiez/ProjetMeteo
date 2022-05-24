@@ -9,6 +9,7 @@ Hygrometre::Hygrometre()
 
 void Hygrometre::convertionTensionHumidite()
 {
+	Humidite = 8*Tension+10;
 }
 
 float Hygrometre::getHumidite()
@@ -18,4 +19,5 @@ float Hygrometre::getHumidite()
 
 void Hygrometre::addHumiditeTest()
 {
+	Tension = QRandomGenerator::global()->bounded(0, 10);
 }
