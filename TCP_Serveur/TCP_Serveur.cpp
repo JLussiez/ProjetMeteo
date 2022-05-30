@@ -81,20 +81,6 @@ void TCP_Serveur::rreadyRead()
 	QByteArray Data = socket->readAll();
 	qDebug() << /*socketDescriptor <<*/ "Data recu : " << str;
 
-	//Timer dans une autre classe en C++
-	if (str == "10min")
-	{
-		//ENVOYER A TOUS
-		for (int i = 0; i < TailleTableau; i++)
-		{
-			qDebug() << "Envoie à tous n°" << i;
-
-			QByteArray MessageEncode = str.toUtf8();
-			ListClient[i]->write("10min");
-		}
-		qDebug() << "Fin envoie";
-	}
-	else
 	{
 		//ENVOYER A TOUS
 		for (int i = 0; i < TailleTableau; i++)

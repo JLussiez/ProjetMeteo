@@ -9,6 +9,7 @@ Solarimetre::Solarimetre()
 
 void Solarimetre::convertionTensionLuminosite()
 {
+	Luminosite = 10*Tension;
 }
 
 float Solarimetre::getLuminosite()
@@ -18,4 +19,5 @@ float Solarimetre::getLuminosite()
 
 void Solarimetre::addLuminositeTest()
 {
+	Tension = QRandomGenerator::global()->bounded(0, 10);
 }

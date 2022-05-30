@@ -9,6 +9,7 @@ Thermometre::Thermometre()
 
 void Thermometre::convertionTensionTemperature()
 {
+	Temperature = 7*Tension-35;
 }
 
 float Thermometre::getTemperature()
@@ -18,4 +19,5 @@ float Thermometre::getTemperature()
 
 void Thermometre::addTemperatureTest()
 {
+	Tension = QRandomGenerator::global()->bounded(0, 10);
 }

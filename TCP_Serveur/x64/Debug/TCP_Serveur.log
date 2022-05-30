@@ -1,3 +1,6 @@
 ﻿  Reading Qt configuration (C:/Qt/5.14.2/msvc2017_64/bin/qmake)
+  moc TCP_Serveur.h
   TCP_Serveur.cpp
+  main.cpp
+  moc_TCP_Serveur.cpp
   TCP_Serveur.vcxproj -> C:\Users\VOLLET Maxence\source\repos\TCP_Serveur\x64\Debug\TCP_Serveur.exe

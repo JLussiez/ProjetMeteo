@@ -44,14 +44,14 @@ void Meteo::TestTension()
 	//Convertion float QString
 	QString QPression = QString::number(Pression);
 
-	//ui.Pression->setText(QPression +" mBar");
+	ui.Pression->setText(QPression +" mBar");
 
-	//float Tension = (*barometre).getTension();
 	float Tension = barometre->getTension();
 	QString QTension = QString::number(Tension);
 
-	//ui.Tension->setText(QTension +" V");
+	ui.Tension->setText(QTension +" V");
 
+	//
 	previsionmeteo->CatherineLaborde( *barometre, *thermometre, *detecteurpluie);
 }
 
@@ -108,7 +108,7 @@ void Meteo::ValeurActuelEtPrevision()
 	previsionmeteo->CatherineLaborde(*barometre, *thermometre, *detecteurpluie);
 
 	QString temps = previsionmeteo->getTemps();
-	bdd->requeteMeteo(temps);
+	//bdd->requeteMeteo(temps);
 
 	//Attente 10 minutes
 	j++;
