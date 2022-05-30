@@ -57,41 +57,39 @@ class Meteo{
         $Result3 = $this->_BDD->query($req3);
         ?>
         <div class="Prevision">
-        <table class="tableau1">
-            
-            <thead>
-                <tr class="tr1">
-                    <th>ID</th>
-                    <th>Date</th>
-                    <th>Prevision</th>
-                </tr>
-            </thead>
-
-            <tbody>
-                
-        <?php 
-        While($tab = $Result3->fetch()){
-            ?>
-            
-            <tr class="tr2">
-                <td>
-                    <?= $tab['ID'] ?>
-                </td>
-                <td>
-                    <?= $tab["Date"];?>
-                </td>
-                <td>
-                    <?= $tab["Prevision"];?>
-                </td>         
-            <?php
-
-        }
-    ?>
-    </tr>
-    </tbody>
-
-</table>
-</div>
+            <table class="tableau1">
+                <thead>
+                    <tr class="tr1">
+                        <th>ID</th>
+                        <th>Date</th>
+                        <th>Prevision</th>
+                        <th>Durée</th>
+                    </tr>
+                </thead>
+                <tbody>  
+                    <?php 
+                        While($tab = $Result3->fetch()){
+                    ?>
+                            <tr class="tr2">
+                                <td>
+                                    <?= $tab['ID'] ?>
+                                </td>
+                                <td>
+                                    <?= $tab["Date"];?>
+                                </td>
+                                <td>
+                                    <?= $tab["Prevision"];?>
+                                </td> 
+                                <td>
+                                    <?= $tab["Duree"];?>
+                                </td>
+                            </tr>          
+                    <?php
+                        }
+                    ?>        
+                </tbody>
+            </table>
+        </div>
     <?php
     }
 
@@ -103,86 +101,89 @@ class Meteo{
         $Result = $this->_BDD->query($req);
         ?>
         <div class="bar">
-        <table class="tableau1">
-            
-            <thead>
-                <tr class="tr1">
-                    <th>ID</th>
-                    <th>Date</th>
-                    <th>Vitesse Vent</th>
-                    <th>Position Vent</th>
-                    <th>Pression</th>
-                    <th>Humidite</th>
-                    <th>Temperature</th>
-                    <th>Solarimetre</th>
-                    <th>Pluviometre</th>
-                    <th>Pluie</th>
-                    <th>JourNuit</th>
-                    <th></th>
-                </tr>
-            </thead>
-
-            <tbody>
-                
-        <?php 
-        While($tab = $Result->fetch()){
+            <table class="tableau1">
+                <thead>
+                    <tr class="tr1">
+                        <th>ID</th>
+                        <th>Date</th>
+                        <th>Vitesse Vent</th>
+                        <th>Position Vent</th>
+                        <th>Pression</th>
+                        <th>Humidite</th>
+                        <th>Temperature</th>
+                        <th>Solarimetre</th>
+                        <th>Pluviometre</th>
+                        <th>Pluie</th>
+                        <th>JourNuit</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>     
+            <?php 
+                While($tab = $Result->fetch()){
             ?>
-            
-            <tr class="tr2">
-                <td>
-                    <?=$tab['ID'] ?>
-                </td>
-                <td>
-                    <?= $tab["Date"];?>
-                </td>
-                <td>
-                    <?= $tab["Vitesse_Vent"];?>
-                </td>
-                <td>
-                    <?= $tab["Position_Vent"];?>
-                </td>
-                <td>
-                    <?= $tab["Pression"];?>
-                </td>
-                <td>
-                    <?= $tab["Humidite"];?>
-                </td>
-                <td>
-                    <?= $tab["Temperature"];?>
-                </td>
-                <td>
-                    <?= $tab["Solarimetre"];?>
-                </td>
-                <td>
-                    <?= $tab["Pluviometre"];?>
-                </td>
-                <td>
-                    <?= $tab["Pluie"];?>
-                </td>
-                <td>
-                    <?= $tab["JourNuit"];?>
-                </td>
-            <form method="post" action="">
-                <td>
-                    <input type="submit" name="supp" value="✘">
-                </td>
-            </form>
-            
-            <?php
-
-        }
-    ?>
-    </tr>
-    </tbody>
-
-</table>
-</div>
+                    <tr class="tr2">
+                        <td>
+                            <?=$tab['ID'] ?>
+                        </td>
+                        <td>
+                            <?= $tab["Date"];?>
+                        </td>
+                        <td>
+                            <?= $tab["Vitesse_Vent"];?>
+                        </td>
+                        <td>
+                            <?= $tab["Position_Vent"];?>
+                        </td>
+                        <td>
+                            <?= $tab["Pression"];?>
+                        </td>
+                        <td>
+                            <?= $tab["Humidite"];?>
+                        </td>
+                        <td>
+                            <?= $tab["Temperature"];?>
+                        </td>
+                        <td>
+                            <?= $tab["Solarimetre"];?>
+                        </td>
+                        <td>
+                            <?= $tab["Pluviometre"];?>
+                        </td>
+                        <td>
+                            <?= $tab["Pluie"];?>
+                        </td>
+                        <td>
+                            <?= $tab["JourNuit"];?>
+                        </td>
+                    <form method="post" action="">
+                        <td>
+                            <input type="submit" name="supp" value="✘">
+                        </td>
+                    </form>
+                <?php
+                }
+                ?>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     <?php
-}
+    }
 
-    public function DateSupp(){
-        $req2 = "DELETE FROM `Capteur` WHERE Date < DATE_SUB(NOW(), INTERVAL 2 DAY)";
+    public function DateSupp($day){
+        $req2 = "DELETE FROM `Capteur` WHERE Date < DATE_SUB(NOW(), INTERVAL ".$day." DAY)";
         $this->_BDD->exec($req2);
+    }
+
+    public function DatesuppPrevision($day){
+        $req3 = "DELETE FROM 'Prevision_Meteo' WHERE Date < DATE_SUB(NOW(), INTERVAL ".$day." DAY)";
+        $this->_BDD->exec($req3);
+    }
+
+    public function SelectCapteur(){
+        $req4 = "SELECT * FROM `Capteur`";
+        $this->_BDD->exec($req4);
     }
 }
 ?>
