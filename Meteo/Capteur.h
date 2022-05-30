@@ -35,4 +35,3 @@ class Capteur :
 	private slots :
 		void onServerNewConnection();
 };
-

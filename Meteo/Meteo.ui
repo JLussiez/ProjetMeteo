@@ -18,7 +18,7 @@
     <property name="geometry">
      <rect>
       <x>270</x>
-      <y>290</y>
+      <y>180</y>
       <width>151</width>
       <height>31</height>
      </rect>
@@ -71,6 +71,110 @@
      <rect>
       <x>430</x>
       <y>130</y>
+      <width>101</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_3">
+    <property name="geometry">
+     <rect>
+      <x>320</x>
+      <y>230</y>
+      <width>51</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Prévision</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="prevision">
+    <property name="geometry">
+     <rect>
+      <x>290</x>
+      <y>270</y>
+      <width>101</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_4">
+    <property name="geometry">
+     <rect>
+      <x>450</x>
+      <y>230</y>
+      <width>91</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Dernière Pression</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="prevision_2">
+    <property name="geometry">
+     <rect>
+      <x>440</x>
+      <y>280</y>
+      <width>101</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_5">
+    <property name="geometry">
+     <rect>
+      <x>120</x>
+      <y>230</y>
+      <width>121</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>6e Pression Precedante</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="prevision_3">
+    <property name="geometry">
+     <rect>
+      <x>120</x>
+      <y>270</y>
+      <width>101</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="prevision_4">
+    <property name="geometry">
+     <rect>
+      <x>300</x>
+      <y>310</y>
+      <width>101</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Différence Pression</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="prevision_5">
+    <property name="geometry">
+     <rect>
+      <x>290</x>
+      <y>350</y>
       <width>101</width>
       <height>21</height>
      </rect>

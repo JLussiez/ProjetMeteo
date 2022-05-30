@@ -1,10 +1,10 @@
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-<Qt_DEFINES_>_WINDOWS;UNICODE;_UNICODE;WIN32;_ENABLE_EXTENDED_ALIGNED_STORAGE;QT_WIDGETS_LIB;QT_GUI_LIB;QT_CORE_LIB</Qt_DEFINES_>
-<Qt_INCLUDEPATH_>"C:\Users\VOLLET Maxence\source\repos\Meteo\Meteo\Debug\qmake\temp";C:\Qt\5.14.2\msvc2017_32\include;C:\Qt\5.14.2\msvc2017_32\include\QtWidgets;C:\Qt\5.14.2\msvc2017_32\include\QtGui;C:\Qt\5.14.2\msvc2017_32\include\QtANGLE;C:\Qt\5.14.2\msvc2017_32\include\QtCore;"C:\Users\VOLLET Maxence\source\repos\Meteo\Meteo\Debug\qmake\temp";/include;C:\Qt\5.14.2\msvc2017_32\mkspecs\win32-msvc</Qt_INCLUDEPATH_>
+<Qt_DEFINES_>_WINDOWS;UNICODE;_UNICODE;WIN32;_ENABLE_EXTENDED_ALIGNED_STORAGE;QT_WIDGETS_LIB;QT_GUI_LIB;QT_WEBSOCKETS_LIB;QT_NETWORK_LIB;QT_SQL_LIB;QT_CORE_LIB</Qt_DEFINES_>
+<Qt_INCLUDEPATH_>"C:\Users\VOLLET Maxence\source\repos\Meteo\Meteo\Debug\qmake\temp";C:\Qt\5.14.2\msvc2017_32\include;C:\Qt\5.14.2\msvc2017_32\include\QtWidgets;C:\Qt\5.14.2\msvc2017_32\include\QtGui;C:\Qt\5.14.2\msvc2017_32\include\QtANGLE;C:\Qt\5.14.2\msvc2017_32\include\QtWebSockets;C:\Qt\5.14.2\msvc2017_32\include\QtNetwork;C:\Qt\5.14.2\msvc2017_32\include\QtSql;C:\Qt\5.14.2\msvc2017_32\include\QtCore;"C:\Users\VOLLET Maxence\source\repos\Meteo\Meteo\Debug\qmake\temp";/include;C:\Qt\5.14.2\msvc2017_32\mkspecs\win32-msvc</Qt_INCLUDEPATH_>
 <Qt_STDCPP_></Qt_STDCPP_>
 <Qt_CL_OPTIONS_>-Zc:rvalueCast -Zc:inline -Zc:strictStrings -Zc:throwingNew -Zc:referenceBinding -Zc:__cplusplus</Qt_CL_OPTIONS_>
-<Qt_LIBS_>C:\Qt\5.14.2\msvc2017_32\lib\Qt5Widgetsd.lib;C:\Qt\5.14.2\msvc2017_32\lib\Qt5Guid.lib;C:\Qt\5.14.2\msvc2017_32\lib\Qt5Cored.lib;C:\Qt\5.14.2\msvc2017_32\lib\qtmaind.lib;shell32.lib</Qt_LIBS_>
+<Qt_LIBS_>C:\Qt\5.14.2\msvc2017_32\lib\Qt5Widgetsd.lib;C:\Qt\5.14.2\msvc2017_32\lib\Qt5Guid.lib;C:\Qt\5.14.2\msvc2017_32\lib\Qt5WebSocketsd.lib;C:\Qt\5.14.2\msvc2017_32\lib\Qt5Networkd.lib;C:\Qt\5.14.2\msvc2017_32\lib\Qt5Sqld.lib;C:\Qt\5.14.2\msvc2017_32\lib\Qt5Cored.lib;C:\Qt\5.14.2\msvc2017_32\lib\qtmaind.lib;shell32.lib</Qt_LIBS_>
 <Qt_LINK_OPTIONS_>"/MANIFESTDEPENDENCY:type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' publicKeyToken='6595b64144ccf1df' language='*' processorArchitecture='*'"</Qt_LINK_OPTIONS_>
 <QMake_QT_SYSROOT_></QMake_QT_SYSROOT_>
 <QMake_QT_INSTALL_PREFIX_>C:/Qt/5.14.2/msvc2017_32</QMake_QT_INSTALL_PREFIX_>
@@ -36,7 +36,7 @@
     <QtBkup_QtInstall
       >5.14.2_msvc2017_32</QtBkup_QtInstall>
     <QtBkup_QtModules
-      >core;gui;widgets</QtBkup_QtModules>
+      >core;gui;widgets;websockets;network;sql</QtBkup_QtModules>
     <QtBkup_QtPathBinaries
       >bin</QtBkup_QtPathBinaries>
     <QtBkup_QtPathLibraryExecutables

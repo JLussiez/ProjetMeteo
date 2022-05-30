@@ -33,7 +33,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;">
     <ClCompile>
-      <AdditionalIncludeDirectories>&quot;C:\Users\VOLLET Maxence\source\repos\Meteo\Meteo\Debug\qmake\temp&quot;;C:\Qt\5.14.2\msvc2017_32\include;C:\Qt\5.14.2\msvc2017_32\include\QtWidgets;C:\Qt\5.14.2\msvc2017_32\include\QtGui;C:\Qt\5.14.2\msvc2017_32\include\QtANGLE;C:\Qt\5.14.2\msvc2017_32\include\QtCore;&quot;C:\Users\VOLLET Maxence\source\repos\Meteo\Meteo\Debug\qmake\temp&quot;;/include;C:\Qt\5.14.2\msvc2017_32\mkspecs\win32-msvc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>&quot;C:\Users\VOLLET Maxence\source\repos\Meteo\Meteo\Debug\qmake\temp&quot;;C:\Qt\5.14.2\msvc2017_32\include;C:\Qt\5.14.2\msvc2017_32\include\QtWidgets;C:\Qt\5.14.2\msvc2017_32\include\QtGui;C:\Qt\5.14.2\msvc2017_32\include\QtANGLE;C:\Qt\5.14.2\msvc2017_32\include\QtWebSockets;C:\Qt\5.14.2\msvc2017_32\include\QtNetwork;C:\Qt\5.14.2\msvc2017_32\include\QtSql;C:\Qt\5.14.2\msvc2017_32\include\QtCore;&quot;C:\Users\VOLLET Maxence\source\repos\Meteo\Meteo\Debug\qmake\temp&quot;;/include;C:\Qt\5.14.2\msvc2017_32\mkspecs\win32-msvc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>-Zc:rvalueCast -Zc:inline -Zc:strictStrings -Zc:throwingNew -Zc:referenceBinding -Zc:__cplusplus %(AdditionalOptions)</AdditionalOptions>
       <AssemblerListingLocation>.\</AssemblerListingLocation>
       <BrowseInformation>false</BrowseInformation>
@@ -41,7 +41,7 @@
       <ExceptionHandling>Sync</ExceptionHandling>
       <ObjectFileName>.\</ObjectFileName>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>_WINDOWS;UNICODE;_UNICODE;WIN32;_ENABLE_EXTENDED_ALIGNED_STORAGE;QT_WIDGETS_LIB;QT_GUI_LIB;QT_CORE_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_WINDOWS;UNICODE;_UNICODE;WIN32;_ENABLE_EXTENDED_ALIGNED_STORAGE;QT_WIDGETS_LIB;QT_GUI_LIB;QT_WEBSOCKETS_LIB;QT_NETWORK_LIB;QT_SQL_LIB;QT_CORE_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessToFile>false</PreprocessToFile>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <SuppressStartupBanner>true</SuppressStartupBanner>
@@ -49,7 +49,7 @@
       <WarningLevel>TurnOffAllWarnings</WarningLevel>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>C:\Qt\5.14.2\msvc2017_32\lib\Qt5Widgetsd.lib;C:\Qt\5.14.2\msvc2017_32\lib\Qt5Guid.lib;C:\Qt\5.14.2\msvc2017_32\lib\Qt5Cored.lib;C:\Qt\5.14.2\msvc2017_32\lib\qtmaind.lib;shell32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>C:\Qt\5.14.2\msvc2017_32\lib\Qt5Widgetsd.lib;C:\Qt\5.14.2\msvc2017_32\lib\Qt5Guid.lib;C:\Qt\5.14.2\msvc2017_32\lib\Qt5WebSocketsd.lib;C:\Qt\5.14.2\msvc2017_32\lib\Qt5Networkd.lib;C:\Qt\5.14.2\msvc2017_32\lib\Qt5Sqld.lib;C:\Qt\5.14.2\msvc2017_32\lib\Qt5Cored.lib;C:\Qt\5.14.2\msvc2017_32\lib\qtmaind.lib;shell32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>C:\opensslx86\lib;C:\Utils\my_sql\mysql-5.7.25-win32\lib;C:\Utils\postgresqlx86\pgsql\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalOptions>&quot;/MANIFESTDEPENDENCY:type=&apos;win32&apos; name=&apos;Microsoft.Windows.Common-Controls&apos; version=&apos;6.0.0.0&apos; publicKeyToken=&apos;6595b64144ccf1df&apos; language=&apos;*&apos; processorArchitecture=&apos;*&apos;&quot; %(AdditionalOptions)</AdditionalOptions>
       <DataExecutionPrevention>true</DataExecutionPrevention>
@@ -66,7 +66,7 @@
       <WarningLevel>0</WarningLevel>
     </Midl>
     <ResourceCompile>
-      <PreprocessorDefinitions>_WINDOWS;UNICODE;_UNICODE;WIN32;_ENABLE_EXTENDED_ALIGNED_STORAGE;QT_WIDGETS_LIB;QT_GUI_LIB;QT_CORE_LIB;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_WINDOWS;UNICODE;_UNICODE;WIN32;_ENABLE_EXTENDED_ALIGNED_STORAGE;QT_WIDGETS_LIB;QT_GUI_LIB;QT_WEBSOCKETS_LIB;QT_NETWORK_LIB;QT_SQL_LIB;QT_CORE_LIB;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemGroup>

@@ -55,15 +55,11 @@ class Meteo :
 		DetecteurJourNuit *detecteurjournuit;
 		DetecteurPluie *detecteurpluie;
 		BDD *bdd;
-
-		//TCP_Serveur *tcp_serveur;
-		int TailleTableau = 0;
-		QTcpSocket * ListClient[1000];
+		void ValeurActuelEtPrevision();
 
 	private:
 		Ui::MeteoClass ui;
 		QSqlDatabase db;
-		void ValeurActuelEtPrevision();
 		PrevisionMeteo *previsionmeteo;
 
 		QTcpSocket socket;
