@@ -2,7 +2,7 @@
 
 Capteur::Capteur()
 {
-	AI_9111_Config(card, TRIG_INT_PACER, P9111_TRGMOD_SOFT, 0);
+	//AI_9111_Config(card, TRIG_INT_PACER, P9111_TRGMOD_SOFT, 0);
 }
 
 void Capteur::priseTension()
