@@ -9,6 +9,12 @@ DetecteurPluie::DetecteurPluie()
 
 void DetecteurPluie::convertionTensionPluie()
 {
+	if (Tension > 3) {
+		Pluie = 0;
+	}
+	else {
+		Pluie = 1;
+	}
 }
 
 float DetecteurPluie::getPluie()
@@ -18,4 +24,5 @@ float DetecteurPluie::getPluie()
 
 void DetecteurPluie::addPluieTest()
 {
+	Tension = QRandomGenerator::global()->bounded(0, 4);
 }

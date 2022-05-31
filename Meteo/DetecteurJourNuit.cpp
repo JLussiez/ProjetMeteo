@@ -9,6 +9,12 @@ DetecteurJourNuit::DetecteurJourNuit()
 
 void DetecteurJourNuit::convertionTensionJourNuit()
 {
+	if (Tension > 1) {
+		JourNuit = 1;
+	}
+	else {
+		JourNuit = 0;
+	}
 }
 
 float DetecteurJourNuit::getJourNuit()
@@ -18,5 +24,5 @@ float DetecteurJourNuit::getJourNuit()
 
 void DetecteurJourNuit::addJourNuitTest()
 {
-
+	Tension = QRandomGenerator::global()->bounded(0, 5);
 }
