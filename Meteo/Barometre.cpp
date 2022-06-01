@@ -9,7 +9,9 @@ Barometre::Barometre()
 
 void Barometre::convertionTensionPression()
 {
-	Pression = 0.0227*Tension+111;
+	qDebug() << "Tension : " << Tension;
+	Pression = 0.533*Tension+938;
+	qDebug() << "Pression : " << Pression;
 }
 
 float Barometre::getPression()

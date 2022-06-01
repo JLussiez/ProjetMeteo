@@ -12,7 +12,9 @@ void PrevisionMeteo::CatherineLaborde(Barometre& Barometre, Thermometre& Thermom
 	float Temperature = Thermometre.getTemperature();
 	int Pluie = DetecteurPluie.getPluie();
 
-	qDebug() << Pression;
+	qDebug() << "CatherineLaborde / Pression" << Pression;
+	qDebug() << "CatherineLaborde / Temperature" << Temperature;
+	qDebug() << "CatherineLaborde / Pluie" << Pluie;
 
 	if (Pression < 960 || Pression > 1060)
 	{
@@ -24,7 +26,7 @@ void PrevisionMeteo::CatherineLaborde(Barometre& Barometre, Thermometre& Thermom
 		Temps = "Ensoleille";
 	} else if ( Pression <= 1015 && Pression > 1000)
 	{
-		if (Pluie = 1)
+		if (Pluie == 1)
 		{
 			//Formation de neige vers -5 et 1 °C
 			if (Temperature > -5 && Temperature < 1)
@@ -166,6 +168,9 @@ void PrevisionMeteo::Future()
 			Prevision = "Tempête";
 		}
 	}
+
+	qDebug() << "Prevision : " << Prevision;
+	qDebug() << "Durée : " << Duree;
 	//Envoie prévision en base
 
 }

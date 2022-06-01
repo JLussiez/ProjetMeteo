@@ -11,19 +11,20 @@
 
 #include <QWebSocket>
 #include <QWebSocketServer>
-
 #include <QFile>
 #include <QTextStream>
 #include <Windows.h>
+
 #include <conio.h>
 #include <iostream>
+#include "Include/Dask64.h"
 
 class Capteur : 
 	public QObject
 {
 	protected :
 		Capteur();
-		int ConnectCarte();
+		void ConnectCarte();
 		I16 card;
 		int NumeroChannel;
 

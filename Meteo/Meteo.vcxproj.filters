@@ -73,6 +73,9 @@
     <ClCompile Include="Thermometre.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="BDD.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Dask.h">
@@ -106,6 +109,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Thermometre.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="BDD.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
