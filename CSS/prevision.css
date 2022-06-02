@@ -1,0 +1,27 @@
+table 
+{
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 60%;
+}
+td, th 
+{
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+    text-align: center;
+}
+tr:nth-child(even) 
+{
+    background-color: #585858;
+}
+.tablezone
+{
+    padding-left: 30%;
+    padding-top: 20%;
+}
+img 
+{
+    width : 50px;
+    height : 50px;
+}
