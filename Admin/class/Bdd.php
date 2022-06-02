@@ -1,6 +1,6 @@
 <?php
 
-class Meteo{
+class Bdd{
     private $_ID;
     private $_date;
     private $_VitesseVent;
@@ -115,7 +115,7 @@ class Meteo{
                         <th>Pluviometre</th>
                         <th>Pluie</th>
                         <th>JourNuit</th>
-                        <th></th>
+                        <!--<th></th>-->
                     </tr>
                 </thead>
                 <tbody>     
@@ -156,11 +156,11 @@ class Meteo{
                         <td>
                             <?= $tab["JourNuit"];?>
                         </td>
-                    <form method="post" action="">
+                    <!--<form method="post" action="">
                         <td>
                             <input type="submit" name="supp" value="✘">
                         </td>
-                    </form>
+                    </form>-->
                 <?php
                 }
                 ?>
@@ -177,7 +177,7 @@ class Meteo{
     }
 
     public function DatesuppPrevision($day){
-        $req3 = "DELETE FROM 'Prevision_Meteo' WHERE Date < DATE_SUB(NOW(), INTERVAL ".$day." DAY)";
+        $req3 = "DELETE FROM `Prevision_Meteo` WHERE Date < DATE_SUB(NOW(), INTERVAL ".$day." DAY)";
         $this->_BDD->exec($req3);
     }
 
