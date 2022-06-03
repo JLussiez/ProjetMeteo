@@ -19,6 +19,7 @@
     <link rel="stylesheet" type="text/css" href="CSS/style.css">
     <link rel="stylesheet" type="text/css" href="CSS/menu.css">
     <link rel="stylesheet" type="text/css" href="CSS/prevision.css">
+    <script src="prevision.js"></script>
 </head>
 <body> 
     <p>
@@ -42,26 +43,20 @@
                     <tr>
                         <?php   
                             if ($res['Prevision'] == 'Beau temps'){
-                                echo '<td> <img src="IMG/sun.png"></td>';
+                                echo '<td id="logo"> <img src="IMG/sun.png"></td>';
                             }
                             if ($res['Prevision'] == 'Risque de pluie'){
-                                echo '<td> <img src="IMG/rain.png"></td>';
-                            }
-                            if ($res['Prevision'] == 'Grele'){
-                                echo '<td> <img src="IMG/rig.png"></td>';
-                            }
-                            if ($res['Prevision'] == 'Neige'){
-                                echo '<td> <img src="IMG/snow.png"></td>';
+                                echo '<td id="logo"> <img src="IMG/rain.png"></td>';
                             }
                             if ($res['Prevision'] == 'Tempete'){
-                                echo '<td> <img src="IMG/storm.png"></td>';
+                                echo '<td id="logo"> <img src="IMG/storm.png"></td>';
                             }
                             if ($res['Prevision'] == 'Orage'){
-                                echo '<td> <img src="IMG/thunderstorm.png"></td>';
+                                echo '<td id="logo"> <img src="IMG/thunderstorm.png"></td>';
                             }
-                            echo '<td>' .$res['Prevision'] . '</td>';
-                            echo '<td>' . $res['Duree'] . '</td>';
-                            echo '<td>' . $res['Date'] . '</td>';
+                            echo '<td id="prevision">' .$res['Prevision'] . '</td>';
+                            echo '<td id="duree">' . $res['Duree'] . '</td>';
+                            echo '<td id="date">' . $res['Date'] . '</td>';
                         ?>
                     </tr>
                 </tbody>
