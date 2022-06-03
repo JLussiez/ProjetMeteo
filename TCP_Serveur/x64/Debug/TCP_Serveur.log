@@ -1,6 +1,13 @@
-﻿  Reading Qt configuration (C:/Qt/5.14.2/msvc2017_64/bin/qmake)
+﻿  Reading Qt configuration (C:/Qt/5.14.2/msvc2017_32/bin/qmake)
+  uic TCP_Serveur.ui
+  rcc TCP_Serveur.qrc
   moc TCP_Serveur.h
+   RCC: Warning: No resources in 'C:\Users\Administrateur\Desktop\TCP_Serveur\TCP_Serveur.qrc'.
+  moc MyThread.h
+  MyThread.cpp
   TCP_Serveur.cpp
   main.cpp
+  qrc_TCP_Serveur.cpp
   moc_TCP_Serveur.cpp
-  TCP_Serveur.vcxproj -> C:\Users\VOLLET Maxence\source\repos\TCP_Serveur\x64\Debug\TCP_Serveur.exe
+  moc_MyThread.cpp
+Qt5Widgetsd.lib(Qt5Widgetsd.dll) : fatal error LNK1112: type d'ordinateur module 'x86' en conflit avec le type d'ordinateur cible 'x64'
