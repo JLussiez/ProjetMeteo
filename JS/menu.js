@@ -1,6 +1,3 @@
-
-
-
 let menuToggle = document.getElementById('toggle');
 let navigation = document.getElementById('navigation');
 menuToggle.addEventListener('click', function(){
