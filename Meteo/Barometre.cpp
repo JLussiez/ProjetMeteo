@@ -25,6 +25,13 @@ void Barometre::addTensionTest()
  	Tension = TensionTest / 1000;
 }
 
+float Barometre::InstanciationPressionHmoins1()
+{
+	priseTension();
+	convertionTensionPression();
+	return Pression;
+}
+
 void Barometre::TestConvertionBarometre()
 {
 	this->convertionTensionPression();

@@ -20,7 +20,6 @@
 #include <QFile>
 #include <QTextStream>
 
-#include "ui_Meteo.h"
 #include "Anemometre.h"
 #include "Girouette.h"
 #include "Barometre.h"
@@ -32,6 +31,11 @@
 #include "DetecteurPluie.h"
 #include "PrevisionMeteo.h"
 #include "BDD.h"
+
+#include "Include/json.hpp"
+
+// for convenience
+using json = nlohmann::json;
 
 class Meteo : 
 	public QMainWindow
@@ -63,6 +67,7 @@ class Meteo :
 		PrevisionMeteo *previsionmeteo;
 
 		QTcpSocket socket;
+		float PressionHmoins1 = 0;
 
 	private slots:
 		void TestTension();

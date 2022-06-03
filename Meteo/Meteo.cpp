@@ -24,15 +24,15 @@ Meteo::Meteo(QWidget *parent)
 	detecteurpluie = new DetecteurPluie;
 	detecteurjournuit = new DetecteurJourNuit;	
 
+	PressionHmoins1 = barometre->InstanciationPressionHmoins1();
+	qDebug() << "PressionHmoins1 : " << PressionHmoins1;
+
 	bdd = new BDD;
 
 	ui.setupUi(this);
 	socket.connectToHost(QHostAddress("127.0.0.1"), 4321);
 	connect(&socket, SIGNAL(readyRead()), this, SLOT(onClientReadyRead()));
-	//server = new QTcpServer(this);
-	//QObject::connect(server, SIGNAL(newConnection()), this, SLOT(onServerNewConnection()));
-	//server->listen(QHostAddress::AnyIPv4, 4321);
-	//
+	ui.label_25->setNum(PressionHmoins1);
 }
 
 void Meteo::TestTension()
@@ -95,42 +95,50 @@ void Meteo::GererTension()
 
 	//anemometre->priseTension();
 	//girouette->priseTension();
-	
-
 	qDebug() << "Barometre";
 	barometre->priseTension();
-
+	ui.label_11->setNum(barometre->getTension());
 	//
 	qDebug() << "hygrometre";
 	hygrometre->priseTension();
+	ui.label_12->setNum(hygrometre->getTension());
 	qDebug() << "thermometre";
 	thermometre->priseTension();
+	ui.label_13->setNum(thermometre->getTension());
 	//solarimetre->priseTension();
-
 	//
 	qDebug() << "pluviometre";
 	pluviometre->priseTension();
+	ui.label_14->setNum(pluviometre->getTension());
 	qDebug() << "detecteurpluie";
 	detecteurpluie->priseTension();
+	ui.label_15->setNum(detecteurpluie->getTension());
 	qDebug() << "detecteurjournuit";
 	detecteurjournuit->priseTension();
+	ui.label_16->setNum(detecteurjournuit->getTension());
 
 	//Convertion des données :
 	//anemometre->convertionTensionVitesseVent();
 	//girouette->convertionTensionCardinalite();
 	barometre->convertionTensionPression();
-
+	ui.label_17->setNum(barometre->getPression());
 	//
 
 	hygrometre->convertionTensionHumidite();
+	ui.label_18->setNum(hygrometre->getHumidite());
+
 	thermometre->convertionTensionTemperature();
+	ui.label_19->setNum(thermometre->getTemperature());
 	//solarimetre->convertionTensionLuminosite();
 
 	//
 
 	pluviometre->convertionTensionQuantitePluie();
+	ui.label_20->setNum(pluviometre->getQuantitePluie());
 	detecteurpluie->convertionTensionPluie();
+	ui.label_21->setNum(detecteurpluie->getPluie());
 	detecteurjournuit->convertionTensionJourNuit();
+	ui.label_22->setNum(detecteurjournuit->getJourNuit());
 }
 
 void Meteo::ValeurActuelEtPrevision()
@@ -138,7 +146,9 @@ void Meteo::ValeurActuelEtPrevision()
 	previsionmeteo->CatherineLaborde(*barometre, *thermometre, *detecteurpluie);
 
 	QString temps = previsionmeteo->getTemps();
-	qDebug() << "Temps : " << temps;
+	QString JsonMeteo;
+
+	ui.label_23->setText(temps);
 
 	//bdd->requeteMeteo(temps);
 
@@ -148,15 +158,65 @@ void Meteo::ValeurActuelEtPrevision()
 	if (j == 6)
 	{
 		//Prévision météo
-		previsionmeteo->Future();
+		float Pression = barometre->getPression();
+		previsionmeteo->Future(Pression, PressionHmoins1);
 		//Reset compteur
 		j = 0;
 
 		QString prevision = previsionmeteo->getPrevision();
 		QString duree = previsionmeteo->getDuree();
+		ui.label_24->setText(prevision);
+
 		//Envoie en base + temps
-		bdd->requetePrevision(prevision, duree);
+		bdd->requetePrevision(prevision, duree);	
+
+		//Préparation envoie via TCP
+		float Temp = thermometre->getTemperature();
+		float Humid = hygrometre->getHumidite();
+		float JourNuit = detecteurjournuit->getJourNuit();
+		float Pluie = detecteurpluie->getPluie();
+		float QuantitePluie = pluviometre->getQuantitePluie();
+
+		QString QPression = QString::number(Pression);
+		QString QTemp = QString::number(Temp);
+		QString QHumid = QString::number(Humid);
+		QString QJourNuit = QString::number(JourNuit);
+		QString QPluie = QString::number(Pluie);
+		QString QQuantitePluie = QString::number(QuantitePluie);
+
+		JsonMeteo = "{\"pression\":" + QPression + ",\"temperature\":" + QTemp + ",\"hydrometrie\":" + QHumid + ",\"journuit\":" + QJourNuit + ",\"pluie\":" + QPluie + ",\"quantitepluie\":" + QQuantitePluie + ",\"meteo\":" + temps + ",\"prevision\":" + prevision + ",\"duree\":" + duree + "}";
+		qDebug() << JsonMeteo;
+
+		//Update de la pression à h-1
+		PressionHmoins1 = Pression;
+		ui.label_25->setNum(PressionHmoins1);
 	}
+	else
+	{
+		float Pression = barometre->getPression();
+		float Temp = thermometre->getTemperature();
+		float Humid = hygrometre->getHumidite();
+		float JourNuit = detecteurjournuit->getJourNuit();
+		float Pluie = detecteurpluie->getPluie();
+		float QuantitePluie = pluviometre->getQuantitePluie();
+
+		QString QPression = QString::number(Pression);
+		QString QTemp = QString::number(Temp);
+		QString QHumid = QString::number(Humid);
+		QString QJourNuit = QString::number(JourNuit);
+		QString QPluie = QString::number(Pluie);
+		QString QQuantitePluie = QString::number(QuantitePluie);
+
+		JsonMeteo = "{\"pression\":" + QPression + ",\"temperature\":" + QTemp + ",\"hydrometrie\":" + QHumid + ",\"journuit\":" + QJourNuit + ",\"pluie\":" + QPluie + ",\"quantitepluie\":" + QQuantitePluie + ",\"meteo\":" + temps + "}";
+
+		qDebug() << JsonMeteo;
+	}
+
+	QByteArray inUtf8 = JsonMeteo.toUtf8();
+	const char *JsonMeteoConvertit = inUtf8.constData();
+	//Envoie via Serveur TCP
+	socket.write(JsonMeteoConvertit);
+
 }
 
 void Meteo::onClientReadyRead()

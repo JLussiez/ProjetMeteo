@@ -2,7 +2,7 @@
 
 Capteur::Capteur()
 {
-	//AI_9111_Config(card, TRIG_INT_PACER, P9111_TRGMOD_SOFT, 0);
+	//ui.setupUi(this);
 }
 
 void Capteur::priseTension()
@@ -17,8 +17,16 @@ void Capteur::priseTension()
 			qDebug() << "Erreur lecture";
 		} else
 		{
-			Tension = Tension * 1000;
-			qDebug() << "Tension : " << Tension;
+			//Si on lit la valeur du baromètre : 
+			if (NumeroChannel == 2)
+			{
+				Tension = Tension * 1000;
+				qDebug() << "Tension : " << Tension << " mV";
+			}
+			else
+			{
+				qDebug() << "Tension : " << Tension << " V";
+			}
 			//Vérifier tension
 		}
 

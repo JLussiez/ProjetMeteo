@@ -124,6 +124,7 @@
     <ClInclude Include="DetecteurPluie.h" />
     <ClInclude Include="Girouette.h" />
     <ClInclude Include="Hygrometre.h" />
+    <ClInclude Include="Include\json.hpp" />
     <ClInclude Include="Pluviometre.h" />
     <ClInclude Include="Solarimetre.h" />
     <ClInclude Include="Thermometre.h" />

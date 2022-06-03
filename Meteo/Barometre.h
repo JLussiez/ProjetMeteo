@@ -15,6 +15,7 @@ class Barometre :
 		//Générer une Tension une Test
 		void addTensionTest();
 		float Pression;
+		float InstanciationPressionHmoins1();
 
 	private slots : 
 		//Test avec QT : 
