@@ -171,6 +171,43 @@ class Bdd{
     <?php
     }
 
+    public function AfficheMeteo(){
+        $req5 = "SELECT * FROM `Meteo`";
+        $Result = $this->_BDD->query($req5);
+        ?>
+        <div class="Prevision">
+            <table class="tableau1">
+                <thead>
+                    <tr class="tr1">
+                        <th>ID</th>
+                        <th>Date</th>
+                        <th>Temps</th>
+                    </tr>
+                </thead>
+                <tbody>     
+            <?php
+             While($tab = $Result->fetch()){
+                ?>
+                        <tr class="tr2">
+                            <td>
+                                <?=$tab['ID'] ?>
+                            </td>
+                            <td>
+                                <?= $tab["Date"];?>
+                            </td>
+                            <td>
+                                <?= $tab["Temps"];?>
+                            </td>
+                    <?php
+                    }
+                    ?>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        <?php 
+    }
+    
     public function DateSupp($day){
         $req2 = "DELETE FROM `Capteur` WHERE Date < DATE_SUB(NOW(), INTERVAL ".$day." DAY)";
         $this->_BDD->exec($req2);
@@ -185,5 +222,7 @@ class Bdd{
         $req4 = "SELECT * FROM `Capteur`";
         $this->_BDD->exec($req4);
     }
+
+
 }
 ?>

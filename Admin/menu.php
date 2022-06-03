@@ -1,6 +1,9 @@
-<div class="menu">
-        <a class="ok" href="Prevision.php">Prevision</a>
-        <h2>Table Capteur</h2>
+<div class="Menu">
+    <div class="divLien">
+        <a class="lien" href="Gestion.php">Capteur</a>
+        <a class="lien" href="Prevision.php">Prevision</a>
+        <a class="lien" href="Meteo.php">Meteo</a>
+    </div>
         <form method="post">
         <input  class="deco" name="logout" type="submit" value="Se Déconnecter">
         <?php

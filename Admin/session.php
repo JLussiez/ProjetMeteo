@@ -1,7 +1,7 @@
 <?php
 session_start();
 include "class/Admin.php";
-include "class/Meteo.php";
+include "class/Bdd.php";
 
 //$base = null;
 $errorMessage="";
@@ -16,7 +16,7 @@ try{
         $errorMessage .= $e->getMessage();
     }
     $admin1 = new Admin($bdd);
-    $meteo = new Meteo($bdd);
+    $meteo = new Bdd($bdd);
 
     if (isset($_SESSION["Connected"]) && $_SESSION["Connected"] == true){
         if(isset($_SESSION["ID"])){
