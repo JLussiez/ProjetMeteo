@@ -1,13 +1,6 @@
-var ws = new WebSocket("ws://192.168.64.155:16050");
-var ws;
-
 function initConnection(){
   if (window.MozWebSocket){
     window.WebSocket = window.MozWebSocket;
-  }
-  if (!window.WebSocket){
-    alert("Votre navigateur ne prend pas en charge les websocket");
-    return false;
   }
  
   ws = new WebSocket("ws://192.168.64.155:16050"); 
