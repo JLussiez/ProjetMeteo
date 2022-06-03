@@ -43,16 +43,6 @@
         <li class="list">
             <b></b>
             <b></b>
-            <a href="Historique.php">
-                <span class="icon">
-                    <ion-icon name="play-back-outline"></ion-icon>
-                </span>
-                <span class="title">Historique des données</span>
-            </a>
-        </li>
-        <li class="list">
-            <b></b>
-            <b></b>
             <a href="Admin/Gestion.php">
                 <span class="icon">
                     <ion-icon name="build-outline"></ion-icon>
