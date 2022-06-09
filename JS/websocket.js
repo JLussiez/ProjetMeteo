@@ -1,37 +1,25 @@
-function initConnection(){
-  if (window.MozWebSocket){
-    window.WebSocket = window.MozWebSocket;
-  }
- 
-  ws = new WebSocket("ws://192.168.64.155:16050"); 
-  return true;
+const ws = new WebSocket("ws://192.168.64.155:16050");
+
+ws.onopen = function () {
+    console.log("WebSocket connecté");
 }
 
-ws.onopen = function() { $('#etat').html('Connexion établie'); }
+ws.onmessage = function(event) {
+    console.log(event.data);
 
-socket.onopen = function (event) {      
-    socket.send('{ "type": "texte", "message": "Prêt" }' );     
+    var msg = JSON.parse(event.data);
+
+    var pression = msg.pression;
+    var temperature = msg.temperature;
+    var hydrometrie = msg.hydrometrie;
+    var journuit = msg.journuit;
+    var pluie = msg.pluie;
+    var quantitePluie = msg.quantitepluie;
+    
+    document.getElementById("Pression").innerHTML = pression;
+    document.getElementById("Temperature").innerHTML = temperature;
+    document.getElementById("Humidite").innerHTML = hydrometrie;
+    document.getElementById("DayTime").innerHTML = journuit;
+    document.getElementById("Pluie").innerHTML = pluie;
+    document.getElementById("RainAmmount").innerHTML = quantitePluie;
   };
-
-socket.onmessage=function(event) { 
-    var data = JSON.parse(event.data);
-    switch(data.type)
-    {
-       case "text":
-           document.getElementById("message").innerHTML = data.message;
-           break;
-    }
-};
-
-socket.onclose = function (event) {      
-    alert("Fin de communication");
-  };
-
-$socket = socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
-socket_bind($socket, "192.168.64.155", 16050);
-
-$changed = $mesSockets;
-$write = $except = [];
-socket_select($changed, $write, $except, null);
-$bytes = socket_recv($socket, $buffer, 2048, 0);
-socket_close($socket);
