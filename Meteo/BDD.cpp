@@ -18,22 +18,24 @@ BDD::BDD()
 
 }
 
-void BDD::requete(float VitesseVent, QString PositionVent, float Pression, float Humidite, float Temperature, float Solarimetre, float Pluviometre, bool Pluie, bool JourNuit)
+void BDD::requete(/*float VitesseVent, QString PositionVent,*/ float Pression, float Humidite, float Temperature, /*float Solarimetre,*/ float Pluviometre, bool Pluie, bool JourNuit)
 {
 	QSqlQuery req;
-	req.prepare("INSERT INTO Capteur (Vitesse_Vent, Position_Vent, Pression, Humidite, Temperature, Solarimetre, Pluviometre, Pluie, JourNuit) VALUES(?,?,?,?,?,?,?,?,?) ");
-	req.addBindValue(VitesseVent);
-	req.addBindValue(PositionVent);
+	//req.prepare("INSERT INTO Capteur (Vitesse_Vent, Position_Vent, Pression, Humidite, Temperature, Solarimetre, Pluviometre, Pluie, JourNuit) VALUES(?,?,?,?,?,?,?,?,?) ");
+	req.prepare("INSERT INTO Capteur (Pression, Humidite, Temperature, Pluviometre, Pluie, JourNuit) VALUES(?,?,?,?,?,?) ");
+
+	//req.addBindValue(VitesseVent);
+	//req.addBindValue(PositionVent);
 	req.addBindValue(Pression);
 	req.addBindValue(Humidite);
 	req.addBindValue(Temperature);
-	req.addBindValue(Solarimetre);
+	//req.addBindValue(Solarimetre);
 	req.addBindValue(Pluviometre);
 	req.addBindValue(Pluie);
 	req.addBindValue(JourNuit);
 
 	if (req.exec()) {
-		qDebug() << "requete envoyer";
+		qDebug() << "requete Capteur envoyer";
 	}
 	else
 	{
@@ -44,12 +46,15 @@ void BDD::requete(float VitesseVent, QString PositionVent, float Pression, float
 
 }
 
-void BDD::requetePrevision(QString Prevision, QString Duree)
+void BDD::requetePrevision(QString Prevision, QString Duree, QString DiffPression, QString PressionHmoins1, QString Pression)
 {
 	QSqlQuery reqPrevision;
-	reqPrevision.prepare("INSERT INTO Prevision_Meteo (Prevision, Duree) VALUES(?,?) ");
+	reqPrevision.prepare("INSERT INTO Prevision_Meteo (Prevision, Duree, DiffPression, PressionHmoins1, PressionActuel) VALUES(?,?,?,?,?)");
 	reqPrevision.addBindValue(Prevision);
 	reqPrevision.addBindValue(Duree);
+	reqPrevision.addBindValue(DiffPression);
+	reqPrevision.addBindValue(PressionHmoins1);
+	reqPrevision.addBindValue(Pression);
 
 	if (reqPrevision.exec()) {
 		qDebug() << "Requete Prevision envoyer";

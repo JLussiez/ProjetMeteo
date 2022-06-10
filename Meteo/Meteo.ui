@@ -271,7 +271,7 @@
     <property name="geometry">
      <rect>
       <x>890</x>
-      <y>150</y>
+      <y>110</y>
       <width>91</width>
       <height>20</height>
      </rect>
@@ -443,6 +443,45 @@
      <string>Pression H-1</string>
     </property>
    </widget>
+   <widget class="QLabel" name="label_27">
+    <property name="geometry">
+     <rect>
+      <x>760</x>
+      <y>350</y>
+      <width>141</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton">
+    <property name="geometry">
+     <rect>
+      <x>60</x>
+      <y>340</y>
+      <width>75</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Test Value</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_28">
+    <property name="geometry">
+     <rect>
+      <x>750</x>
+      <y>320</y>
+      <width>141</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Différence Pression</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
@@ -485,8 +524,25 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>pushButton</sender>
+   <signal>clicked()</signal>
+   <receiver>MeteoClass</receiver>
+   <slot>slotSendJSONvalue()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>97</x>
+     <y>384</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>575</x>
+     <y>276</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>TestTension()</slot>
+  <slot>slotSendJSONvalue()</slot>
  </slots>
 </ui>

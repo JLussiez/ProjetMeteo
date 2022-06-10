@@ -19,9 +19,9 @@ public:
 	BDD();
 	
 
-	void requete(float VitesseVent,QString PositionVent,float Pression, float Humidite,float Temperature,float Solarimetre, float Pluviometre,bool Pluie,bool JourNuit);
+	void requete(/*float VitesseVent,QString PositionVent,*/float Pression, float Humidite,float Temperature,/*float Solarimetre,*/ float Pluviometre,bool Pluie,bool JourNuit);
 
-	void requetePrevision(QString Prevision,QString Duree);
+	void requetePrevision(QString Prevision,QString Duree, QString DiffPression, QString PressionHmoins1, QString Pression);
 
 	void requeteMeteo(QString Temps);
 

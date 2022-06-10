@@ -30,12 +30,16 @@ class Capteur :
 		void ConnectCarte();
 		I16 card;
 		int NumeroChannel;
+		int NumeroChannelDI;
 		//Ui::MeteoClass ui;
 
 	public :
+		U16 Digital;
 		double Tension;
 		float getTension();
+		bool getDigital();
 		void priseTension();
+		void priseDigital();
 
 	private slots :
 		void onServerNewConnection();

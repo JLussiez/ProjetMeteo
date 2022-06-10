@@ -102,6 +102,7 @@
     <ClCompile Include="PrevisionMeteo.cpp" />
     <ClCompile Include="Solarimetre.cpp" />
     <ClCompile Include="Thermometre.cpp" />
+    <ClCompile Include="websocket.cpp" />
     <QtRcc Include="Meteo.qrc" />
     <QtUic Include="Meteo.ui" />
     <QtMoc Include="Meteo.h" />
@@ -128,6 +129,7 @@
     <ClInclude Include="Pluviometre.h" />
     <ClInclude Include="Solarimetre.h" />
     <ClInclude Include="Thermometre.h" />
+    <ClInclude Include="websocket.h" />
     <QtMoc Include="PrevisionMeteo.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

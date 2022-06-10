@@ -10,11 +10,13 @@
 #include <QtSql/QtSql>
 #include <QSqlQuery>
 #include <QtSql>
-
+#include <QTimer>
 #include "Dask.h"
 
 #include <qtcpsocket.h>			//Bibliothèque Socket
 #include <qtcpserver.h>			//Bibliothèque de création Serveur TCP
+#include <QtWebSockets/qwebsocketserver.h>
+#include <QtWebSockets/QtWebSockets>
 
 #include <QHostAddress>
 #include <QFile>
@@ -47,6 +49,7 @@ class Meteo :
 		void GererTension();
 		void Prevision();
 		int j = 0;
+		void SendJSONvalue();
 
 		//Les classes sont en public pour pouvoir les utiliser
 		Anemometre *anemometre;
@@ -59,7 +62,15 @@ class Meteo :
 		DetecteurJourNuit *detecteurjournuit;
 		DetecteurPluie *detecteurpluie;
 		BDD *bdd;
-		void ValeurActuelEtPrevision();
+		QString ValeurActuelEtPrevision();
+		QTimer *timer;
+		QWebSocket *unnomrandom;
+		void Timer();
+
+		QVector<QWebSocket *> ClientWeb;
+		int ListeClient;
+
+		~Meteo();
 
 	private:
 		Ui::MeteoClass ui;
@@ -69,7 +80,15 @@ class Meteo :
 		QTcpSocket socket;
 		float PressionHmoins1 = 0;
 
+		QWebSocketServer *webServer;
+		
+
 	private slots:
 		void TestTension();
 		void onClientReadyRead();
+		void PriseMeteo();
+		void onWebServerNewConnection();
+
+		void onWebClientDisconnected();
+		void slotSendJSONvalue();
 };
