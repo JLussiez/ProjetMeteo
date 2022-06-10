@@ -15,7 +15,7 @@ ws.onmessage = function(event) {
     var journuit = msg.journuit;
     var pluie = msg.pluie;
     var quantitePluie = msg.quantitepluie;
-    
+ 
     document.getElementById("Pression").innerHTML = pression;
     document.getElementById("Temperature").innerHTML = temperature;
     document.getElementById("Humidite").innerHTML = hydrometrie;

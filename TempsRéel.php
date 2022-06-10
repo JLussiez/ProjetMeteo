@@ -52,9 +52,9 @@
                             echo '<td id="Humidite">' . $res['Humidite'] . '</td>';
                             echo '<td id="logo"> <img src="IMG/journuit.png"></td>';
                             echo '<td id="DayTime">' . $res['JourNuit'] . '</td>';
-                            echo '<td id="logo"> <img src="IMG/eau.png"></td>';
-                            echo '<td id="Pluie">' . $res['Pluviometre'] . '</td>';
                             echo '<td id="logo"> <img src="IMG/pluie.png"></td>';
+                            echo '<td id="Pluie">' . $res['Pluviometre'] . '</td>';
+                            echo '<td id="logo"> <img src="IMG/eau.png"></td>';
                             echo '<td id="RainAmmount">' . $res['Pluie'] . '</td>';
                             ?>
                         </tr>
