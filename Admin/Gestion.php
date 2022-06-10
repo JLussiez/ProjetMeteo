@@ -2,51 +2,58 @@
 <html lang="en">
 <?php
     include "session.php";
-    /*if(isset($_POST['supp'])){
-        $meteo->delete($id);
-        header('location: Gestion.php');
-    }*/
-    if($_SESSION["Connected"] == true){
-
-        if(isset($_POST['del']))
-        {
-            $meteo->DateSupp($_POST['del']);
-        }
-
+    if($_SESSION["Connected"] == true){  
+        if(isset($_POST['Date3']) && ($_POST['Datetime']))
+            {
+                $datetime1 = $_POST['Date3'];
+                $datetime2 = $_POST['Datetime'];
+                $meteo->DateSupp($datetime1,$datetime2);
+            }    
+        if(isset($_POST['confirm-vidertable']))
+            {
+                $meteo->TruncateCapteur();
+            }
 ?>
-
+      
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style/table.css">
     <link rel="stylesheet" href="style/menu.css">
-    <link rel="icon" href="img/14.png"/>
-    <title>Gestion</title>
+    
+    <link rel="icon" href="img/14.png" />
+    <title>Gestion Admin</title>
 </head>
 <body>
-    
     <?php
-        include "menu.php";
-            $meteo->affiche();
-        ?>
-        <div class="deleteTab">
-            <h3>Supprimer de la base sur une période données</h3>
-            <form class="formcap" action="Gestion.php" method="post">
-                <p>Supprimer la données au bout de X jour</p>
-                <select name="del">
-                    <option value="" disabled selected>Sélectionner le nombre de jour</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                </select>
-                <input class="valid" type="submit" value="Supprimer">
-            </form>
+        include "menu.php";?>
+        <div class="titre">
+            <h3>Données Capteur</h3>
         </div>
+    <?php
+        $meteo->affiche();
+    ?>
+    <div class="deleteTab">        
+        <form class="formcap" method="post">
+            <p>Sélectionner deux dates pour supprimer, les donnéees durant cette période</p>
+            <div class="content">
+                Entre
+                <input name="Date3" type="datetime-local">
+                Et
+                <input name="Datetime" type="datetime-local">
+            </div>
+            <input class="valid" type="submit" value="Supprimer">   
+            <div>         
+                <input class="truncate" id="truncate" type="button" value="Vider la table">
+                <input name="confirm-vidertable" id="confirm" class="truncate" type="submit" value="Confirmer Supp">
+                <input class="truncate" id="Cancel" type="button" value="Annuler">
+            </div>
+        </form>
+    </div>
+    <script src="style/style.js"></script>
 </body>
 <?php
     }
-?>
+?>                  
 </html>
