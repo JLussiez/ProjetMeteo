@@ -33,22 +33,28 @@
                 <table class="tableprevision">
                     <thead>
                         <tr>
-                            <td>Pression</td>
-                            <td>Température</td>
-                            <td>Humidité</td>
-                            <td>Jour/Nuit</td>
-                            <td>Pluie</td>
-                            <td>Quantité de pluie</td>
+                            <td colSpan="2">Pression</td>
+                            <td colSpan="2">Temperature</td>
+                            <td colSpan="2">Humidite</td>
+                            <td colSpan="2">Jour/Nuit</td>
+                            <td colSpan="2">Pluviometre</td>
+                            <td colSpan="2">Pluie</td>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <?php   
+                            <?php
+                            echo '<td id="logo"> <img src="IMG/pression.png"></td>';
                             echo '<td id="Pression">' .$res['Pression'] . '</td>';
+                            echo '<td id="logo"> <img src="IMG/temperature.png"></td>';
                             echo '<td id="Temperature">' . $res['Temperature'] . '</td>';
+                            echo '<td id="logo"> <img src="IMG/humidite.png"></td>';
                             echo '<td id="Humidite">' . $res['Humidite'] . '</td>';
+                            echo '<td id="logo"> <img src="IMG/journuit.png"></td>';
                             echo '<td id="DayTime">' . $res['JourNuit'] . '</td>';
+                            echo '<td id="logo"> <img src="IMG/eau.png"></td>';
                             echo '<td id="Pluie">' . $res['Pluviometre'] . '</td>';
+                            echo '<td id="logo"> <img src="IMG/pluie.png"></td>';
                             echo '<td id="RainAmmount">' . $res['Pluie'] . '</td>';
                             ?>
                         </tr>
