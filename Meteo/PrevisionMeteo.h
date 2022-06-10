@@ -28,13 +28,16 @@ private:
 		QSqlQuery query;
 		QSqlDatabase db;
 		QString Temps;
+		float PressionHmoins1;
+		float DiffPression;
 
 public :
 	PrevisionMeteo();
 	void CatherineLaborde(Barometre& Barometre, Thermometre& Thermometre, DetecteurPluie& DetecteurPluie);
-	void Future();
+	void Future(float Pression, float PressionHmoins1);
 	QString getPrevision();
 	QString getDuree();
 	QString getTemps();
+	float getDiffPression();
 	//void EnvoieDonnee(Anemometre & Anemometre, Girouette & Girouette, Barometre & Barometre, Hygrometre & Hygrometre, Thermometre & Thermometre, Solarimetre & Solarimetre, Pluviometre & Pluviometre, DetecteurPluie & DetecteurPluie, DetecteurJourNuit & DetecteurJourNuit);
 };

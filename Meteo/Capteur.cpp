@@ -28,6 +28,8 @@ void Capteur::priseTension()
 				qDebug() << "Tension : " << Tension << " V";
 			}
 			//Vérifier tension
+
+
 		}
 
 		//Supprimer la carte 
@@ -35,6 +37,24 @@ void Capteur::priseTension()
 	}
 	_getch();
 }
+
+void Capteur::priseDigital()
+{
+	ConnectCarte();
+	if (card >= 0)
+	{
+		if (DI_ReadLine(card, P9111_CHANNEL_DI, NumeroChannelDI, &Digital) < 0)
+			qDebug() << "Erreur lecture Channel Digital";
+		else
+		{
+			qDebug() << "Valeur Digital" << Digital;
+		}
+		//Supprimer la carte 
+		Release_Card(card);
+	}
+	_getch();
+}
+
 
 void Capteur::ConnectCarte()
 {
@@ -47,6 +67,11 @@ void Capteur::ConnectCarte()
 	{
 		qDebug() << "La carte ne c'est pas enregistré";
 	}
+}
+
+bool Capteur::getDigital()
+{
+	return Digital;
 }
 
 float Capteur::getTension()

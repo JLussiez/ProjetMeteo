@@ -27,43 +27,126 @@ Meteo::Meteo(QWidget *parent)
 	PressionHmoins1 = barometre->InstanciationPressionHmoins1();
 	qDebug() << "PressionHmoins1 : " << PressionHmoins1;
 
+	//PressionHmoins1 = 40;
+
 	bdd = new BDD;
 
 	ui.setupUi(this);
 	socket.connectToHost(QHostAddress("127.0.0.1"), 4321);
 	connect(&socket, SIGNAL(readyRead()), this, SLOT(onClientReadyRead()));
 	ui.label_25->setNum(PressionHmoins1);
+
+	Timer();
+
+	webServer = new QWebSocketServer(QStringLiteral("WebServer"), QWebSocketServer::NonSecureMode, this);
+	QObject::connect(webServer, &QWebSocketServer::newConnection, this, &Meteo::onWebServerNewConnection);
+
+	webServer->listen(QHostAddress::AnyIPv4, 16050);
+}
+
+void Meteo::Timer()
+{
+	timer = new QTimer(this);
+
+	//connect(timer, SIGNAL(timeout()), this, SLOT(PriseMeteo()));
+	connect(timer, SIGNAL(timeout()), this, SLOT(slotSendJSONvalue()));
+
+	//10 min
+	timer->start(600000);
+
+	// 5min
+	//timer->start(300000);
+
+	//1 min
+	//timer->start(60000);
+}
+
+void Meteo::PriseMeteo()
+{
+	qDebug() << "Prise Météo";
+	Prevision();
+	ValeurActuelEtPrevision();
+}
+
+void Meteo::onWebServerNewConnection()
+{
+	qDebug() << "Un client WEB s'est connecte";
+
+	this->unnomrandom = webServer->nextPendingConnection();
+
+	ClientWeb.append(unnomrandom);
+
+	QObject::connect(webServer, SIGNAL(disconnected()), this, SLOT(onSocketDeconnected()));
+	qDebug() << "onWebServerNewConnection " << unnomrandom;
+}
+
+Meteo::~Meteo()
+{
+	qDebug() << "Destruction Serveur";
+}
+
+void Meteo::onWebClientDisconnected()
+{
+	QWebSocket* Client = qobject_cast<QWebSocket*>(sender());
+
+	ClientWeb.removeOne(Client);
+	qDebug() << "Deconexion Client";
+}
+
+void Meteo::SendJSONvalue()
+{
+	qDebug() << "Début SendJSONvalue()";
+	Prevision();
+	QString JSONvalue = ValeurActuelEtPrevision();
+
+	qDebug() << JSONvalue;
+
+	if (!unnomrandom)
+	{
+		unnomrandom->error();
+	}
+	qDebug() << unnomrandom;
+
+
+	//Crash lorsqu on envoie avec timer
+	//Le fait 2 fois d affilé
+	unnomrandom->sendTextMessage(JSONvalue);
+	qDebug() << "Fin SendJSONvalue()";
+	// if (obj) {
+		//obj->sendTextMessage(JSONvalue);
+		//qDebug() << "Salut mon pote";
+	// }
+}
+
+void Meteo::slotSendJSONvalue()
+{
+	qDebug() << "Début slotSendJSONvalue()";
+	Prevision();
+	QString JSONvalue = ValeurActuelEtPrevision();
+
+	qDebug() << JSONvalue;
+
+	//Crash lorsqu on envoie avec timer
+	//Le fait 2 fois d affilé
+	int i = 0;
+
+	for (QWebSocket* Client : ClientWeb)
+	{
+		Client->sendTextMessage(JSONvalue);
+	}
+
+	qDebug() << "Fin slotSendJSONvalue()";
+
+	//unnomrandom se supprime apres le premier envoie
 }
 
 void Meteo::TestTension()
 {
 	qDebug() << "Prevision()";
 	Prevision();
-
 	//Calcul Météo actuel + Prevision
 	qDebug() << "ValeurActuelEtPrevision()";
 	ValeurActuelEtPrevision();
-
-	//GererTension();
-
-	/*
-	barometre->addTensionTest();
-	barometre->convertionTensionPression(); 
-
-	float Pression = barometre->getPression();
-	//Convertion float QString
-	QString QPression = QString::number(Pression);
-
-	ui.Pression->setText(QPression +" mBar");
-
-	float Tension = barometre->getTension();
-	QString QTension = QString::number(Tension);
-
-	ui.Tension->setText(QTension +" V");
-
-	//
-	previsionmeteo->CatherineLaborde( *barometre, *thermometre, *detecteurpluie);
-	*/
 }
 
 void Meteo::Prevision()
@@ -78,10 +161,12 @@ void Meteo::Prevision()
 	float Temperature = thermometre->getTemperature();
 	float Luminosite = solarimetre->getLuminosite();
 	float QuantitePluie = pluviometre->getQuantitePluie();
-	bool Pluie = detecteurpluie->getPluie();
-	bool JourNuit = detecteurjournuit->getJourNuit();
+	float Pluie = detecteurpluie->getPluie();
+	float JourNuit = detecteurjournuit->getJourNuit();
 
 	//Envoie en base + temps
+	qDebug() << "Envoie en base Capteur";
+	qDebug() << Pluie << JourNuit << QuantitePluie;
 	bdd->requete(/*Vitesse_Vent, Position_Vent,*/ Pression, Humidite, Temperature, /*Luminosite,*/ QuantitePluie, Pluie, JourNuit);
 }
 
@@ -107,16 +192,17 @@ void Meteo::GererTension()
 	ui.label_13->setNum(thermometre->getTension());
 	//solarimetre->priseTension();
 	//
-	qDebug() << "pluviometre";
-	pluviometre->priseTension();
-	ui.label_14->setNum(pluviometre->getTension());
-	qDebug() << "detecteurpluie";
-	detecteurpluie->priseTension();
-	ui.label_15->setNum(detecteurpluie->getTension());
-	qDebug() << "detecteurjournuit";
-	detecteurjournuit->priseTension();
-	ui.label_16->setNum(detecteurjournuit->getTension());
 
+
+	qDebug() << "detecteurjournuit";
+	detecteurjournuit->priseDigital();
+	ui.label_14->setNum(detecteurjournuit->getDigital());
+	qDebug() << "detecteurpluie";
+	detecteurpluie->priseDigital();
+	ui.label_15->setNum(detecteurpluie->getDigital());
+	qDebug() << "pluviometre";
+	pluviometre->priseDigital();
+	ui.label_16->setNum(pluviometre->getDigital());
 	//Convertion des données :
 	//anemometre->convertionTensionVitesseVent();
 	//girouette->convertionTensionCardinalite();
@@ -135,15 +221,20 @@ void Meteo::GererTension()
 
 	pluviometre->convertionTensionQuantitePluie();
 	ui.label_20->setNum(pluviometre->getQuantitePluie());
+
 	detecteurpluie->convertionTensionPluie();
-	ui.label_21->setNum(detecteurpluie->getPluie());
+	ui.label_21->setText(detecteurpluie->getQPleut());
+
 	detecteurjournuit->convertionTensionJourNuit();
-	ui.label_22->setNum(detecteurjournuit->getJourNuit());
+	ui.label_22->setText(detecteurjournuit->getQJournuit());
 }
 
-void Meteo::ValeurActuelEtPrevision()
+QString Meteo::ValeurActuelEtPrevision()
 {
 	previsionmeteo->CatherineLaborde(*barometre, *thermometre, *detecteurpluie);
+
+	QString Meteo = previsionmeteo->getTemps();
+	bdd->requeteMeteo(Meteo);
 
 	QString temps = previsionmeteo->getTemps();
 	QString JsonMeteo;
@@ -159,6 +250,9 @@ void Meteo::ValeurActuelEtPrevision()
 	{
 		//Prévision météo
 		float Pression = barometre->getPression();
+		qDebug() << "Pression H -1 " << PressionHmoins1 << " // Pression " << Pression;
+
+		//float
 		previsionmeteo->Future(Pression, PressionHmoins1);
 		//Reset compteur
 		j = 0;
@@ -167,8 +261,15 @@ void Meteo::ValeurActuelEtPrevision()
 		QString duree = previsionmeteo->getDuree();
 		ui.label_24->setText(prevision);
 
+		float dPression = previsionmeteo->getDiffPression();
+		QString diffpression = QString::number(dPression);
+		ui.label_27->setText(diffpression);
+
+		QString pQPressionHmoins1 = QString::number(PressionHmoins1);
+		QString pQPression = QString::number(Pression);
+
 		//Envoie en base + temps
-		bdd->requetePrevision(prevision, duree);	
+		bdd->requetePrevision(prevision, duree, diffpression, pQPressionHmoins1, pQPression);	
 
 		//Préparation envoie via TCP
 		float Temp = thermometre->getTemperature();
@@ -184,7 +285,8 @@ void Meteo::ValeurActuelEtPrevision()
 		QString QPluie = QString::number(Pluie);
 		QString QQuantitePluie = QString::number(QuantitePluie);
 
-		JsonMeteo = "{\"pression\":" + QPression + ",\"temperature\":" + QTemp + ",\"hydrometrie\":" + QHumid + ",\"journuit\":" + QJourNuit + ",\"pluie\":" + QPluie + ",\"quantitepluie\":" + QQuantitePluie + ",\"meteo\":" + temps + ",\"prevision\":" + prevision + ",\"duree\":" + duree + "}";
+		//JsonMeteo = "{\"pression\":" + QPression + ",\"temperature\":" + QTemp + ",\"hydrometrie\":" + QHumid + ",\"journuit\":" + QJourNuit + ",\"pluie\":" + QPluie + ",\"quantitepluie\":" + QQuantitePluie + ",\"meteo\":" + temps + ",\"prevision\":" + prevision + ",\"duree\":" + duree + "}";
+		JsonMeteo = "{\"pression\":" + QPression + ",\"temperature\":" + QTemp + ",\"hydrometrie\":" + QHumid + ",\"journuit\":" + QJourNuit + ",\"pluie\":" + QPluie + ",\"quantitepluie\":" + QQuantitePluie + "}";
 		qDebug() << JsonMeteo;
 
 		//Update de la pression à h-1
@@ -207,9 +309,9 @@ void Meteo::ValeurActuelEtPrevision()
 		QString QPluie = QString::number(Pluie);
 		QString QQuantitePluie = QString::number(QuantitePluie);
 
-		JsonMeteo = "{\"pression\":" + QPression + ",\"temperature\":" + QTemp + ",\"hydrometrie\":" + QHumid + ",\"journuit\":" + QJourNuit + ",\"pluie\":" + QPluie + ",\"quantitepluie\":" + QQuantitePluie + ",\"meteo\":" + temps + "}";
+		JsonMeteo = "{\"pression\":" + QPression + ",\"temperature\":" + QTemp + ",\"hydrometrie\":" + QHumid + ",\"journuit\":" + QJourNuit + ",\"pluie\":" + QPluie + ",\"quantitepluie\":" + QQuantitePluie + "}";
 
-		qDebug() << JsonMeteo;
+		qDebug() << "ValeurActuelEtPrevision " << JsonMeteo;
 	}
 
 	QByteArray inUtf8 = JsonMeteo.toUtf8();
@@ -217,6 +319,7 @@ void Meteo::ValeurActuelEtPrevision()
 	//Envoie via Serveur TCP
 	socket.write(JsonMeteoConvertit);
 
+	return JsonMeteo;
 }
 
 void Meteo::onClientReadyRead()
@@ -250,3 +353,5 @@ void Meteo::onClientReadyRead()
 		ValeurActuelEtPrevision();
 	}
 }
+
+
