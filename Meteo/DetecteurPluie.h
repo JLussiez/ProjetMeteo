@@ -15,5 +15,7 @@ public:
 	//Générer une Tension une Test
 	void addPluieTest();
 	float Pluie;
+	QString QPleut;
+	QString getQPleut();
 };
 

@@ -2,19 +2,22 @@
 
 DetecteurJourNuit::DetecteurJourNuit()
 {
-	Tension = 0;
-	NumeroChannel = 8;
+	Digital = 0;
+	NumeroChannelDI = 8;
 	this->ConnectCarte();
 }
 
 void DetecteurJourNuit::convertionTensionJourNuit()
 {
-	if (Tension > 1) {
-		JourNuit = 1;
+	JourNuit = Digital;
+	if (Digital = 1) {
+		QJournuit = "Il fait jour";
 	}
 	else {
-		JourNuit = 0;
+		QJournuit = "Il fait nuit";
 	}
+
+	
 }
 
 float DetecteurJourNuit::getJourNuit()
@@ -24,5 +27,10 @@ float DetecteurJourNuit::getJourNuit()
 
 void DetecteurJourNuit::addJourNuitTest()
 {
-	Tension = QRandomGenerator::global()->bounded(0, 5);
+
+}
+
+QString DetecteurJourNuit::getQJournuit()
+{
+	return QJournuit;
 }

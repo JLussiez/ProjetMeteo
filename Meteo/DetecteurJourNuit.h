@@ -15,6 +15,7 @@ public:
 	//Générer une Tension une Test
 	void addJourNuitTest();
 	float JourNuit;
-
+	QString QJournuit;
+	QString getQJournuit();
 };
 

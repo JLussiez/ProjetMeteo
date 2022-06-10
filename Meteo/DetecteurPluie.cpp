@@ -2,19 +2,22 @@
 
 DetecteurPluie::DetecteurPluie()
 {
-	Tension = 0;
-	NumeroChannel = 7;
+	Digital = 0;
+	NumeroChannelDI = 10;
 	this->ConnectCarte();
 }
 
 void DetecteurPluie::convertionTensionPluie()
 {
-	if (Tension > 3) {
-		Pluie = 0;
+	Pluie = Digital;
+	if (Digital = 1)
+	{
+		QPleut = "Il ne pleut pas";
 	}
 	else {
-		Pluie = 1;
+		QPleut = "Il pleut";
 	}
+	
 }
 
 float DetecteurPluie::getPluie()
@@ -24,5 +27,9 @@ float DetecteurPluie::getPluie()
 
 void DetecteurPluie::addPluieTest()
 {
-	Tension = QRandomGenerator::global()->bounded(0, 4);
+}
+
+QString DetecteurPluie::getQPleut()
+{
+	return QPleut;
 }
