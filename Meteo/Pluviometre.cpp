@@ -2,13 +2,14 @@
 
 Pluviometre::Pluviometre()
 {
-	Tension = 0;
-	NumeroChannel = 9;
+	Digital = 0;
+	NumeroChannelDI = 4;
 	this->ConnectCarte();
 }
 
 void Pluviometre::convertionTensionQuantitePluie()
 {
+	QuantitePluie = Digital;
 }
 
 float Pluviometre::getQuantitePluie()
