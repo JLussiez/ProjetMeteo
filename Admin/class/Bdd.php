@@ -53,7 +53,7 @@ class Bdd{
     }
 
     public function AffichePrevision(){
-        $req3 = "SELECT * FROM `Prevision_Meteo`";
+        $req3 = "SELECT * FROM `Prevision_Meteo` ORDER BY ID DESC";
         $Result3 = $this->_BDD->query($req3);
         ?>
         <div class="Prevision">
@@ -61,7 +61,7 @@ class Bdd{
                 <thead>
                     <tr class="tr1">
                         <th>ID</th>
-                        <th>Date</th>
+                        <th>Date / Heure</th>
                         <th>Prevision</th>
                         <th>Durée</th>
                     </tr>
@@ -97,7 +97,7 @@ class Bdd{
 
     public function affiche(){
         
-        $req = "SELECT * FROM `Capteur`";
+        $req = "SELECT * FROM `Capteur` ORDER BY ID DESC";
         $Result = $this->_BDD->query($req);
         ?>
         <div class="bar">
@@ -105,7 +105,7 @@ class Bdd{
                 <thead>
                     <tr class="tr1">
                         <th>ID</th>
-                        <th>Date</th>
+                        <th>Date / Heure</th>
                         <th>Vitesse Vent</th>
                         <th>Position Vent</th>
                         <th>Pression</th>
@@ -115,7 +115,6 @@ class Bdd{
                         <th>Pluviometre</th>
                         <th>Pluie</th>
                         <th>JourNuit</th>
-                        <!--<th></th>-->
                     </tr>
                 </thead>
                 <tbody>     
@@ -156,11 +155,6 @@ class Bdd{
                         <td>
                             <?= $tab["JourNuit"];?>
                         </td>
-                    <!--<form method="post" action="">
-                        <td>
-                            <input type="submit" name="supp" value="✘">
-                        </td>
-                    </form>-->
                 <?php
                 }
                 ?>
@@ -172,7 +166,7 @@ class Bdd{
     }
 
     public function AfficheMeteo(){
-        $req5 = "SELECT * FROM `Meteo`";
+        $req5 = "SELECT * FROM `Meteo` ORDER BY ID DESC";
         $Result = $this->_BDD->query($req5);
         ?>
         <div class="Prevision">
@@ -180,7 +174,7 @@ class Bdd{
                 <thead>
                     <tr class="tr1">
                         <th>ID</th>
-                        <th>Date</th>
+                        <th>Date / Heure</th>
                         <th>Temps</th>
                     </tr>
                 </thead>
@@ -207,22 +201,53 @@ class Bdd{
             </div>
         <?php 
     }
-    
-    public function DateSupp($day){
-        $req2 = "DELETE FROM `Capteur` WHERE Date < DATE_SUB(NOW(), INTERVAL ".$day." DAY)";
+
+    public function DateSupp($datetime1,$datetime2){
+        $date1 = date('Y-m-d\ H:i ',strtotime($datetime1));
+        $date2 = date('Y-m-d\ H:i ', strtotime($datetime2));
+        $req2 = "DELETE FROM `Capteur` WHERE Date BETWEEN '".$date1."' AND '".$date2."'";
         $this->_BDD->exec($req2);
+        unset($_POST);
+        echo '<meta http-equiv="refresh" content="0">';
     }
 
-    public function DatesuppPrevision($day){
-        $req3 = "DELETE FROM `Prevision_Meteo` WHERE Date < DATE_SUB(NOW(), INTERVAL ".$day." DAY)";
-        $this->_BDD->exec($req3);
+    public function DeletePrevision($datetime1,$datetime2){
+        $date1 = date('Y-m-d\ H:i ',strtotime($datetime1));
+        $date2 = date('Y-m-d\ H:i ', strtotime($datetime2));
+        $req = "DELETE FROM `Prevision_Meteo` WHERE Date BETWEEN '".$date1."' AND '".$date2."'";
+        $this->_BDD->exec($req);
+        unset($_POST);
+        echo '<meta http-equiv="refresh" content="0">';
     }
 
-    public function SelectCapteur(){
-        $req4 = "SELECT * FROM `Capteur`";
-        $this->_BDD->exec($req4);
+    public function DeleteMeteo($datetime1,$datetime2){
+        $date1 = date('Y-m-d\ H:i ',strtotime($datetime1));
+        $date2 = date('Y-m-d\ H:i ', strtotime($datetime2));
+        $req = "DELETE FROM `Meteo` WHERE Date BETWEEN '".$date1."' AND '".$date2."'";
+        $this->_BDD->exec($req);
+        unset($_POST);
+        echo '<meta http-equiv="refresh" content="0">';
     }
 
+    public function TruncateCapteur(){
+        $req = "TRUNCATE TABLE `Capteur`";
+        $this->_BDD->exec($req);
+        unset($_POST);
+        echo '<meta http-equiv="refresh" content="0">';
+    }
+    
+    public function TruncatePrevision(){
+        $req = "TRUNCATE TABLE `Prevision_Meteo`";
+        $this->_BDD->exec($req);
+        unset($_POST);
+        echo '<meta http-equiv="refresh" content="0">';
+    }
 
+    public function TruncateMeteo(){
+        $req = "TRUNCATE TABLE `Meteo`";
+        $this->_BDD->exec($req);
+        unset($_POST);
+        echo '<meta http-equiv="refresh" content="0">';
+    }
 }
 ?>
