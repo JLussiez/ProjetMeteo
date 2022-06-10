@@ -7,9 +7,8 @@ body{
 }
 
 table{
-    color: gray;
     border-collapse: collapse;
-    box-shadow: 0 5px 20px 0 rgb(0 0 0 / 10%);
+    width: 100%;
 }
 
 .tableau2{
@@ -18,38 +17,43 @@ table{
 
 td{
     text-align: center;
-    font-family: Lato-Regular;
+    font-family:sans-serif;
+    font-size: 0.9em;
     font-size: 16px;
     height: 20px;
 }
 
 .tr2{
-    border-bottom: 1px solid #f2f2f2;
+    border-bottom: 1px solid #dddddd;
+}
+.tr2:last-of-type{
+  border-bottom: 2px solid #333;
 }
 
 th{
     width: 100px;
     height: 40px;
+    padding: 10px 10px 10px 10px;
 }
 
 thead{
-    font-family: Lato-Bold;
+  font-family: 'Poppins', sans-serif;
     font-size: 18px;
-    background-color:#e7e7e7e5;
-    color: #4272d7;  
+    background-color:#333333;
+    color: #ffffff;  
     box-shadow: 0 5px 20px 0 rgb(0 0 0 / 10%);
     width: 15px;
     position: sticky;
-    top:1px;
+    top:0px;
 }
 
 .bar{
     overflow-y: scroll;
     max-height: 585px;
-    width: 60%;
-    border-radius: 15px;
+    width: 80%;
     box-shadow: 0 5px 20px 0 rgb(0 0 0 / 10%);
-    margin-top: 5%;
+    margin-top: 1%;
+    border-radius: 5px 5px 10px 0;
 }
 
 .bar::-webkit-scrollbar {
@@ -58,14 +62,14 @@ thead{
   
   .bar::-webkit-scrollbar-track {
     background-color: #a0a0a030;
-    border-radius: 100px;
+    border-radius: 0px 10px 10px 0px;
   }
   
   .bar::-webkit-scrollbar-thumb {
     border-radius: 100px;
     border: 5px solid transparent;
     background-clip: content-box;
-    background-color: #7093d4;
+    background-color: #333;
   }
 
   .htabl{
@@ -76,9 +80,10 @@ thead{
   .Prevision{
     overflow-y: scroll;
     max-height: 585px;
-    border-radius: 15px;
     box-shadow: 0 5px 20px 0 rgb(0 0 0 / 10%);
-    margin-top: 5%;
+    margin-top: 1%;
+    border-radius: 5px 5px 0 0;
+    width: 60%;
 }
 
 .Prevision::-webkit-scrollbar {
@@ -87,12 +92,104 @@ thead{
   
   .Prevision::-webkit-scrollbar-track {
     background-color: #a0a0a030;
-    border-radius: 100px;
+    border-radius: 0px 5px 5px 0px;
   }
   
   .Prevision::-webkit-scrollbar-thumb {
     border-radius: 100px;
     border: 5px solid transparent;
     background-clip: content-box;
-    background-color: #7093d4;
+    background-color: #333;
   }
+
+/*Div Pour supprimer les données*/
+.deleteTab{
+  margin-top: 20px;
+  background-color: #333;
+  width: 40%;
+  text-align: center;
+  border-radius: 5px;
+  height: 180px;
+  box-shadow: 0 5px 20px 0 rgb(0 0 0 / 61%);
+  color: aliceblue;
+  font-family: inherit;
+}
+
+.valid{
+  background-color:rgb(255, 74, 74);
+  color:white;
+  border: none;
+  cursor: pointer;
+  width: 80px;
+  height: 30px;
+  margin-top: 10px;
+  border-radius: 3px;
+}
+
+.valid:hover{
+  background-color: rgb(255, 0, 0);
+}
+
+.formcap{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+}
+
+select{
+  border: 1px solid #ffffff;
+  background: white;
+  cursor: pointer;
+  font-family: inherit;
+  color: #000000;
+  text-align: center;
+  font-size: 16px;
+  height: 27px;
+}
+
+option{
+  color: #000000;
+  
+}
+
+h3{
+  margin-top: 0;
+  margin-bottom: 0;
+  font-family: sans-serif;
+}
+
+p{
+  font-family: sans-serif;
+}
+
+.tr2:nth-child(odd){
+  background-color:rgba(128, 128, 128, 0.185);
+}
+
+.content{
+  margin-top: 20px;
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+.titre{
+  background-color: #333;
+  color: white;
+  margin-top: 1%;
+  border-radius: 3px;
+  padding: 5px 5px 5px 5px;
+}
+
+.truncate{
+  background-color:rgb(255, 74, 74);
+  color:white;
+  border: none;
+  cursor: pointer;
+  width: 125px;
+  height: 30px;
+  border-radius: 3px;
+  margin-top: 10px;
+}
+
+.truncate:hover{
+  background-color: rgb(255, 0, 0);
+}
