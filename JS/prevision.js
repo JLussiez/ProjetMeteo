@@ -1,3 +1,5 @@
+//prevision.js réalisé par Lussiez Julien
+
 //connexion du websocket
 const ws = new WebSocket("ws://192.168.64.155:16050");
 //récéption des messages du serveur

@@ -1,3 +1,5 @@
+//menu.js réalisé par Lussiez Julien
+
 let menuToggle = document.getElementById('toggle');
 let navigation = document.getElementById('navigation');
 menuToggle.addEventListener('click', function(){
@@ -5,7 +7,7 @@ menuToggle.addEventListener('click', function(){
     navigation.classList.toggle('active');
 });
 
-//activation du fond blanc pour la page séléctionner
+//activation du fond blanc pour la page
 let list = document.querySelectorAll('.list');
 for (let i = 0; i<list.length; i++){
 list[i].onclick = function(){

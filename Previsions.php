@@ -1,9 +1,11 @@
+<!-- Previsions.php réalisé par Lussiez Julien-->
+
 <?php
     try{
         $errorMessage="";
         $user="admin";
         $pass="admin";
-        //pdo bal bla
+        //PDO pour initialiser la connexion à la BDD
         $bdd = new PDO("mysql:host=192.168.65.201; dbname=Meteo", $user, $pass);
     }catch(Exception $e){
         $errorMessage .= $e->getMessage();
@@ -24,7 +26,7 @@
     <p>
         <?php
             include "menu.php";
-
+            // requête pour récupèrer la dernière prévision météo
             $req = $bdd->query("SELECT * FROM `Prevision_Meteo` ORDER BY `Prevision_Meteo`.`Date` DESC LIMIT 1");
             $res = $req->fetch();
 
@@ -40,7 +42,8 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <?php   
+                        <?php
+                        // ajout d'une image en fonction du temps affiché par la prévision
                             if ($res['Prevision'] == 'Beau temps'){
                                 echo '<td id="logo"> <img src="IMG/sun.png"></td>';
                             }

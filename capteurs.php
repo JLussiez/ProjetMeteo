@@ -1,3 +1,5 @@
+<!-- capteurs.php réalisé par Lussiez Julien-->
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -14,7 +16,7 @@
     <?php
         include "menu.php";
     ?>
-
+    <!-- Explication des différents capteurs-->
     <article class="forecast">
     <h1>Les différents capteurs de la station</h1>
 

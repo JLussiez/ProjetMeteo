@@ -1,3 +1,5 @@
+<!-- menu.php réalisé par Lussiez Julien-->
+
 <div id="navigation" class="navigation">
     <ul>
         <li class="list active">

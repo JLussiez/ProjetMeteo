@@ -1,9 +1,11 @@
+<!-- TempsRéel.php réalisé par Lussiez Julien-->
+
 <?php
     try{
         $errorMessage="";
         $user="admin";
         $pass="admin";
-        //pdo bal bla
+        //PDO pour initialiser la connexion à la BDD
         $bdd = new PDO("mysql:host=192.168.65.201; dbname=Meteo", $user, $pass);
     }catch(Exception $e){
         $errorMessage .= $e->getMessage();
@@ -25,7 +27,7 @@
 <body>
 <?php
         include "menu.php";
-
+        // requête pour récupèrer les dernières valeurs, uniquement pour améliorer le visuel avant l'arrivée de la première valeur
             $req = $bdd->query("SELECT * FROM `Capteur` ORDER BY `Capteur` .`Date` DESC LIMIT 1;");
             $res = $req->fetch();
     ?>
@@ -33,9 +35,9 @@
                 <table class="tableprevision">
                     <thead>
                         <tr>
-                            <td colSpan="2">Pression</td>
-                            <td colSpan="2">Temperature</td>
-                            <td colSpan="2">Humidite</td>
+                            <td colSpan="2">Pression (mbar)</td>
+                            <td colSpan="2">Temperature (°C)</td>
+                            <td colSpan="2">Humidite (%)</td>
                             <td colSpan="2">Jour/Nuit</td>
                             <td colSpan="2">Pluviometre</td>
                             <td colSpan="2">Pluie</td>
@@ -44,6 +46,7 @@
                     <tbody>
                         <tr>
                             <?php
+                            // affichage des images dans le tableau
                             echo '<td id="logo"> <img src="IMG/pression.png"></td>';
                             echo '<td id="Pression">' .$res['Pression'] . '</td>';
                             echo '<td id="logo"> <img src="IMG/temperature.png"></td>';
@@ -53,9 +56,9 @@
                             echo '<td id="logo"> <img src="IMG/journuit.png"></td>';
                             echo '<td id="DayTime">' . $res['JourNuit'] . '</td>';
                             echo '<td id="logo"> <img src="IMG/pluie.png"></td>';
-                            echo '<td id="Pluie">' . $res['Pluviometre'] . '</td>';
+                            echo '<td id="RainAmmount">' . $res['Pluviometre'] . '</td>';
                             echo '<td id="logo"> <img src="IMG/eau.png"></td>';
-                            echo '<td id="RainAmmount">' . $res['Pluie'] . '</td>';
+                            echo '<td id="Pluie">' . $res['Pluie'] . '</td>';
                             ?>
                         </tr>
                     </tbody>

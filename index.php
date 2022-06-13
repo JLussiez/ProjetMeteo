@@ -1,3 +1,5 @@
+<!-- index.php réalisé par Lussiez Julien-->
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -14,7 +16,6 @@
         include "menu.php";
     ?>
 
-    <!--code-->
     <div class="text-zone">
         <h2 class="title">
             <a href="#">Projet Météo</a>
