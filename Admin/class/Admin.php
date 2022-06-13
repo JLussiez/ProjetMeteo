@@ -1,13 +1,16 @@
 <?php
+/*
+Etudiant 3 : Boucher Louis
+Class pour s'identifier sur la gestion Admin
+*/
 
  class Admin{
 
     private $_ID;
     private $_Pseudo;
-    private $_Mdp;
     private $_BDD;
 
-
+//Constructeur qui prend en paramètre la connexion à la base de données
     public function __construct($bdd){
         $this->_BDD = $bdd;
     }
@@ -25,14 +28,10 @@
             $this->setAdmin($tab["ID"], $tab["Pseudo"], $tab["Password"]);
         }
     }
-    public function getID(){
-        return $this->_ID;
-    }
 
-    public function getPseudo(){
-        return $this->_Pseudo;
-    }
-
+//Affiche le formulaire de connexion et envoi une requete SQL quand les données du formulaire sont envoyeés 
+//pour comparer l'utilisateur stocker en base de données
+//La session utilisateur est créer si l'utilisateur se connecte
     public function formUser(){
 
         $afficheForm = true;
@@ -93,11 +92,30 @@
 
     }
 
+//Afficher le menu ainsi que le bouton de déconnexion
+//Le bouton déconnexion vas déconnecter la session
     public function deconnexion(){
-        session_unset();
-        session_destroy();
-        unset($_POST);
-        header("location: index.php");
+        ?>
+        <div class="Menu">
+            <div class="divLien">
+                <a class="lien" href="Gestion.php">Capteur</a>
+                <a class="lien" href="Prevision.php">Prevision</a>
+                <a class="lien" href="Meteo.php">Meteo</a>
+            </div>
+            <form method="post">
+                <input  class="deco" name="logout" type="submit" value="Se Déconnecter">
+            <?php
+                if(isset($_POST["logout"]))
+                    {
+                        session_unset();
+                        session_destroy();
+                        unset($_POST);
+                        header("location: index.php");
+                    }
+            ?>
+            </form>
+        </div>
+        <?php
     }
         
 }

@@ -1,49 +1,16 @@
 <?php
-
+/*
+Etudiant 3 : Boucher Louis
+Class pour gérer la base de données
+*/
 class Bdd{
+
     private $_ID;
-    private $_date;
-    private $_VitesseVent;
-    private $_PositionVent;
-    private $_Pression;
-    private $_Humidite;
-    private $_Temperature;
-    private $_Luminosite;
-    private $_Plviometre;
-    private $_Pluie;
-    private $_Jour_Nuit;
-    private $_Prevision;
     private $_BDD;
 
+//Constructeur qui prend en paramètre la connexion à la base de données
     public function __construct($bdd){
         $this->_BDD = $bdd;
-    }
-    public function setParametre($id,$date,$VitesseVent,$PositionVent,$Pression,$Humidite,$Temperature,$Luminosite,$Pluviometre,$Pluie,$JourNuit){
-        $this->_ID = $id;
-        $this->_date = $date;
-        $this->_VitesseVent = $VitesseVent;
-        $this->_PositionVent = $PositionVent;
-        $this->_Pression = $Pression;
-        $this->_Humidite = $Humidite;
-        $this->_Temperature = $Temperature;
-        $this->_Luminosite = $Luminosite;
-        $this->_Pluviometre = $Pluviometre;
-        $this->_Pluie = $Pluie;
-        $this->_Jour_Nuit = $JourNuit;
-
-    }
-
-    public function setParametrebyID($ID){
-        $req = "SELECT * FROM `Capteur` WHERE `ID`='".$ID."'";
-        $Result = $this->_BDD->query($req);
-        while($tab = $Result->fetch()){
-            $this->setParametre($tab["ID"], $tab["Date"], $tab["Vitesse_Vent"],$tab["Position_Vent"],
-            $tab["Pression"],$tab["Humidite"],$tab["Temperature"],$tab["Solarimetre"],$tab["Pluviometre"],$tab["Pluie"],$tab["JourNuit"]);
-        }
-    }
-
-    public function getID(){
-        return $this->_ID;
     }
 
     public function delete($ID){
@@ -52,6 +19,7 @@ class Bdd{
         unset($_POST);
     }
 
+//Affiche les données de la table des Prévision Météo
     public function AffichePrevision(){
         $req3 = "SELECT * FROM `Prevision_Meteo` ORDER BY ID DESC";
         $Result3 = $this->_BDD->query($req3);
@@ -94,7 +62,7 @@ class Bdd{
     }
 
 
-
+//Affiche les données de la table des Capteurs 
     public function affiche(){
         
         $req = "SELECT * FROM `Capteur` ORDER BY ID DESC";
@@ -106,12 +74,9 @@ class Bdd{
                     <tr class="tr1">
                         <th>ID</th>
                         <th>Date / Heure</th>
-                        <th>Vitesse Vent</th>
-                        <th>Position Vent</th>
-                        <th>Pression</th>
-                        <th>Humidite</th>
-                        <th>Temperature</th>
-                        <th>Solarimetre</th>
+                        <th>Pression (mbar)</th>
+                        <th>Humidite (%)</th>
+                        <th>Temperature (°C)</th>
                         <th>Pluviometre</th>
                         <th>Pluie</th>
                         <th>JourNuit</th>
@@ -129,12 +94,6 @@ class Bdd{
                             <?= $tab["Date"];?>
                         </td>
                         <td>
-                            <?= $tab["Vitesse_Vent"];?>
-                        </td>
-                        <td>
-                            <?= $tab["Position_Vent"];?>
-                        </td>
-                        <td>
                             <?= $tab["Pression"];?>
                         </td>
                         <td>
@@ -142,9 +101,6 @@ class Bdd{
                         </td>
                         <td>
                             <?= $tab["Temperature"];?>
-                        </td>
-                        <td>
-                            <?= $tab["Solarimetre"];?>
                         </td>
                         <td>
                             <?= $tab["Pluviometre"];?>
@@ -165,6 +121,7 @@ class Bdd{
     <?php
     }
 
+//Affiche les données de la base de la météo
     public function AfficheMeteo(){
         $req5 = "SELECT * FROM `Meteo` ORDER BY ID DESC";
         $Result = $this->_BDD->query($req5);
@@ -202,6 +159,7 @@ class Bdd{
         <?php 
     }
 
+//Supprime les données de la table Capteur pendant une période, avec comme paramètre deux date/heure 
     public function DateSupp($datetime1,$datetime2){
         $date1 = date('Y-m-d\ H:i ',strtotime($datetime1));
         $date2 = date('Y-m-d\ H:i ', strtotime($datetime2));
@@ -211,6 +169,7 @@ class Bdd{
         echo '<meta http-equiv="refresh" content="0">';
     }
 
+//Supprime les données de la table Prévision Météo pendant une période, avec comme paramètre deux date/heure 
     public function DeletePrevision($datetime1,$datetime2){
         $date1 = date('Y-m-d\ H:i ',strtotime($datetime1));
         $date2 = date('Y-m-d\ H:i ', strtotime($datetime2));
@@ -220,6 +179,7 @@ class Bdd{
         echo '<meta http-equiv="refresh" content="0">';
     }
 
+//Supprime les données de la table Météo pendant une période, avec comme paramètre deux date/heure     
     public function DeleteMeteo($datetime1,$datetime2){
         $date1 = date('Y-m-d\ H:i ',strtotime($datetime1));
         $date2 = date('Y-m-d\ H:i ', strtotime($datetime2));
@@ -229,13 +189,15 @@ class Bdd{
         echo '<meta http-equiv="refresh" content="0">';
     }
 
+//Vide la table Capteur 
     public function TruncateCapteur(){
         $req = "TRUNCATE TABLE `Capteur`";
         $this->_BDD->exec($req);
         unset($_POST);
         echo '<meta http-equiv="refresh" content="0">';
     }
-    
+
+//Vide la table Prévison Météo
     public function TruncatePrevision(){
         $req = "TRUNCATE TABLE `Prevision_Meteo`";
         $this->_BDD->exec($req);
@@ -243,6 +205,7 @@ class Bdd{
         echo '<meta http-equiv="refresh" content="0">';
     }
 
+//Vide la table Météo    
     public function TruncateMeteo(){
         $req = "TRUNCATE TABLE `Meteo`";
         $this->_BDD->exec($req);
