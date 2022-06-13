@@ -91,4 +91,14 @@ class Meteo :
 
 		void onWebClientDisconnected();
 		void slotSendJSONvalue();
+
+		//Test Future
+		void testTempeteFuture();
+		void testPluieFuture();
+		//Test Actuel
+		void testPluieActuel();
+		void testNeigeActuel();
+		void testGreleActuel();
+		void testTempeteActuel();
+
 };

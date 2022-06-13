@@ -8,6 +8,7 @@ PrevisionMeteo::PrevisionMeteo()
 
 void PrevisionMeteo::CatherineLaborde(Barometre& Barometre, Thermometre& Thermometre, DetecteurPluie& DetecteurPluie)
 {
+	//Récupère les valeurs des baromètre
 	float Pression = Barometre.getPression();
 	float Temperature = Thermometre.getTemperature();
 	int Pluie = DetecteurPluie.getPluie();
@@ -51,6 +52,7 @@ void PrevisionMeteo::CatherineLaborde(Barometre& Barometre, Thermometre& Thermom
 	{
 		//Tempête
 		//génère des vents dépassent 89 km / h
+		//Vérifié avec Anémomètre (si on possède un anméomètre fonctionnel)
 		Temps = "Tempete";
 	}
 	//Envoie en base meteo
@@ -76,7 +78,7 @@ void PrevisionMeteo::Future(float Pression, float PressionHmoins1)
 	// Descente 0,25 à 0,5 : Venue d'une basse pression (sur long terme) = 1010 hPa = risque de pluie, ciel nuageux
 	// Descente 1 à 2 : tempête (été = orage)
 
-	if (DiffPression >= 02.5 && DiffPression <= 07.5)
+	if (DiffPression >= 02)
 	{
 		//Beau temps sur le long terme en prévision
 		qDebug() << "DiffPression >= 0,25 && DiffPression <= 0,5";
@@ -89,19 +91,19 @@ void PrevisionMeteo::Future(float Pression, float PressionHmoins1)
 		Prevision = "Beau temps";
 		Duree = "Court terme";
 	}
-	else if (DiffPression <= -02.5 && DiffPression >= -07.5)
+	else if (DiffPression <= -2.7 && DiffPression >= -07.5)
 	{
 		qDebug() << "DiffPression <= -0,25 && DiffPression >= -0,5";
 		//Risque de pluie, ciel nuageux sur le long terme en prévision
 		Prevision = "Risque de pluie";
 		Duree = "Long terme";
 	}
-	else if (DiffPression <= 02.5 && DiffPression >= -02.5)
+	else if (DiffPression <= 02.5 && DiffPression >= -02.7)
 	{
 		qDebug() << "DiffPression <= 0.25 && DiffPression >= -0.25";
 		Prevision = "Beau temps";
 		Duree = "";
-	} else if (DiffPression <= -07.5 && DiffPression >= -2)
+	} else if (DiffPression <= -7.5)
 	{
 		qDebug() << "DiffPression <= -1 && DiffPression >= -2";
 		//Tempête, si on est en été : orage
@@ -166,4 +168,56 @@ QString PrevisionMeteo::getTemps()
 float PrevisionMeteo::getDiffPression()
 {
 	return DiffPression;
+}
+
+void PrevisionMeteo::TestActuel(float Pression, float Temperature, int Pluie)
+{
+	qDebug() << "TestActuel / Pression" << Pression;
+	qDebug() << "TestActuel / Temperature" << Temperature;
+	qDebug() << "TestActuel / Pluie" << Pluie;
+
+	if (Pression < 960 || Pression > 1060)
+	{
+		//erreur : impossible
+		Temps = "ERREUR";
+	}
+	else if (Pression >= 1015 && Pression < 1060)
+	{
+		//Temps ensolleillé
+		Temps = "Ensoleille";
+	}
+	else if (Pression <= 1015 && Pression > 1000)
+	{
+		if (Pluie == 0)
+		{
+			//Formation de neige vers -5 et 1 °C
+			if (Temperature >= -5 && Temperature < 1)
+			{
+				//Neige
+				Temps = "Neige";
+			}
+			else if (Temperature < -5)
+			{
+				//Grèle
+				Temps = "Grele";
+			}
+			else
+			{
+				//Pluvieux
+				Temps = "Pluvieux";
+			}
+		}
+		else
+		{
+			Temps = "Ensoleille";
+		}
+	}
+	else if (Pression <= 1000 && Pression > 960)
+	{
+		//Tempête
+		//génère des vents dépassent 89 km / h
+		//Vérifié avec Anémomètre (si on possède un anméomètre fonctionnel)
+		Temps = "Tempete";
+	}
+	//Envoie en base meteo
 }

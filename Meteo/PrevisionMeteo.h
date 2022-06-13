@@ -34,6 +34,7 @@ private:
 public :
 	PrevisionMeteo();
 	void CatherineLaborde(Barometre& Barometre, Thermometre& Thermometre, DetecteurPluie& DetecteurPluie);
+	void TestActuel(float Pression, float Temperature, int DetecteurPluie);
 	void Future(float Pression, float PressionHmoins1);
 	QString getPrevision();
 	QString getDuree();

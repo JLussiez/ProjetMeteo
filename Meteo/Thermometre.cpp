@@ -9,7 +9,9 @@ Thermometre::Thermometre()
 
 void Thermometre::convertionTensionTemperature()
 {
+	qDebug() << "Tension : " << Tension;
 	Temperature = 7*Tension-35;
+	qDebug() << "Pression : " << Temperature;
 }
 
 float Thermometre::getTemperature()

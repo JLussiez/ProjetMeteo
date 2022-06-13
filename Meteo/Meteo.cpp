@@ -140,6 +140,74 @@ void Meteo::slotSendJSONvalue()
 	//unnomrandom se supprime apres le premier envoie
 }
 
+void Meteo::testTempeteFuture()
+{
+	//Diff de 6
+	previsionmeteo->Future(1000, 1008);
+
+	QString prevision = previsionmeteo->getPrevision();
+	QString duree = previsionmeteo->getDuree();
+	ui.label_24->setText(prevision);
+
+	float dPression = previsionmeteo->getDiffPression();
+	QString diffpression = QString::number(dPression);
+	ui.label_27->setText(diffpression);
+}
+
+void Meteo::testPluieFuture()
+{
+	previsionmeteo->Future(1000, 1005);
+
+	QString prevision = previsionmeteo->getPrevision();
+	QString duree = previsionmeteo->getDuree();
+	ui.label_24->setText(prevision);
+
+	float dPression = previsionmeteo->getDiffPression();
+	QString diffpression = QString::number(dPression);
+	ui.label_27->setText(diffpression);
+}
+
+void Meteo::testPluieActuel()
+{
+	previsionmeteo->TestActuel(1005, 10, 0);
+
+	QString temps = previsionmeteo->getTemps();
+	QString JsonMeteo;
+
+	ui.label_23->setText(temps);
+}
+
+void Meteo::testNeigeActuel()
+{
+	previsionmeteo->TestActuel(1005, -1, 0);
+
+	QString temps = previsionmeteo->getTemps();
+	QString JsonMeteo;
+
+	ui.label_23->setText(temps);
+
+}
+
+void Meteo::testGreleActuel()
+{
+	previsionmeteo->TestActuel(1005, -10, 0);
+
+	QString temps = previsionmeteo->getTemps();
+	QString JsonMeteo;
+
+	ui.label_23->setText(temps);
+}
+
+void Meteo::testTempeteActuel()
+{
+	previsionmeteo->TestActuel(990, 10, 0);
+
+	QString temps = previsionmeteo->getTemps();
+	QString JsonMeteo;
+
+	ui.label_23->setText(temps);
+}
+
 void Meteo::TestTension()
 {
 	qDebug() << "Prevision()";
@@ -165,8 +233,6 @@ void Meteo::Prevision()
 	float JourNuit = detecteurjournuit->getJourNuit();
 
 	//Envoie en base + temps
-	qDebug() << "Envoie en base Capteur";
-	qDebug() << Pluie << JourNuit << QuantitePluie;
 	bdd->requete(/*Vitesse_Vent, Position_Vent,*/ Pression, Humidite, Temperature, /*Luminosite,*/ QuantitePluie, Pluie, JourNuit);
 }
 
@@ -222,10 +288,10 @@ void Meteo::GererTension()
 	pluviometre->convertionTensionQuantitePluie();
 	ui.label_20->setNum(pluviometre->getQuantitePluie());
 
-	detecteurpluie->convertionTensionPluie();
+	detecteurpluie->convertionDigitalePluie();
 	ui.label_21->setText(detecteurpluie->getQPleut());
 
-	detecteurjournuit->convertionTensionJourNuit();
+	detecteurjournuit->convertionDigitaleJourNuit();
 	ui.label_22->setText(detecteurjournuit->getQJournuit());
 }
 

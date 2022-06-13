@@ -8,14 +8,16 @@ class DetecteurJourNuit :
 {
 public:
 	DetecteurJourNuit();
-	//Convertion tension en donnée utilisable :
-	void convertionTensionJourNuit();
-	//Obtenir Pression
+	//Convertion Digitale en donnée utilisable :
+	void convertionDigitaleJourNuit();
+	//Obtenir Valeur Jour/Nuit
 	float getJourNuit();
-	//Générer une Tension une Test
+	//Générer une valeur digitale Test
 	void addJourNuitTest();
 	float JourNuit;
+	//Chaine de caractères Jour/Nuit
 	QString QJournuit;
+	//Obtenir la chaîne de caractère Jour/Nuit
 	QString getQJournuit();
 };
 

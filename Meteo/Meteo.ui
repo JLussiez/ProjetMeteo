@@ -482,6 +482,84 @@
      <string>Différence Pression</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="testTempeteFuture">
+    <property name="geometry">
+     <rect>
+      <x>990</x>
+      <y>260</y>
+      <width>151</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Prévision Tempête</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="testPluieFuture">
+    <property name="geometry">
+     <rect>
+      <x>990</x>
+      <y>290</y>
+      <width>151</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Prévision Pluie</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="testPluieActuel">
+    <property name="geometry">
+     <rect>
+      <x>990</x>
+      <y>370</y>
+      <width>151</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Pluie</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="testGreleActuel">
+    <property name="geometry">
+     <rect>
+      <x>990</x>
+      <y>430</y>
+      <width>151</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Grêle</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="testNeigeActuel">
+    <property name="geometry">
+     <rect>
+      <x>990</x>
+      <y>400</y>
+      <width>151</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Neige</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="testTempeteActuel">
+    <property name="geometry">
+     <rect>
+      <x>990</x>
+      <y>460</y>
+      <width>151</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Tempête</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
@@ -540,9 +618,111 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>testPluieActuel</sender>
+   <signal>clicked()</signal>
+   <receiver>MeteoClass</receiver>
+   <slot>testPluieActuel()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>1065</x>
+     <y>418</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>575</x>
+     <y>276</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>testTempeteActuel</sender>
+   <signal>clicked()</signal>
+   <receiver>MeteoClass</receiver>
+   <slot>testTempeteActuel()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>1065</x>
+     <y>508</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>575</x>
+     <y>276</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>testNeigeActuel</sender>
+   <signal>clicked()</signal>
+   <receiver>MeteoClass</receiver>
+   <slot>testNeigeActuel()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>1065</x>
+     <y>448</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>575</x>
+     <y>276</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>testGreleActuel</sender>
+   <signal>clicked()</signal>
+   <receiver>MeteoClass</receiver>
+   <slot>testGreleActuel()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>1065</x>
+     <y>478</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>575</x>
+     <y>276</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>testTempeteFuture</sender>
+   <signal>clicked()</signal>
+   <receiver>MeteoClass</receiver>
+   <slot>testTempeteFuture()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>1065</x>
+     <y>308</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>575</x>
+     <y>276</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>testPluieFuture</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>MeteoClass</receiver>
+   <slot>testPluieFuture()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>1065</x>
+     <y>338</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>575</x>
+     <y>276</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>TestTension()</slot>
   <slot>slotSendJSONvalue()</slot>
+  <slot>testTempeteFuture()</slot>
+  <slot>testPluieActuel()</slot>
+  <slot>testNeigeActuel()</slot>
+  <slot>testGreleActuel()</slot>
+  <slot>testTempeteActuel()</slot>
+  <slot>testPluieFuture()</slot>
  </slots>
 </ui>

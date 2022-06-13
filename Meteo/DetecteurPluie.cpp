@@ -7,7 +7,7 @@ DetecteurPluie::DetecteurPluie()
 	this->ConnectCarte();
 }
 
-void DetecteurPluie::convertionTensionPluie()
+void DetecteurPluie::convertionDigitalePluie()
 {
 	Pluie = Digital;
 	if (Digital = 1)
@@ -27,6 +27,7 @@ float DetecteurPluie::getPluie()
 
 void DetecteurPluie::addPluieTest()
 {
+	this->Pluie = QRandomGenerator::global()->bounded(0, 2);
 }
 
 QString DetecteurPluie::getQPleut()

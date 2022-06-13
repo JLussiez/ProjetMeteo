@@ -8,11 +8,11 @@ class Pluviometre :
 {
 public:
 	Pluviometre();
-	//Convertion tension en donnée utilisable :
+	//Convertion Digitale en donnée utilisable :
 	void convertionTensionQuantitePluie();
-	//Obtenir Pression
+	//Obtenir Quantite pluie
 	float getQuantitePluie();
-	//Générer une Tension une Test
+	//Générer une valeur Digitale Test
 	void addQuantitePluieTest();
 	float QuantitePluie;
 };

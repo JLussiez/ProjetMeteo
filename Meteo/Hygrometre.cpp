@@ -9,7 +9,9 @@ Hygrometre::Hygrometre()
 
 void Hygrometre::convertionTensionHumidite()
 {
+	qDebug() << "Tension : " << Tension;
 	Humidite = 8*Tension+10;
+	qDebug() << "Pression : " << Humidite;
 }
 
 float Hygrometre::getHumidite()

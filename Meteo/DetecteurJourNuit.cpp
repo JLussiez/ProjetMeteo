@@ -7,7 +7,7 @@ DetecteurJourNuit::DetecteurJourNuit()
 	this->ConnectCarte();
 }
 
-void DetecteurJourNuit::convertionTensionJourNuit()
+void DetecteurJourNuit::convertionDigitaleJourNuit()
 {
 	JourNuit = Digital;
 	if (Digital = 1) {
@@ -27,7 +27,7 @@ float DetecteurJourNuit::getJourNuit()
 
 void DetecteurJourNuit::addJourNuitTest()
 {
-
+	this->JourNuit = QRandomGenerator::global()->bounded(0, 2);
 }
 
 QString DetecteurJourNuit::getQJournuit()
